@@ -85,10 +85,10 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                                    <x-html.link href="{{route('editar-categ-alimento')}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
+                                                    <x-html.link href="{{route('editar-categoria-alimento')}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
                                                 </h2>
                                                 <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                                    <x-html.link href="{{route('editar-categ-alimento')}}" text="Eliminar" isButton="true" class="inline-block mb-2 ml-1" />
+                                                    <x-html.link href="{{route('editar-categoria-alimento')}}" text="Eliminar" isButton="true" class="inline-block mb-2 ml-1" />
                                                 </h2>
                                             </div>
                                         </td>

@@ -18,8 +18,8 @@ class CreateGlucosaTable extends Migration
             $table->time('hora')->nullable();
             $table->double('mg_dl')->nullable()->default(0);
             
-            $table->foreignId('categoria_enfer_id')->nullable()
-            ->constrained('categ_enfermedad')
+            $table->foreignId('categoria_enfermedad_id')->nullable()
+            ->constrained('categoria_enfermedad')
             ->onDelete('cascade');
             
             $table->timestamps();

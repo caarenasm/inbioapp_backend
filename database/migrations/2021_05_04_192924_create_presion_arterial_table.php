@@ -20,8 +20,8 @@ class CreatePresionArterialTable extends Migration
             $table->double('dia')->nullable()->default(0);
             $table->double('pul')->nullable()->default(0);
 
-            $table->foreignId('categoria_enfer_id')->nullable()
-            ->constrained('categ_enfermedad')
+            $table->foreignId('categoria_enfermedad_id')->nullable()
+            ->constrained('categoria_enfermedad')
             ->onDelete('cascade');
             
             $table->timestamps();

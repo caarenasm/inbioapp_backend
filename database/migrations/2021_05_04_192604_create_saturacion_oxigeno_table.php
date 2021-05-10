@@ -19,8 +19,8 @@ class CreateSaturacionOxigenoTable extends Migration
             $table->double('spo')->nullable();
             $table->double('prb')->nullable();
 
-            $table->foreignId('categoria_enfer_id')->nullable()
-            ->constrained('categ_enfermedad')
+            $table->foreignId('categoria_enfermedad_id')->nullable()
+            ->constrained('categoria_enfermedad')
             ->onDelete('cascade');
             
             $table->timestamps();

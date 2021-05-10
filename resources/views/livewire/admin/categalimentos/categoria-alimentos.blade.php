@@ -6,7 +6,7 @@
         <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Categoria de los alimentos</h2>
         <div class="p-2 bg-white">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">
-                <x-html.link href="{{route('crear-categ-alimento')}}" text="Crear Categoria" isButton="true" class="inline-block mb-2 ml-4" />
+                <x-html.link href="{{route('crear-categoria-alimento')}}" text="Crear Categoria" isButton="true" class="inline-block mb-2 ml-4" />
             </h2>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -44,10 +44,10 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                                    <x-html.link href="{{route('editar-categ-alimento')}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
+                                                    <x-html.link href="{{route('editar-categoria-alimento')}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
                                                 </h2>
                                                 <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                                    <x-html.link href="{{route('editar-categ-alimento')}}" text="Eliminar" isButton="true" class="inline-block mb-2 ml-1" />
+                                                    <x-html.link href="{{route('editar-categoria-alimento')}}" text="Eliminar" isButton="true" class="inline-block mb-2 ml-1" />
                                                 </h2>
                                             </div>
                                         </td>
@@ -64,10 +64,10 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                                        <x-html.link href="{{route('editar-categ-alimento')}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
+                                                        <x-html.link href="{{route('editar-categoria-alimento')}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
                                                     </h2>
                                                     <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                                        <x-html.link href="{{route('editar-categ-alimento')}}" text="Eliminar" isButton="true" class="inline-block mb-2 ml-1" />
+                                                        <x-html.link href="{{route('editar-categoria-alimento')}}" text="Eliminar" isButton="true" class="inline-block mb-2 ml-1" />
                                                     </h2>
                                                 </div>
                                             </td>

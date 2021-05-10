@@ -24,7 +24,7 @@ class CreateActividadFisicaTable extends Migration
             ->constrained('ejercicio')
             ->onDelete('cascade');
 
-            $table->foreignId('tipo_act_fisica_id')->nullable()
+            $table->foreignId('tipo_actividad_fisica_id')->nullable()
             ->constrained('tipo_actividad_fisica')
             ->onDelete('cascade');
 

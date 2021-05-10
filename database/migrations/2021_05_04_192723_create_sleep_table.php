@@ -16,9 +16,9 @@ class CreateSleepTable extends Migration
         Schema::create('sleep', function (Blueprint $table) {
             $table->id();
             $table->string('como_dormiste',100)->nullable();
-            $table->time('h_acostarse')->nullable();
-            $table->time('h_levantarse')->nullable();
-            $table->time('h_dormidas')->nullable();
+            $table->time('hora_acostarse')->nullable();
+            $table->time('hora_levantarse')->nullable();
+            $table->time('hora_dormidas')->nullable();
 
             $table->foreignId('diario_id')->nullable()
             ->constrained('diario')

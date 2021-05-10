@@ -1,12 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminAlimentosController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\AdminCatgAlimentosController;
+use App\Http\Controllers\AdminCrearAlimentosController;
+use App\Http\Controllers\AdminCrearCatgAlimentosController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
 use App\Http\Controllers\AdminProductCategoryController;
 use App\Http\Controllers\AdminProductosController;
 use App\Http\Controllers\AdminUsuarioController;
+use App\Http\Controllers\AdminEnfermedadesController;
+use App\Http\Controllers\AdminCrearEnfermedadController;
+use App\Http\Controllers\AdminEditarAlimentosController;
+use App\Http\Controllers\AdminEditarCatgAlimentosController;
+use App\Http\Controllers\AdminEditarEnfermedadController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +35,7 @@ Route::get('/', HomeController::class);
 // Administración
 Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group(function(){
 
+    
     Route::get('/', AdminEscritorioController::class)->name('escritorio');
 
     Route::get('/usuarios/{user}/editar', [AdminUsuarioController::class, 'edit'])->name('usuarios.edit');
@@ -66,5 +76,17 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/envio-pais/{pais}/editar', [AdminEnvioPaisController::class, 'edit'])->name('envio-pais.edit');
     Route::put('/envio-pais/{pais}', [AdminEnvioPaisController::class, 'update'])->name('envio-pais.update');
     Route::delete('/envio-pais/{pais}/eliminar', [AdminEnvioPaisController::class, 'destroy'])->name('envio-pais.delete');
+
+    Route::get('/enfermedades',AdminEnfermedadesController::class)->name('enfermedad');
+    Route::get('/enfermedades/crear',AdminCrearEnfermedadController::class)->name('crear-enfermedad');
+    Route::get('/enfermedades/editar',AdminEditarEnfermedadController::class)->name('editar-enfermedad');
+
+    Route::get('/alimentos',AdminAlimentosController::class)->name('alimento');
+    Route::get('/alimentos/crear',AdminCrearAlimentosController::class)->name('crear-alimento');
+    Route::get('/alimentos/editar',AdminEditarAlimentosController::class)->name('editar-alimento');
+
+    Route::get('/categ-alimentos',AdminCatgAlimentosController::class)->name('categ-alimento');
+    Route::get('/categ-alimentos/crear',AdminCrearCatgAlimentosController::class)->name('crear-categ-alimento');
+    Route::get('/categ-alimentos/editar',AdminEditarCatgAlimentosController::class)->name('editar-categ-alimento');
 
 });

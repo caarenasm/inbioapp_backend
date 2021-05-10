@@ -35,7 +35,7 @@
         </a>
         <div x-show="openAlimentos">
             <div class="p-1 mt-1">
-                <a href="{{ route('categ-alimento') }}" class="text-white">
+                <a href="{{ route('categoria-alimento') }}" class="text-white">
                     Categoria de alimentos
                 </a>
             </div>

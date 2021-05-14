@@ -21,11 +21,11 @@ class CreateFavoritosTable extends Migration
             ->onDelete('cascade');
 
             $table->foreignId('receta_id')->nullable()
-            ->constrained('receta')
+            ->constrained('recetas')
             ->onDelete('cascade');
 
             $table->foreignId('alimento_id')->nullable()
-            ->constrained('alimento')
+            ->constrained('alimentos')
             ->onDelete('cascade');
 
             $table->foreignId('blog_id')->nullable()

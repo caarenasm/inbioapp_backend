@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActividadFisicaTable extends Migration
+class CreateActividadesFisicasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateActividadFisicaTable extends Migration
      */
     public function up()
     {
-        Schema::create('actividad_fisica', function (Blueprint $table) {
+        Schema::create('actividades_fisicas', function (Blueprint $table) {
             $table->id();
             $table->time('tiempo')->nullable();
             $table->double('distancia')->nullable()->default(0);
@@ -21,11 +21,11 @@ class CreateActividadFisicaTable extends Migration
             $table->integer('fatiga')->nullable()->default(0);
 
             $table->foreignId('ejercicio_id')->nullable()
-            ->constrained('ejercicio')
+            ->constrained('ejercicios')
             ->onDelete('cascade');
 
             $table->foreignId('tipo_actividad_fisica_id')->nullable()
-            ->constrained('tipo_actividad_fisica')
+            ->constrained('tipo_actividades_fisicas')
             ->onDelete('cascade');
 
             $table->timestamps();
@@ -39,6 +39,6 @@ class CreateActividadFisicaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actividad_fisica');
+        Schema::dropIfExists('actividades_fisicas');
     }
 }

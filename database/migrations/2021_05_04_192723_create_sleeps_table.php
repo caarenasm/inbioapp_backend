@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSaturacionOxigenoTable extends Migration
+class CreateSleepsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateSaturacionOxigenoTable extends Migration
      */
     public function up()
     {
-        Schema::create('saturacion_oxigeno', function (Blueprint $table) {
+        Schema::create('sleeps', function (Blueprint $table) {
             $table->id();
-            $table->time('hora')->nullable();
-            $table->double('spo')->nullable();
-            $table->double('prb')->nullable();
+            $table->string('como_dormiste',100)->nullable();
+            $table->time('hora_acostarse')->nullable();
+            $table->time('hora_levantarse')->nullable();
+            $table->time('hora_dormidas')->nullable();
 
-            $table->foreignId('categoria_enfermedad_id')->nullable()
-            ->constrained('categoria_enfermedad')
+            $table->foreignId('diario_id')->nullable()
+            ->constrained('diarios')
             ->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateSaturacionOxigenoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('saturacion_oxigeno');
+        Schema::dropIfExists('sleeps');
     }
 }

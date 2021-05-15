@@ -17,7 +17,7 @@ class CreateAlimentoTable extends Migration
             $table->id();
             $table->string('nombre',100);
 
-            $table->foreignId('categoria_a_id')
+            $table->foreignId('categoria_alimento_id')
             ->constrained('categoria_alimento')
             ->onDelete('cascade');
 

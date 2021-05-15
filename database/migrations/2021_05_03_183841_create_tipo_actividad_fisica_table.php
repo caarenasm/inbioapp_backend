@@ -15,7 +15,7 @@ class CreateTipoActividadFisicaTable extends Migration
     {
         Schema::create('tipo_actividad_fisica', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_act',100);
+            $table->string('tipo_actividad',100);
             $table->timestamps();
         });
     }

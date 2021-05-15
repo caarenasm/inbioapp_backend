@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminAlimentosController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\AdminCategoriaAlimentosController;
 use App\Http\Controllers\AdminCatgAlimentosController;
 use App\Http\Controllers\AdminCrearAlimentosController;
+use App\Http\Controllers\AdminCrearCategoriaAlimentosController;
 use App\Http\Controllers\AdminCrearCatgAlimentosController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\AdminUsuarioController;
 use App\Http\Controllers\AdminEnfermedadesController;
 use App\Http\Controllers\AdminCrearEnfermedadController;
 use App\Http\Controllers\AdminEditarAlimentosController;
+use App\Http\Controllers\AdminEditarCategoriaAlimentosController;
 use App\Http\Controllers\AdminEditarCatgAlimentosController;
 use App\Http\Controllers\AdminEditarEnfermedadController;
 use App\Http\Controllers\HomeController;
@@ -85,8 +88,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/alimentos/crear',AdminCrearAlimentosController::class)->name('crear-alimento');
     Route::get('/alimentos/editar',AdminEditarAlimentosController::class)->name('editar-alimento');
 
-    Route::get('/categ-alimentos',AdminCatgAlimentosController::class)->name('categ-alimento');
-    Route::get('/categ-alimentos/crear',AdminCrearCatgAlimentosController::class)->name('crear-categ-alimento');
-    Route::get('/categ-alimentos/editar',AdminEditarCatgAlimentosController::class)->name('editar-categ-alimento');
+    Route::get('/categoria-alimentos',AdminCategoriaAlimentosController::class)->name('categoria-alimento');
+    Route::get('/categoria-alimentos/crear',AdminCrearCategoriaAlimentosController::class)->name('crear-categoria-alimento');
+    Route::get('/categoria-alimentos/editar',AdminEditarCategoriaAlimentosController::class)->name('editar-categoria-alimento');
 
 });

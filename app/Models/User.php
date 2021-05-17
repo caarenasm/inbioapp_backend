@@ -61,4 +61,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function planes(){
+        return $this->belongsToMany('App\Models\Plan');
+    }
 }

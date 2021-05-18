@@ -4,21 +4,12 @@ use App\Http\Controllers\AdminAlimentosController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminCategoriaAlimentosController;
-use App\Http\Controllers\AdminCatgAlimentosController;
-use App\Http\Controllers\AdminCrearAlimentosController;
-use App\Http\Controllers\AdminCrearCategoriaAlimentosController;
-use App\Http\Controllers\AdminCrearCatgAlimentosController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
 use App\Http\Controllers\AdminProductCategoryController;
 use App\Http\Controllers\AdminProductosController;
 use App\Http\Controllers\AdminUsuarioController;
-use App\Http\Controllers\AdminEnfermedadesController;
-use App\Http\Controllers\AdminCrearEnfermedadController;
-use App\Http\Controllers\AdminEditarAlimentosController;
-use App\Http\Controllers\AdminEditarCategoriaAlimentosController;
-use App\Http\Controllers\AdminEditarCatgAlimentosController;
-use App\Http\Controllers\AdminEditarEnfermedadController;
+use App\Http\Controllers\AdminPlanController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,16 +71,32 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/envio-pais/{pais}', [AdminEnvioPaisController::class, 'update'])->name('envio-pais.update');
     Route::delete('/envio-pais/{pais}/eliminar', [AdminEnvioPaisController::class, 'destroy'])->name('envio-pais.delete');
 
-    Route::get('/enfermedades',AdminEnfermedadesController::class)->name('enfermedad');
-    Route::get('/enfermedades/crear',AdminCrearEnfermedadController::class)->name('crear-enfermedad');
-    Route::get('/enfermedades/editar',AdminEditarEnfermedadController::class)->name('editar-enfermedad');
+    // Route::get('/enfermedades',AdminEnfermedadesController::class)->name('enfermedad');
+    // Route::get('/enfermedades/crear',AdminCrearEnfermedadController::class)->name('crear-enfermedad');
+    // Route::get('/enfermedades/editar',AdminEditarEnfermedadController::class)->name('editar-enfermedad');
 
-    Route::get('/alimentos',AdminAlimentosController::class)->name('alimento');
-    Route::get('/alimentos/crear',AdminCrearAlimentosController::class)->name('crear-alimento');
-    Route::get('/alimentos/editar',AdminEditarAlimentosController::class)->name('editar-alimento');
+    Route::get('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'index'])->name('categoria-alimentos');
+    Route::get('/categoria-alimentos/crear', [AdminCategoriaAlimentosController::class, 'create'])->name('categoria-alimentos.create');
+    Route::post('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'store'])->name('categoria-alimentos.store');
+    Route::get('/categoria-alimentos/{category_food}/editar', [AdminCategoriaAlimentosController::class, 'edit'])->name('categoria-alimentos.edit');
+    Route::put('/categoria-alimentos/{category_food}', [AdminCategoriaAlimentosController::class, 'update'])->name('categoria-alimentos.update');
+    Route::delete('/categoria-alimentos/{category_food}/eliminar', [AdminCategoriaAlimentosController::class, 'destroy'])->name('categoria-alimentos.delete');
 
-    Route::get('/categoria-alimentos',AdminCategoriaAlimentosController::class)->name('categoria-alimento');
-    Route::get('/categoria-alimentos/crear',AdminCrearCategoriaAlimentosController::class)->name('crear-categoria-alimento');
-    Route::get('/categoria-alimentos/editar',AdminEditarCategoriaAlimentosController::class)->name('editar-categoria-alimento');
+    Route::get('/alimentos', [AdminAlimentosController::class,'index'])->name('alimentos');
+    Route::get('/alimentos/crear', [AdminAlimentosController::class, 'create'])->name('alimentos.create');
+    Route::post('/alimentos', [AdminAlimentosController::class, 'store'])->name('alimentos.store');
+    Route::get('/alimentos/{food}/editar', [AdminAlimentosController::class, 'edit'])->name('alimentos.edit');
+    Route::put('/alimentos/{food}', [AdminAlimentosController::class, 'update'])->name('alimentos.update');
+    Route::delete('/alimentos/{food}/eliminar', [AdminAlimentosController::class, 'destroy'])->name('alimentos.delete');
+
+    Route::get('/planes', [AdminPlanController::class,'index'])->name('planes');
+    Route::get('/planes/crear', [AdminPlanController::class, 'create'])->name('planes.create');
+    Route::post('/planes', [AdminPlanController::class, 'store'])->name('planes.store');
+    Route::get('/planes/{plan}/editar', [AdminPlanController::class, 'edit'])->name('planes.edit');
+    Route::put('/planes/{plan}', [AdminPlanController::class, 'update'])->name('planes.update');
+    Route::delete('/planes/{plan}/eliminar', [AdminPlanController::class, 'destroy'])->name('planes.delete');
+
+    Route::get('/mis-planes', [AdminPlanUserController::class,'index'])->name('mis-planes');
+    Route::get('/asignar-mis-planes', [AdminPlanUserController::class,'index'])->name('asignar-mis-planes');
 
 });

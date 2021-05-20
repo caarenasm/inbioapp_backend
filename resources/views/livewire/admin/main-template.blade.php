@@ -23,7 +23,7 @@
 <div class="min-h-screen bg-gray-100 flex-row">
     <div class="flex flex-row bg-fondo-verde p-1">
         <a href="{{ route('escritorio') }}" class="bg-white px-2">
-            <img src="/imagenes/" class="w-44" alt="Logo">
+            <img src="{{ asset('./imagenes/logo.png') }}" class="w-44" alt="Logo">
         </a>
     </div>
     <div class="flex flex-column">

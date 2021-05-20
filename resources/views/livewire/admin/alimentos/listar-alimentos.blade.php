@@ -40,7 +40,7 @@
                         <x-html.link href="{{ route('alimentos.edit',$food) }}" text="Editar" isButton="true"
                             class="inline-block"/>
                     </h2>
-                    <h2>
+                    <h2 style="margin-bottom: 0.5em">
                         <a href="{{ route('alimentos.delete', $food->id) }}"
                             x-on:click="confirmDialog = confirmDialog !== true"
                             class=" py-2.5 px-2.5 text-sm rounded-md text-white bg-color-peligro eliminar">Eliminar</a>

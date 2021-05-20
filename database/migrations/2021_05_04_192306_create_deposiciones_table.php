@@ -27,6 +27,8 @@ class CreateDeposicionesTable extends Migration
             ->constrained('bioproducto_asignados')
             ->onDelete('cascade');
 
+            $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

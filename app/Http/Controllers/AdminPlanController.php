@@ -22,8 +22,8 @@ class AdminPlanController extends Controller
 
     public function create(){
         // return $plan;
-        $post = new Plan();
-        return view('livewire.admin.planes.crear-planes', ['post' => $post]);
+        $plan = new Plan();
+        return view('livewire.admin.planes.crear-planes', ['plan' => $plan]);
     }
 
     public function store(Request $request){
@@ -57,7 +57,6 @@ class AdminPlanController extends Controller
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'imagen_url' => 'required',
             'precio' => 'required',
         ]);
 

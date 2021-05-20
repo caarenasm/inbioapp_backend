@@ -14,7 +14,14 @@ class CreateCategoriaEnfermedadesTable extends Migration
     public function up()
     {
         Schema::create('categoria_enfermedades', function (Blueprint $table) {
+
             $table->id();
+
+            $table->string('tipo_enfermedad');
+            $table->text('descripcion');
+
+            $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

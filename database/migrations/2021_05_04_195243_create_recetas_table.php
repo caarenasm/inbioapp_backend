@@ -14,7 +14,17 @@ class CreateRecetasTable extends Migration
     public function up()
     {
         Schema::create('recetas', function (Blueprint $table) {
+
             $table->id();
+
+            $table->string('titulo',100);
+            $table->string('imagen_url',255);
+            $table->text('descripcion');
+            $table->text('preparacion');
+            $table->double('caloria');
+            $table->double('grasa');
+            $table->double('proteina');
+        
             $table->timestamps();
         });
     }

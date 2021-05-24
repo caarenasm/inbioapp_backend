@@ -30,11 +30,11 @@
                     </span>
                 </div>
 
-                <jet-secondary-button class="mt-2 mr-2" type="button" @click.native.prevent="selectNewPhoto">
+                <jet-secondary-button class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
                     Select A New Photo
                 </jet-secondary-button>
 
-                <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="user.profile_photo_path">
+                <jet-secondary-button type="button" class="mt-2" @click.prevent="deletePhoto" v-if="user.profile_photo_path">
                     Remove Photo
                 </jet-secondary-button>
 
@@ -111,7 +111,8 @@
 
                 this.form.post(route('user-profile-information.update'), {
                     errorBag: 'updateProfileInformation',
-                    preserveScroll: true
+                    preserveScroll: true,
+                    onSuccess: () => (this.clearPhotoFileInput()),
                 });
             },
 
@@ -120,20 +121,33 @@
             },
 
             updatePhotoPreview() {
+                const photo = this.$refs.photo.files[0];
+
+                if (! photo) return;
+
                 const reader = new FileReader();
 
                 reader.onload = (e) => {
                     this.photoPreview = e.target.result;
                 };
 
-                reader.readAsDataURL(this.$refs.photo.files[0]);
+                reader.readAsDataURL(photo);
             },
 
             deletePhoto() {
                 this.$inertia.delete(route('current-user-photo.destroy'), {
                     preserveScroll: true,
-                    onSuccess: () => (this.photoPreview = null),
+                    onSuccess: () => {
+                        this.photoPreview = null;
+                        this.clearPhotoFileInput();
+                    },
                 });
+            },
+
+            clearPhotoFileInput() {
+                if (this.$refs.photo?.value) {
+                    this.$refs.photo.value = null;
+                }
             },
         },
     }

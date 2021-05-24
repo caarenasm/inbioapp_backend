@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Query\Expression;
 
-class CreateCategoriaEnfermedadesTable extends Migration
+class Antojos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +14,13 @@ class CreateCategoriaEnfermedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_enfermedades', function (Blueprint $table) {
+        Schema::create('antojos', function (Blueprint $table) {
 
             $table->id();
 
-            $table->string('tipo_enfermedad');
-            $table->text('descripcion');
+            $table->string('frecuencia',100);
+
+            $table->json('alimentos')->default(new Expression('(JSON_ARRAY())'));
 
             $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
             
@@ -33,6 +35,6 @@ class CreateCategoriaEnfermedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria_enfermedades');
+        Schema::dropIfExists('antojos');
     }
 }

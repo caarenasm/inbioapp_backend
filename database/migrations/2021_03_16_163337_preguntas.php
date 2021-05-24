@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriaEnfermedadesTable extends Migration
+class Preguntas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateCategoriaEnfermedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_enfermedades', function (Blueprint $table) {
+        Schema::create('preguntas', function (Blueprint $table) {
 
             $table->id();
-
-            $table->string('tipo_enfermedad');
+            $table->string('pregunta',100);
+            $table->string('icono',255);
             $table->text('descripcion');
 
-            $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateCategoriaEnfermedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria_enfermedades');
+        Schema::dropIfExists('preguntas');
     }
 }

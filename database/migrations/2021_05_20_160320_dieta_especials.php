@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriaEnfermedadesTable extends Migration
+class DietaEspecials extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCategoriaEnfermedadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_enfermedades', function (Blueprint $table) {
+        Schema::create('dieta_especials', function (Blueprint $table) {
 
             $table->id();
 
-            $table->string('tipo_enfermedad');
-            $table->text('descripcion');
+            $table->string('tipo_dieta',100);
 
             $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
             
@@ -33,6 +32,6 @@ class CreateCategoriaEnfermedadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria_enfermedades');
+        Schema::dropIfExists('dieta_especials');
     }
 }

@@ -23,6 +23,8 @@ class CreateSleepsTable extends Migration
             $table->foreignId('diario_id')->nullable()
             ->constrained('diarios')
             ->onDelete('cascade');
+            
+            $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
 
             $table->timestamps();
         });

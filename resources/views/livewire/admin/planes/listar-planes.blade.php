@@ -57,16 +57,16 @@
                     </div>
                 </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="px-4 py-4 whitespace-nowrap">
                 <div class="flex items-center">
-                    <h2 class="text-2xl text-fondo-verde font-extrabold">
+                    <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 10px">
                         <x-html.link href="{{route('planes.edit',$plan)}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
                     </h2>
-                    <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{route('planes.delete', $plan->id)}}"
-                           x-on:click="confirmDialog = confirmDialog !== true"
-                           class="justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-peligro hover:bg-color-peligro-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-peligro-300 eliminar">Eliminar</a>
-                    </td>
+                    <h2 style="margin-bottom: 0.5em">
+                        <a href="{{ route('planes.delete', $plan->id) }}"
+                            x-on:click="confirmDialog = confirmDialog !== true"
+                            class=" py-2.5 px-2.5 text-sm rounded-md text-white bg-color-peligro eliminar">Eliminar</a>
+                    </h2>
                 </div>
             </td>
         </tr>

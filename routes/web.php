@@ -6,10 +6,12 @@ use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminCategoriaAlimentosController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
+use App\Http\Controllers\AdminIngredientesController;
 use App\Http\Controllers\AdminProductCategoryController;
 use App\Http\Controllers\AdminProductosController;
 use App\Http\Controllers\AdminUsuarioController;
 use App\Http\Controllers\AdminPlanController;
+use App\Http\Controllers\AdminRecetaController;
 use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -106,4 +108,17 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->name('preguntas.edit');
     Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->name('preguntas.update');
     Route::delete('/preguntas/{pregunta}/eliminar', [AdminPreguntaController::class, 'destroy'])->name('preguntas.delete');
+    Route::get('/recetas', [AdminRecetaController::class,'index'])->name('recetas');
+    Route::get('/recetas/crear', [AdminRecetaController::class, 'create'])->name('recetas.create');
+    Route::post('/recetas', [AdminRecetaController::class, 'store'])->name('recetas.store');
+    Route::get('/recetas/{receta}/editar', [AdminRecetaController::class, 'edit'])->name('recetas.edit');
+    Route::put('/recetas/{receta}', [AdminRecetaController::class, 'update'])->name('recetas.update');
+    Route::delete('/recetas/{receta}/eliminar', [AdminRecetaController::class, 'destroy'])->name('recetas.delete');
+
+    Route::get('/ingredientes/{receta}/index', [AdminIngredientesController::class,'index'])->name('ingredientes.index');
+    Route::post('/ingredientes', [AdminIngredientesController::class, 'store'])->name('ingredientes.store');
+    Route::get('/ingredientes/{ingrediente}/editar', [AdminIngredientesController::class, 'edit'])->name('ingredientes.edit');
+    Route::put('/ingredientes/{ingrediente}', [AdminIngredientesController::class, 'update'])->name('ingredientes.update');
+    Route::delete('/ingredientes/{ingrediente}/eliminar', [AdminIngredientesController::class, 'destroy'])->name('ingredientes.delete');
+
 });

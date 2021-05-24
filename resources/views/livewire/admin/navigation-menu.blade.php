@@ -44,6 +44,11 @@
                     Alimentos
                 </a>
             </div>
+            <div class="p-1 mt-1">
+                <a href="{{ route('recetas') }}" class="text-white">
+                    Recetas
+                </a>
+            </div>
         </div>
     </div>
 

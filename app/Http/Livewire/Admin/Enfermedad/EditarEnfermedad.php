@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\EditarEnfermedad;
+namespace App\Http\Livewire\Admin\Enfermedad;
 
 use Livewire\Component;
 

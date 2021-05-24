@@ -12,14 +12,14 @@ class AdminCategoriaAlimentosController extends Controller
     {
 
         $categorias_alimentos = CategoriaAlimento::orderBy('id', 'desc')->paginate();
-        return view('livewire.admin.categalimentos.categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos]);
+        return view('livewire.admin.categoria-alimentos.categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos]);
         // return $categorias_alimentos;
     }
 
     public function create()
     {
         $categorias_alimentos = CategoriaAlimento::orderBy('id', 'desc')->paginate();
-        return view('livewire.admin.categalimentos.crear-categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos]);
+        return view('livewire.admin.categoria-alimentos.crear-categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos]);
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class AdminCategoriaAlimentosController extends Controller
     public function edit(CategoriaAlimento $category_food)
     {
         $categorias_alimentos = CategoriaAlimento::all();
-        return view('livewire.admin.categalimentos.editar-categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos, 'category_food' => $category_food]);
+        return view('livewire.admin.categoria-alimentos.editar-categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos, 'category_food' => $category_food]);
     }
 
     public function update(Request $request, CategoriaAlimento $category_food)

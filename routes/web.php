@@ -108,6 +108,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->name('preguntas.edit');
     Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->name('preguntas.update');
     Route::delete('/preguntas/{pregunta}/eliminar', [AdminPreguntaController::class, 'destroy'])->name('preguntas.delete');
+
     Route::get('/recetas', [AdminRecetaController::class,'index'])->name('recetas');
     Route::get('/recetas/crear', [AdminRecetaController::class, 'create'])->name('recetas.create');
     Route::post('/recetas', [AdminRecetaController::class, 'store'])->name('recetas.store');

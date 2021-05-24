@@ -18,8 +18,8 @@ class Alergias extends Migration
 
             $table->id();
 
-            $table->json('alimentos')->default(new Expression('(JSON_ARRAY())'));
-            $table->json('sintomas_enfermedades')->default(new Expression('(JSON_ARRAY())'));
+            //$table->json('alimentos')->default(new Expression('(JSON_ARRAY())'));
+            //$table->json('sintomas_enfermedades')->default(new Expression('(JSON_ARRAY())'));
 
             $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
             

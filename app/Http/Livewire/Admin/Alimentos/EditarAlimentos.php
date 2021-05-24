@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\EditarAlimentos;
+namespace App\Http\Livewire\Admin\Alimentos;
 
 use Livewire\Component;
 

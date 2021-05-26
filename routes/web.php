@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminUsuarioController;
 use App\Http\Controllers\AdminPlanController;
 use App\Http\Controllers\AdminRecetaController;
 use App\Http\Controllers\AdminPreguntaController;
+use App\Http\Controllers\AdminRespuestasController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -121,5 +122,11 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/ingredientes/{ingrediente}/editar', [AdminIngredientesController::class, 'edit'])->name('ingredientes.edit');
     Route::put('/ingredientes/{ingrediente}', [AdminIngredientesController::class, 'update'])->name('ingredientes.update');
     Route::delete('/ingredientes/{ingrediente}/eliminar', [AdminIngredientesController::class, 'destroy'])->name('ingredientes.delete');
+
+    Route::get('/respuestas/{pregunta}/index', [AdminRespuestasController::class,'index'])->name('respuestas.index');
+    Route::post('/respuestas', [AdminRespuestasController::class, 'store'])->name('respuestas.store');
+    Route::get('/respuestas/{respuesta}/editar', [AdminRespuestasController::class, 'edit'])->name('respuestas.edit');
+    Route::put('/respuestas/{respuesta}', [AdminRespuestasController::class, 'update'])->name('respuestas.update');
+    Route::delete('/respuestas/{respuesta}/eliminar', [AdminRespuestasController::class, 'destroy'])->name('respuestas.delete');
 
 });

@@ -11,7 +11,8 @@ class AdminPreguntaController extends Controller
 {
     public function index(){
         
-        $preguntas = Pregunta::orderBy('id','desc')->paginate();
+        $preguntas = Pregunta::all();
+        // return($preguntas);
         return view('livewire.admin.preguntas.preguntas', ['preguntas'=>$preguntas]);
     }
 

@@ -45,11 +45,11 @@
                                     </div>
                                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                                            Eliminar Planes nutricionales
+                                            Eliminar ingredientes
                                         </h3>
                                         <div class="mt-2">
                                             <p class="text-sm text-gray-500">
-                                                ¿Estás totalmente seguro/a de eliminar este plan? Esta acción no se puede
+                                                ¿Estás totalmente seguro/a de eliminar este ingrediente? Esta acción no se puede
                                                 deshacer.
                                             </p>
                                         </div>
@@ -76,6 +76,7 @@
             <form id="deleteForm" action="" method="POST" style="display: none;">
                 @csrf
                 @method('delete')
+                <input type="hidden" value="{{$recetas->id}}" name="receta_id" >
             </form>
         @endpush
 

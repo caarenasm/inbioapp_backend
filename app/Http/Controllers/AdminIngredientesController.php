@@ -15,13 +15,13 @@ class AdminIngredientesController extends Controller
         $recetas = Receta::find($id);
 
         $ingredientes = Alimento::join('ingredientes', 'alimento_id', '=', 'alimentos.id')
-        ->select("*")
+        ->select("*")->where('receta_id','=',$id)
         ->get();
 
         $alimentos = Alimento::all();
 
         // dd($recetas);
-        // return $recetas;
+        // return $ingredientes;
         return view('livewire.admin.ingredientes.ingredientes', ['ingredientes' => $ingredientes,'alimentos'=>$alimentos,'recetas'=>$recetas]);
     }
 
@@ -32,7 +32,7 @@ class AdminIngredientesController extends Controller
 
 
     public function store(Request $request){
-       
+
         $ingrediente = new Ingrediente();
 
         $ingrediente->alimento_id = $request -> alimento_id;
@@ -43,7 +43,7 @@ class AdminIngredientesController extends Controller
 
         $ingrediente->save();
 
-        return redirect()->route('ingredientes.index');
+        return redirect()->route('ingredientes.index',$request->receta_id);
     }
 
 
@@ -73,11 +73,11 @@ class AdminIngredientesController extends Controller
 
         $ingrediente->save();
         
-        return redirect()->route('ingredientes.index');
+        return redirect()->route('ingredientes.index',$request->receta_id);
     }
 
-    public function destroy($id){
+    public function destroy(Request $request,$id){
         Ingrediente::destroy($id);
-        return redirect()->route('ingredientes.index');
+        return redirect()->route('ingredientes.index',$request->receta_id);
     }
 }

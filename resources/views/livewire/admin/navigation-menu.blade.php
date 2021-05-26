@@ -101,12 +101,7 @@
         <div x-show="openAlimentos">
             <div class="p-1 mt-1">
                 <a href="{{ route('preguntas') }}" class="text-white">
-                    Preguntas
-                </a>
-            </div>
-            <div class="p-1 mt-1">
-                <a href="{{ route('preguntas') }}" class="text-white">
-                    Respuestas
+                    Preguntas y respuestas
                 </a>
             </div>
         </div>

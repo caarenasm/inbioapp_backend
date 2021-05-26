@@ -5,6 +5,9 @@
             @method('put')
             <div class="mb-3 bg-white shadow-xl rounded p-5 w-1/2">
                 <div class="grid grid-cols-2 space-x-2">
+                    
+                    <input type="hidden" value="{{old('receta_id',$ingrediente->receta_id)}}" name="receta_id" >
+
                     <div>
                         <p class="block font-bold text-gray-700">Alimento</p>
                         <select wire:model="selectedState" class="form-control" name="alimento_id">

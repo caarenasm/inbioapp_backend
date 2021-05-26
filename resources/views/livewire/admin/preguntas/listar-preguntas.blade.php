@@ -51,7 +51,10 @@
                     <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 10px">
                         <x-html.link href="{{route('preguntas.edit',$pregunta)}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
                     </h2>
-                    <h2 style="margin-bottom: 0.4em">
+                    <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 1em">
+                        <x-html.link href="{{route('respuestas.index',$pregunta->id)}}" text="Agregar respuestas" isButton="true" class="inline-block mb-2 ml-1" />
+                    </h2>
+                    <h2 style="margin-bottom: 0.5em">
                         <a href="{{ route('preguntas.delete', $pregunta->id) }}"
                             x-on:click="confirmDialog = confirmDialog !== true"
                             class=" py-2.5 px-2.5 text-sm rounded-md text-white bg-color-peligro eliminar">Eliminar</a>

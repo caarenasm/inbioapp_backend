@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="w-1/2 mb-3">
-                        <p class="block font-bold text-gray-700">Tipo de enfermedad</p>
+                        <p class="block font-bold text-gray-700">Elijé la categoria del alimento</p>
                         <select wire:model="selectedState" class="form-control" id="categoria_alimento_id" name="categoria_alimento_id" required>
                             <option value="" selected>Escoge la categoria</option>
                             @foreach ($category_food as $category)

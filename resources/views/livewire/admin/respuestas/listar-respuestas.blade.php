@@ -2,28 +2,31 @@
     <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                id
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Pregunta
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Descripcion
+                Respuesta
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Icono
+                Ayuda
             </th>
-
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Acciones
+            </th>
         </tr>
     </thead>
     <Tbody>
     <tbody class="bg-white divide-y divide-gray-200">
-    @foreach($preguntas as $pregunta)
+    @foreach($respuestas as $answer)
         <tr>
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$pregunta->pregunta}}
+                            {{$answer->id}}
                         </div>
                     </div>
                 </div>
@@ -32,7 +35,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$pregunta->descripcion}}
+                            {{$answer->pregunta}}
                         </div>
                     </div>
                 </div>
@@ -41,21 +44,27 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$pregunta->icono}}
+                            {{$answer->respuesta}}
                         </div>
                     </div>
                 </div>
             </td>
-            <td class="px-4 py-4 whitespace-nowrap">
+            <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
-                    <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 10px">
-                        <x-html.link href="{{route('preguntas.edit',$pregunta)}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
-                    </h2>
-                    <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 1em">
-                        <x-html.link href="{{route('respuestas.index',$pregunta->id)}}" text="Agregar respuestas" isButton="true" class="inline-block mb-2 ml-1" />
+                    <div class="ml-1">
+                        <div class="text-sm font-medium text-gray-900">
+                            {{$answer->ayuda}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 0.5em">
+                        <x-html.link href="{{route('respuestas.edit',$answer)}}" text="Editar" isButton="true" class="inline-block mb-2 ml-1" />
                     </h2>
                     <h2 style="margin-bottom: 0.5em">
-                        <a href="{{ route('preguntas.delete', $pregunta->id) }}"
+                        <a href="{{ route('respuestas.delete', $answer->id) }}"
                             x-on:click="confirmDialog = confirmDialog !== true"
                             class=" py-2.5 px-2.5 text-sm rounded-md text-white bg-color-peligro eliminar">Eliminar</a>
                     </h2>

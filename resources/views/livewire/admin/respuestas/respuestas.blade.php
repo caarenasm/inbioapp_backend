@@ -1,20 +1,19 @@
 <x-app-layout>
-
-    @section('title', 'Ingredientes')
+    @section('title', 'Respuestas')
 
         <div class="p-2 bg-white">
-            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Ingredientes</h2>
+            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Respuestas</h2>
             <div class="p-2 bg-white">
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                @include('livewire/admin/ingredientes/crear-ingredientes')
+                                @include('livewire/admin/respuestas/crear-respuestas')
                             </div>
                         </div>
                         <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                @include('livewire/admin/ingredientes/listar-ingredientes')
+                                @include('livewire/admin/respuestas/listar-respuestas')
                             </div>
                         </div>
                     </div>
@@ -45,11 +44,11 @@
                                     </div>
                                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                                            Eliminar ingredientes
+                                            Eliminar Respuestas
                                         </h3>
                                         <div class="mt-2">
                                             <p class="text-sm text-gray-500">
-                                                ¿Estás totalmente seguro/a de eliminar este ingrediente? Esta acción no se puede
+                                                ¿Estás totalmente seguro/a de eliminar esta respuesta? Esta acción no se puede
                                                 deshacer.
                                             </p>
                                         </div>
@@ -59,7 +58,7 @@
                             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button type="button" id="confirmarEliminado"
                                     class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-color-peligro text-base font-medium text-white hover:bg-color-peligro-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-peligro-300 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Eliminar plan
+                                    Eliminar respuesta
                                 </button>
                                 <button type="button"
                                     class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
@@ -76,7 +75,7 @@
             <form id="deleteForm" action="" method="POST" style="display: none;">
                 @csrf
                 @method('delete')
-                <input type="hidden" value="{{$recetas->id}}" name="receta_id" >
+                <input type="hidden" value="{{$preguntas->id}}" name="pregunta_id" >
             </form>
         @endpush
 

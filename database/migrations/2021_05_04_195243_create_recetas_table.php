@@ -17,13 +17,18 @@ class CreateRecetasTable extends Migration
 
             $table->id();
 
-            $table->string('titulo',100);
-            $table->string('imagen_url',255);
-            $table->text('descripcion');
-            $table->text('preparacion');
-            $table->double('caloria');
-            $table->double('grasa');
-            $table->double('proteina');
+            $table->string('titulo',45);
+            $table->string('slug',45)->unique();
+            $table->string('seo_titulo',45)->nullable();
+            $table->text('seo_descripcion')->nullable();
+            $table->string('imagen_url',255)->nullable();
+            $table->text('descripcion')->nullable();
+            $table->text('preparacion')->nullable();
+            $table->date('fecha_publicacion')->nullable();
+            $table->tinyInteger('publicacion');
+            $table->double('caloria')->nullable();
+            $table->double('grasa')->nullable();
+            $table->double('proteina')->nullable();
         
             $table->timestamps();
         });

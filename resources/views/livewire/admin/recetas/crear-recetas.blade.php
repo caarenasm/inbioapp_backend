@@ -1,13 +1,13 @@
 <x-app-layout>
     @section('title', 'Crear recetas')
 
-        <div class="p-2 bg-white" style="margin: 2em">
+        <div class="p-2 bg-white pt-6 m-2">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Crear nueva receta</h2>
             <div class="flex flex-col">
                 <form method="post" action="{{ route('recetas.store') }}" accept-charset="UTF-8"
                     enctype="multipart/form-data">
                     @csrf
-                    <div class="space-x-2 ">
+                    <div class="space-x-2">
                         <div class="mb-3 grid grid-cols-2 space-x-2">
                             <div class="mb-3">
                                 <label for="titulo" class="block font-bold text-gray-700">Titulo</label>
@@ -17,7 +17,6 @@
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
-
                             <div class="w-full mb-3">
                                 <label for="descripcion" class="block font-bold text-gray-700">Descripción</label>
                                 <textarea name="descripcion" id="descripcion"
@@ -26,109 +25,104 @@
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
+                                <input type="text" name="slug" id="slug"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="" readonly>
+                                @error('slug')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="seo_titulo" class="block font-bold text-gray-700">Título para buscadores
+                                    <small>Máximo
+                                        160 caractéres</small></label>
+                                <input type="text" name="seo_titulo" id="seo_titulo"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="">
+                                @error('seo_titulo')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
 
                             <div class="mb-3">
-                                <div class="mb-3">
-                                    <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
-                                    <input type="text" name="slug" id="slug"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300" value="" readonly>
-                                    @error('slug')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="seo_titulo" class="block font-bold text-gray-700">Título para buscadores
-                                        <small>Máximo
-                                            160 caractéres</small></label>
-                                    <input type="text" name="seo_titulo" id="seo_titulo"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300" value="">
-                                    @error('seo_titulo')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="seo_descripcion" class="block font-bold text-gray-700">Descripción para
-                                        buscadores <small>Máximo 60 caractéres</small></label>
-                                    <textarea name="seo_descripcion" id="seo_descripcion"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
-                                    @error('seo_descripcion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="fecha_publicacion" class="block font-bold text-gray-700">Fecha de
-                                        publicación</label>
-                                    <input type="date" name="fecha_publicacion" id="fecha_publicacion"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300" value="">
-                                    @error('fecha_publicacion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="flex-grow mb-3">
-                                    <label><input type="radio" name="publicacion" value="0" required>Borrador</label>
-                                    <label><input type="radio" name="publicacion" value="1">Publicación</label>
-                                    @error('publicacion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                                <label for="seo_descripcion" class="block font-bold text-gray-700">Descripción para
+                                    buscadores <small>Máximo 60 caractéres</small></label>
+                                <textarea name="seo_descripcion" id="seo_descripcion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
+                                @error('seo_descripcion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
                             </div>
-                            <div class="mb-3 grid grid-cols-1 space-x-2">
-                                <div class="w-full mb-3">
-                                    <label for="preparacion" class="block font-bold text-gray-700">Preparacion</label>
-                                    @error('preparacion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                    <textarea name="preparacion" id="preparacion"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
 
-                                </div>
+                            <div class="mb-3">
+                                <label for="fecha_publicacion" class="block font-bold text-gray-700">Fecha de
+                                    publicación</label>
+                                <input type="date" name="fecha_publicacion" id="fecha_publicacion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="">
+                                @error('fecha_publicacion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="flex-grow mb-3">
+                                <label><input type="radio" name="publicacion" value="0" required>Borrador</label>
+                                <label><input type="radio" name="publicacion" value="1">Publicación</label>
+                                @error('publicacion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="caloria" class="block font-bold text-gray-700">Caloria</label>
-                                    <input type="number" name="caloria" id="caloria"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300" value="">
-                                    @error('caloria')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <div class="w-full mb-3">
+                                <label for="preparacion" class="block font-bold text-gray-700">Preparacion</label>
+                                @error('preparacion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                                <textarea name="preparacion" id="preparacion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
 
-                                <div class="mb-3">
-                                    <label for="grasa" class="block font-bold text-gray-700">Grasa</label>
-                                    <input type="number" name="grasa" id="grasa"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300" value="">
-                                    @error('grasa')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="proteina" class="block font-bold text-gray-700">Proteina</label>
-                                    <input type="number" name="proteina" id="proteina"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300" value="">
-                                    @error('proteina')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="caloria" class="block font-bold text-gray-700">Caloria</label>
+                                <input type="number" name="caloria" id="caloria"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="">
+                                @error('caloria')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
 
-                                <div class="grid grid-cols-2 gap-4 mb-3">
-                                    <div class="col">
-                                        <div class="image-wrapper">
-                                            <img id="picture" src="{{ asset('./imagenes/recetas/placeholder.png') }}"
-                                                alt="">
-                                        </div>
+                            <div class="mb-3">
+                                <label for="grasa" class="block font-bold text-gray-700">Grasa</label>
+                                <input type="number" name="grasa" id="grasa"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="">
+                                @error('grasa')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="proteina" class="block font-bold text-gray-700">Proteina</label>
+                                <input type="number" name="proteina" id="proteina"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="">
+                                @error('proteina')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-3">
+                                <div class="col">
+                                    <div class="image-wrapper">
+                                        <img id="picture" src="{{ asset('./imagenes/recetas/placeholder.png') }}" alt="">
                                     </div>
+                                </div>
 
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <div class="label" name="imagen_url">Selecciona la imagen</div>
-                                            <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
-                                                value="">
-                                            @error('imagen_url')
-                                                <small class="text-red-500">* {{ $message }}</small>
-                                            @enderror
-                                        </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="label" name="imagen_url">Selecciona la imagen</div>
+                                        <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
+                                            value="">
+                                        @error('imagen_url')
+                                            <small class="text-red-500">* {{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +177,7 @@
 
         <script>
             document.addEventListener('livewire:load', function() {
-                const title = document.getElementById('titulo');
+                const titulo = document.getElementById('titulo');
                 const slug = document.getElementById('slug');
                 titulo.onblur = function() {
                     slug.value = slugify(titulo.value);
@@ -197,7 +191,7 @@
 
                 // CK Editor
                 ClassicEditor
-                    .create(document.querySelector('#descripcion', '#preparacion'), {
+                    .create(document.querySelector('#descripcion'), {
                         toolbar: {
                             items: [
                                 'heading',

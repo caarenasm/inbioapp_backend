@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
+use App\Http\Controllers\Api\AuthController;
+use Facade\FlareClient\Api;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,4 +27,20 @@ Route::middleware(OnlyAjax::class)->post('/blog/imagen', function(Request $reque
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+//*Modulos para InbioApp*/
+Route::group([
+        'prefix' => 'auth'
+    ], function () {
+
+        Route::post('login', [AuthController::class, 'login']);
+        Route::post('registro', [AuthController::class, 'registro']);
+
+        Route::group([
+            'middleware' => 'auth:api'
+        ], function() {
+            Route::get('logout', 'AuthController@logout');
+            Route::get('user', 'AuthController@user');
+        });
 });

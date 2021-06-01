@@ -16,6 +16,7 @@
         "laravel-lang/lang": "~7.0.9",
         "laravel/framework": "^8.42.1",
         "laravel/jetstream": "^2.3.6",
+        "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.11.0",
         "laravel/tinker": "^2.6.1",
         "laravelcollective/html": "^6.2",

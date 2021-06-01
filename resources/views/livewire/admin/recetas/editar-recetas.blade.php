@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('title', 'Editar recetas')
 
-        <div class="p-2 bg-white">
+        <div class="p-2 bg-white pt-6 m-2">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Editar receta</h2>
             <div class="flex flex-col">
                 <form method="post" action="{{ route('recetas.update', $receta) }}" accept-charset="UTF-8"
@@ -27,118 +27,116 @@
 
                             </div>
                             <div class="mb-3">
-                                <div class="mb-3">
-                                    <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
-                                    <input type="text" name="slug" id="slug"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"
-                                        value="{{ old('slug', $receta->slug) }}" readonly>
-                                    @error('slug')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label for="seo_titulo" class="block font-bold text-gray-700">Título para buscadores
-                                        <small>Máximo
-                                            160 caractéres</small></label>
-                                    <input type="text" name="seo_titulo" id="seo_titulo"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"
-                                        value="{{ old('seo_titulo', $receta->seo_titulo) }}">
-                                    @error('seo_titulo')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="seo_descripcion" class="block font-bold text-gray-700">Descripción para
-                                        buscadores <small>Máximo 60 caractéres</small></label>
-                                    <textarea name="seo_descripcion" id="seo_descripcion"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('seo_descripcion', $receta->seo_descripcion) }}</textarea>
-                                    @error('seo_descripcion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="fecha_publicacion" class="block font-bold text-gray-700">Fecha de
-                                        publicación</label>
-                                    <input type="date" name="fecha_publicacion" id="fecha_publicacion"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"
-                                        value="{{ old('fecha_publicacion', $receta->fecha_publicacion) }}">
-                                    @error('fecha_publicacion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="flex-grow mb-3">
-                                    <label><input type="radio" name="publicacion" value="0" required
-                                            {{ old('publicacion', $receta->publicacion) == '0' ? 'checked' : '' }}>
-                                        Borrador</label>
-                                    <label><input type="radio" name="publicacion" value="1"
-                                            {{ old('publicacion', $receta->publicacion) == '1' ? 'checked' : '' }}>
-                                        Publicación</label>
-                                    @error('publicacion')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                                <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
+                                <input type="text" name="slug" id="slug"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('slug', $receta->slug) }}" readonly>
+                                @error('slug')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
                             </div>
-                            <div class="mb-3 grid grid-cols-1 space-x-2">
-                                <div class="w-full mb-3">
-                                    <label for="preparacion" class="block font-bold text-gray-700">Preparacion</label>
-                                    @error('text')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                    <textarea name="preparacion" id="preparacion"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('preparacion', $receta->preparacion) }}</textarea>
+                            <div class="mb-3">
+                                <label for="seo_titulo" class="block font-bold text-gray-700">Título para buscadores
+                                    <small>Máximo
+                                        160 caractéres</small></label>
+                                <input type="text" name="seo_titulo" id="seo_titulo"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('seo_titulo', $receta->seo_titulo) }}">
+                                @error('seo_titulo')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
 
-                                </div>
+                            <div class="mb-3">
+                                <label for="seo_descripcion" class="block font-bold text-gray-700">Descripción para
+                                    buscadores <small>Máximo 60 caractéres</small></label>
+                                <textarea name="seo_descripcion" id="seo_descripcion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('seo_descripcion', $receta->seo_descripcion) }}</textarea>
+                                @error('seo_descripcion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="caloria" class="block font-bold text-gray-700">Caloria</label>
-                                    <input type="number" name="caloria" id="caloria"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"
-                                        value="{{ old('caloria', $receta->caloria) }}">
-                                    @error('caloria')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <label for="fecha_publicacion" class="block font-bold text-gray-700">Fecha de
+                                    publicación</label>
+                                <input type="date" name="fecha_publicacion" id="fecha_publicacion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('fecha_publicacion', $receta->fecha_publicacion) }}">
+                                @error('fecha_publicacion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="flex-grow mb-3">
+                                <label><input type="radio" name="publicacion" value="0" required
+                                        {{ old('publicacion', $receta->publicacion) == '0' ? 'checked' : '' }}>
+                                    Borrador</label>
+                                <label><input type="radio" name="publicacion" value="1"
+                                        {{ old('publicacion', $receta->publicacion) == '1' ? 'checked' : '' }}>
+                                    Publicación</label>
+                                @error('publicacion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="grasa" class="block font-bold text-gray-700">Grasa</label>
-                                    <input type="number" name="grasa" id="grasa"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"
-                                        value="{{ old('grasa', $receta->grasa) }}">
-                                    @error('grasa')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                            <div class="w-full mb-3">
+                                <label for="preparacion" class="block font-bold text-gray-700">Preparacion</label>
+                                @error('text')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                                <textarea name="preparacion" id="preparacion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('preparacion', $receta->preparacion) }}</textarea>
 
-                                <div class="mb-3">
-                                    <label for="proteina" class="block font-bold text-gray-700">Proteina</label>
-                                    <input type="number" name="proteina" id="proteina"
-                                        class="w-full rounded-xl text-gray-500 border-gray-300"
-                                        value="{{ old('proteina', $receta->proteina) }}">
-                                    @error('price')
-                                        <small class="text-red-500">* {{ $message }}</small>
-                                    @enderror
-                                </div>
+                            </div>
 
-                                <div class="grid grid-cols-2 gap-4 mb-3">
-                                    <div class="col">
-                                        <div class="image-wrapper">
-                                            <img id="picture"
-                                                src="{{ asset('./imagenes/recetas/' . old('imagen_url', $receta->imagen_url)) }}"
-                                                alt="{{ old('imagen_url', $receta->imagen_url) }}">
-                                        </div>
+                            <div class="mb-3">
+                                <label for="caloria" class="block font-bold text-gray-700">Caloria</label>
+                                <input type="number" name="caloria" id="caloria"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('caloria', $receta->caloria) }}">
+                                @error('caloria')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="grasa" class="block font-bold text-gray-700">Grasa</label>
+                                <input type="number" name="grasa" id="grasa"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('grasa', $receta->grasa) }}">
+                                @error('grasa')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="proteina" class="block font-bold text-gray-700">Proteina</label>
+                                <input type="number" name="proteina" id="proteina"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('proteina', $receta->proteina) }}">
+                                @error('price')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-3">
+                                <div class="col">
+                                    <div class="image-wrapper">
+                                        <img id="picture"
+                                            src="{{ asset('./imagenes/recetas/' . old('imagen_url', $receta->imagen_url)) }}"
+                                            alt="{{ old('imagen_url', $receta->imagen_url) }}">
                                     </div>
+                                </div>
 
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <div class="label" name="imagen_url">Selecciona la imagen</div>
-                                            <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
-                                                value="{{ old('imagen_url', $receta->imagen_url) }}">
-                                        </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="label" name="imagen_url">Selecciona la imagen</div>
+                                        <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
+                                            value="{{ old('imagen_url', $receta->imagen_url) }}">
                                     </div>
                                 </div>
                             </div>
+
                             <div class="flex space-x-2">
                                 <div class=" mb-3 grid grid-cols-2 gap-8">
                                     <x-forms.button type="submit" text="Guardar cambios" />
@@ -243,7 +241,7 @@
                             ]
                         },
                         simpleUpload: {
-                            uploadUrl: '{{asset('./imagenes/recetas/placeholder.png')}}',
+                            uploadUrl: '{{ asset('./imagenes/recetas/placeholder.png') }}',
                             headers: {
 
                             }
@@ -304,7 +302,7 @@
                             ]
                         },
                         simpleUpload: {
-                            uploadUrl: '{{asset('./imagenes/recetas/placeholder.png')}}',
+                            uploadUrl: '{{ asset('./imagenes/recetas/placeholder.png') }}',
                             headers: {
 
                             }

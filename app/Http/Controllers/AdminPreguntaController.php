@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminPreguntaRequest;
 use App\Models\Pregunta;
 use Illuminate\Http\Request;
 
@@ -22,13 +23,13 @@ class AdminPreguntaController extends Controller
     }
 
     public function create(){
-        // return $Pregunta;
+        
         $preguntas = new Pregunta();
         return view('livewire.admin.preguntas.crear-preguntas', ['preguntas' => $preguntas]);
     }
 
-    public function store(Request $request){
-        // dd($request->all());
+    public function store(AdminPreguntaRequest $request){
+        
         $preguntas = new Pregunta();
 
         $preguntas->pregunta = $request -> pregunta;
@@ -43,6 +44,8 @@ class AdminPreguntaController extends Controller
 
         $preguntas->descripcion = $request -> descripcion;
 
+        $preguntas->tipo_respuestas = $request -> tipo_respuestas;
+
         $preguntas->save();
         // return $preguntas;
         return redirect()->route('preguntas');
@@ -54,15 +57,12 @@ class AdminPreguntaController extends Controller
         return view('livewire.admin.preguntas.editar-preguntas', ['preguntas'=>$preguntas, 'pregunta' => $pregunta]);
     }
 
-    public function update(Request $request, Pregunta $pregunta)
+    public function update(AdminPreguntaRequest $request, Pregunta $pregunta)
     {
-        $request->validate([
-            'pregunta' => 'required',
-            'descripcion' => 'required'
-        ]);
 
         $pregunta->pregunta = $request -> pregunta;
         $pregunta->descripcion = $request -> descripcion;
+        $pregunta->tipo_respuestas = $request -> tipo_respuestas;
         if ($request->hasFile('icono')){
             $file           = $request->file("icono");
             $nombrearchivo  = $file->getClientOriginalName();

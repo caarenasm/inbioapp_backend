@@ -27,6 +27,13 @@
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
+                            <div class="flex-grow mb-3">
+                                <label><input type="radio" name="tipo_respuestas" value="0" {{ old('tipo_respuestas', $receta->tipo_respuestas) == '0' ? 'checked' : '' }}>Respuesta unica</label>
+                                <label><input type="radio" name="tipo_respuestas" value="1" {{ old('tipo_respuestas', $receta->tipo_respuestas) == '0' ? 'checked' : '' }}>Respuestas multiples</label>
+                                @error('tipo_respuestas')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
                             <div class="grid grid-cols-2 gap-4 mb-3">
                                 <div class="col">
                                     <div class="image-wrapper">

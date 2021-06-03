@@ -19,6 +19,7 @@ class CreatePreguntasTable extends Migration
             $table->string('pregunta',100);
             $table->string('icono',255);
             $table->text('descripcion');
+            $table->tinyInteger('tipo_respuestas');
 
             $table->timestamps();
         });

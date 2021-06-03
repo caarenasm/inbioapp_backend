@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRecetaRequest;
 use App\Models\Alimento;
 use App\Models\Receta;
 use Illuminate\Http\Request;
@@ -23,17 +24,21 @@ class AdminRecetaController extends Controller
     public function create(){
   
     
-        $alimentos = Alimento::all();;
+        $alimentos = Alimento::all();
         return view('livewire.admin.recetas.crear-recetas', ['alimentos' => $alimentos]);
     }
 
-    public function store(Request $request){
-       
+    public function store(AdminRecetaRequest $request){
+
         $recetas = new Receta();
 
         $recetas->titulo = $request -> titulo;
+        $recetas->slug = $request->slug;
+        $recetas->seo_titulo = $request->seo_titulo;
+        $recetas->seo_descripcion = $request->seo_descripcion;
         $recetas->descripcion = $request -> descripcion;
         $recetas->preparacion = $request -> preparacion;
+        $recetas->fecha_publicacion = $request->fecha_publicacion != '' ? $request->fecha_publicacion : date('Y-m-d');
         
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
@@ -41,6 +46,8 @@ class AdminRecetaController extends Controller
             $file->move(public_path("imagenes/recetas/"),$nombrearchivo);
             $recetas->imagen_url      = $nombrearchivo;
         }
+
+        $recetas->publicacion = $request -> publicacion;
 
         $recetas->caloria = $request -> caloria;
 
@@ -62,20 +69,16 @@ class AdminRecetaController extends Controller
         return view('livewire.admin.recetas.editar-recetas', ['recetas'=>$recetas, 'receta' => $receta]);
     }
 
-    public function update(Request $request, Receta $receta)
+    public function update(AdminRecetaRequest $request, Receta $receta)
     {
-        $request->validate([
-            'titulo' => 'required',
-            'descripcion' => 'required',
-            'preparacion' => 'required',
-            'caloria' => 'required',
-            'grasa' => 'required',
-            'proteina' => 'required',
-        ]);
 
         $receta->titulo = $request -> titulo;
+        $receta->slug = $request->slug;
+        $receta->seo_titulo = $request->seo_titulo;
+        $receta->seo_descripcion = $request->seo_descripcion;
         $receta->descripcion = $request -> descripcion;
         $receta->preparacion = $request -> preparacion;
+        $receta->fecha_publicacion = $request->fecha_publicacion != '' ? $request->fecha_publicacion : date('Y-m-d');
         
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
@@ -84,11 +87,14 @@ class AdminRecetaController extends Controller
             $receta->imagen_url      = $nombrearchivo;
         }
 
+        $receta->publicacion = $request -> publicacion;
+
         $receta->caloria = $request -> caloria;
 
         $receta->grasa = $request -> grasa;
 
         $receta->proteina = $request -> proteina;
+
 
         $receta->save();
         

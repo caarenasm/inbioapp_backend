@@ -45,7 +45,6 @@ class AdminRecetaRequest extends FormRequest
                 'caloria' => 'required',
                 'grasa' => 'required',
                 'proteina' => 'required',
-                'imagen_url' => 'required'
             ]);
         }
         return $rules;

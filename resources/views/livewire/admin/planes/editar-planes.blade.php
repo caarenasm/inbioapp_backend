@@ -4,7 +4,7 @@
         <div class="p-2 bg-white">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Crear nuevo plan</h2>
             <div class="flex flex-col">
-                <form method="post" action="{{ route('planes.update',$plan) }}" accept-charset="UTF-8"
+                <form method="post" action="{{ route('planes.update', $plan) }}" accept-charset="UTF-8"
                     enctype="multipart/form-data">
                     @csrf
                     @method('put')
@@ -13,36 +13,50 @@
                             <div class="mb-3">
                                 <label for="titulo" class="block font-bold text-gray-700">Titulo</label>
                                 <input type="text" name="titulo" id="titulo"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="{{old('titulo', $plan->titulo)}}">
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('titulo', $plan->titulo) }}">
+                                @error('titulo')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
+                                <input type="text" name="slug" id="slug"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="{{old('slug',$plan->slug)}}" readonly>
+                                @error('slug')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="descripcion" class="block font-bold text-gray-700">Descripción del plan</label>
-                                @error('description')
+                                <textarea name="descripcion" id="descripcion"
+                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $plan->descripcion) }}</textarea>
+                                @error('descripcion')
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
-                                <textarea name="descripcion" id="descripcion"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{old('descripcion',$plan->descripcion)}}</textarea>
                             </div>
                             <div class="grid grid-cols-2 gap-4 mb-3">
                                 <div class="col">
                                     <div class="image-wrapper">
-                                    @if($plan->imagen_url)
-                                        <img id="picture"
-                                                src="{{ asset('./imagenes/planes/'.old('imagen_url',$plan->imagen_url)) }}"
-                                                alt="{{old('imagen_url',$plan->imagen_url)}}">
-                                    @else
-                                        <img id="picture"
-                                                src="{{ asset('./imagenes/planes/placeholder.png') }}"
-                                                alt="{{old('imagen_url',$plan->imagen_url)}}">
-                                    @endif
+                                        @if ($plan->imagen_url)
+                                            <img id="picture"
+                                                src="{{ asset('./imagenes/planes/' . old('imagen_url', $plan->imagen_url)) }}"
+                                                alt="{{ old('imagen_url', $plan->imagen_url) }}">
+                                        @else
+                                            <img id="picture" src="{{ asset('./imagenes/planes/placeholder.png') }}"
+                                                alt="{{ old('imagen_url', $plan->imagen_url) }}">
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group">
                                         {!! Form::label('imagen_url', 'Selecciona la imagen') !!}
-                                        <!-- {!! Form::file('imagen_url', ['class' => 'form-control-file','value'=>'$plan->imagen_url']) !!} -->
-                                        <input type="file" name="imagen_url" id="imagen_url" class="form-control-file" value="{{old('imagen_url',$plan->imagen_url)}}">
+                                        <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
+                                            value="{{ old('imagen_url', $plan->imagen_url) }}">
+                                        @error('imagen_url')
+                                            <small class="text-red-500">* {{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -50,8 +64,9 @@
                             <div class="mb-3">
                                 <label for="precio" class="block font-bold text-gray-700">Precio</label>
                                 <input type="number" name="precio" id="precio"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="{{old('precio',$plan->precio)}}">
-                                @error('price')
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('precio', $plan->precio) }}">
+                                @error('precio')
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
@@ -103,6 +118,102 @@
             }
 
         </script>
+
+        <script src="/js/ckeditor5.js"></script>
+
+        <script>
+            document.addEventListener('livewire:load', function() {
+                const titulo = document.getElementById('titulo');
+                const slug = document.getElementById('slug');
+                titulo.onblur = function() {
+                    slug.value = slugify(titulo.value);
+                }
+                titulo.onkeydown = function() {
+                    slug.value = slugify(titulo.value);
+                }
+                titulo.onkeyup = function() {
+                    slug.value = slugify(titulo.value);
+                }
+
+                // CK Editor
+                ClassicEditor
+                    .create(document.querySelector('#descripcion'), {
+                        toolbar: {
+                            items: [
+                                'heading',
+                                '|',
+                                'bold',
+                                'italic',
+                                'link',
+                                'bulletedList',
+                                'numberedList',
+                                '|',
+                                'imageUpload',
+                                'blockQuote',
+                                'insertTable',
+                                'mediaEmbed',
+                                'undo',
+                                'redo'
+                            ]
+                        },
+                        language: 'es',
+                        image: {
+                            toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                                '|',
+                                'resizeImage',
+                                '|',
+                                'imageTextAlternative'
+                            ],
+                            styles: [
+                                'alignLeft', 'alignCenter', 'alignRight'
+                            ],
+                        },
+                        table: {
+                            contentToolbar: [
+                                'tableColumn',
+                                'tableRow',
+                                'mergeTableCells'
+                            ]
+                        },
+                        simpleUpload: {
+                            uploadUrl: '{{ asset('./imagenes/planes/placeholder.png') }}',
+                            headers: {
+
+                            }
+                        },
+                    })
+                    .then(editor => {
+                        window.editor = editor;
+                    })
+                    .catch(error => {
+                        console.error('Oops, something went wrong!');
+                        console.error(
+                            'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
+                        );
+                        console.warn('Build id: smh51lc3zo1f-qavakagvqr26');
+                        console.error(error);
+                    });
+                // CK Editor fin
+            });
+            function slugify(str) {
+                str = str.replace(/^\s+|\s+$/g, ''); // trim
+                str = str.toLowerCase();
+
+                // remove accents, swap ñ for n, etc
+                var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+                var to = "aaaaeeeeiiiioooouuuunc------";
+
+                for (var i = 0, l = from.length; i < l; i++)
+                    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+
+
+                str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                    .replace(/-+/g, '-'); // collapse dashes
+
+                return str;
+            }
+        </script>
     @endpush
-    
+
 </x-app-layout>

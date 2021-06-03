@@ -16,9 +16,10 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('titulo',50);
-            $table->text('descripcion');
-            $table->string('imagen_url',100);
-            $table->double('precio');        
+            $table->string('slug',45);
+            $table->text('descripcion')->nullable();
+            $table->string('imagen_url',100)->nullable();
+            $table->double('precio')->nullable();        
             $table->timestamps();
         });
     }

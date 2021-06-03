@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminPlanRequest;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -21,16 +22,17 @@ class AdminPlanController extends Controller
     }
 
     public function create(){
-        // return $plan;
+       
         $plan = new Plan();
         return view('livewire.admin.planes.crear-planes', ['plan' => $plan]);
     }
 
-    public function store(Request $request){
-        // dd($request->all());
+    public function store(AdminPlanRequest $request){
+       
         $planes = new Plan();
 
         $planes->titulo = $request -> titulo;
+        $planes->slug = $request -> slug;
         $planes->descripcion = $request -> descripcion;
         
         if ($request->hasFile('imagen_url')){
@@ -52,15 +54,11 @@ class AdminPlanController extends Controller
         return view('livewire.admin.planes.editar-planes', ['planes'=>$planes, 'plan' => $plan]);
     }
 
-    public function update(Request $request, Plan $plan)
+    public function update(AdminPlanRequest $request, Plan $plan)
     {
-        $request->validate([
-            'titulo' => 'required',
-            'descripcion' => 'required',
-            'precio' => 'required',
-        ]);
 
         $plan->titulo = $request -> titulo;
+        $plan->slug = $request -> slug;
         $plan->descripcion = $request -> descripcion;
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");

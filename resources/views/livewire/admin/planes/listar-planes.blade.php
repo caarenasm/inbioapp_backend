@@ -2,13 +2,13 @@
     <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Imagen
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Titulo
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Descripcion
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Imagen
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 precio
@@ -25,6 +25,15 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
+                            <img id="picture" src="{{ asset('./imagenes/planes/' . old('imagen_url', $plan->imagen_url)) }}" alt="imagen_plan" style="width: 200px; height: 100;">
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="ml-1">
+                        <div class="text-sm font-medium text-gray-900">
                             {{$plan->titulo}}
                         </div>
                     </div>
@@ -34,16 +43,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$plan->descripcion}}
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="ml-1">
-                        <div class="text-sm font-medium text-gray-900">
-                            {{$plan->imagen_url}}
+                            {{strip_tags($plan->descripcion)}}
                         </div>
                     </div>
                 </div>

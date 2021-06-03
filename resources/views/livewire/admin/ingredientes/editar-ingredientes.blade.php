@@ -3,26 +3,32 @@
         <form action="{{ route('ingredientes.update', $ingrediente) }}" method="post">
             @csrf
             @method('put')
-            <div class="mb-3 bg-white shadow-xl rounded p-5 w-1/2">
-                <div class="grid grid-cols-2 space-x-2">
-                    
-                    <input type="hidden" value="{{old('receta_id',$ingrediente->receta_id)}}" name="receta_id" >
+            <div class="mb-3 bg-white rounded p-5 w-1/2">
+                <div class="grid space-x-2">
 
-                    <div>
+                    <input type="hidden" value="{{ old('receta_id', $ingrediente->receta_id) }}" name="receta_id">
+
+                    <div class="mb-3">
                         <p class="block font-bold text-gray-700">Alimento</p>
-                        <select wire:model="selectedState" class="form-control" name="alimento_id">
+                        <select wire:model="selectedState" class="form-control w-1/2 rounded-xl text-gray-500 border-gray-300" name="alimento_id">
                             <option selected>Escoge el alimento</option>
                             @foreach ($alimentos as $food)
                                 <option value="{{ $food->id }}" @if (old('alimento_id') == $food->id || $food->id == $ingrediente->alimento_id) selected @endif>{{ $food->nombre }}</option>
                             @endforeach
                         </select>
                         <small class="text-red-500"></small>
+                        @error('alimento_id')
+                            <small class="text-red-500">* {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mb-3" style="margin-left: 0.5%">
                         <label for="porcion" class="block font-bold text-gray-700">Porcion</label>
                         <input type="text" name="porcion" id="porcion"
-                            class="w-full rounded-xl text-gray-500 border-gray-300"
+                            class="w-1/2 rounded-xl text-gray-500 border-gray-300"
                             value="{{ old('porcion', $ingrediente->porcion) }}">
+                        @error('porcion')
+                            <small class="text-red-500">* {{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex space-x-2">
@@ -37,4 +43,4 @@
                 </div>
             </div>
         </form>
-</x-app-layout>
+    </x-app-layout>

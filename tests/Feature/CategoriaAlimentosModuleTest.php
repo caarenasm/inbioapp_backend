@@ -79,7 +79,7 @@ class CategoriaAlimentosModuleTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->post(route('categoria-alimentos.store'), [
-            'nombre_categoria' => 'Tes nombre',
+            'nombre_categoria' => 'Test nombre',
             'create_at' => now(),
             'update_at' => now(),
         ]);
@@ -91,7 +91,7 @@ class CategoriaAlimentosModuleTest extends TestCase
 
         $categoria_alimento = CategoriaAlimento::all()->last();
 
-        $this->assertEquals($categoria_alimento->nombre_categoria, 'Tes nombre');
+        $this->assertEquals($categoria_alimento->nombre_categoria, 'Test nombre');
     }
 
     public function test_update_categorias_alimentos()

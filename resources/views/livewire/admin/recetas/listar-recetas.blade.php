@@ -2,13 +2,13 @@
     <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Imagen
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Titulo
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Descripcion
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Imagen
+                Descripción
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Preparación
@@ -28,6 +28,15 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
+                            <img id="picture" src="{{ asset('./imagenes/recetas/' . old('imagen_url', $receta->imagen_url)) }}" alt="receta" style="width: 200px; height: 100;">
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="ml-1">
+                        <div class="text-sm font-medium text-gray-900">
                             {{$receta->titulo}}
                         </div>
                     </div>
@@ -37,25 +46,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$receta->descripcion}}
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="ml-1">
-                        <div class="text-sm font-medium text-gray-900">
-                            {{$receta->imagen_url}}
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="ml-1">
-                        <div class="text-sm font-medium text-gray-900">
-                            {{$receta->preparacion}}
+                                {{strip_tags($receta->descripcion)}}
                         </div>
                     </div>
                 </div>
@@ -82,6 +73,20 @@
                         </div>
                     </div>
                 </div>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    @if ($receta->publicacion)
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        Publicada
+                    </span>
+                    @else
+                        <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                        No publicada
+                    </span>
+                    @endif
+
+                </td>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">

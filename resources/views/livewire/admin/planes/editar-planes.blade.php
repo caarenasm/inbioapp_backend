@@ -8,78 +8,76 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('put')
-                    <div class="space-x-2 w-96">
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label for="titulo" class="block font-bold text-gray-700">Titulo</label>
-                                <input type="text" name="titulo" id="titulo"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300"
-                                    value="{{ old('titulo', $plan->titulo) }}">
-                                @error('titulo')
-                                    <small class="text-red-500">* {{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
-                                <input type="text" name="slug" id="slug"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="{{old('slug',$plan->slug)}}" readonly>
-                                @error('slug')
-                                    <small class="text-red-500">* {{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="descripcion" class="block font-bold text-gray-700">Descripción del plan</label>
-                                <textarea name="descripcion" id="descripcion"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $plan->descripcion) }}</textarea>
-                                @error('descripcion')
-                                    <small class="text-red-500">* {{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 mb-3">
-                                <div class="col">
-                                    <div class="image-wrapper">
-                                        @if ($plan->imagen_url)
-                                            <img id="picture"
-                                                src="{{ asset('./imagenes/planes/' . old('imagen_url', $plan->imagen_url)) }}"
-                                                alt="{{ old('imagen_url', $plan->imagen_url) }}">
-                                        @else
-                                            <img id="picture" src="{{ asset('./imagenes/planes/placeholder.png') }}"
-                                                alt="{{ old('imagen_url', $plan->imagen_url) }}">
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="form-group">
-                                        {!! Form::label('imagen_url', 'Selecciona la imagen') !!}
-                                        <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
-                                            value="{{ old('imagen_url', $plan->imagen_url) }}">
-                                        @error('imagen_url')
-                                            <small class="text-red-500">* {{ $message }}</small>
-                                        @enderror
-                                    </div>
+                    <div class="space-x-2 w-full grid grid-cols-2">
+                        <div class="mb-3 m-3">
+                            <label for="titulo" class="block font-bold text-gray-700">Titulo</label>
+                            <input type="text" name="titulo" id="titulo"
+                                class="w-full rounded-xl text-gray-500 border-gray-300"
+                                value="{{ old('titulo', $plan->titulo) }}">
+                            @error('titulo')
+                                <small class="text-red-500">* {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3 m-3">
+                            <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
+                            <input type="text" name="slug" id="slug" class="w-full rounded-xl text-gray-500 border-gray-300"
+                                value="{{ old('slug', $plan->slug) }}" readonly>
+                            @error('slug')
+                                <small class="text-red-500">* {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3 m-3">
+                            <label for="descripcion" class="block font-bold text-gray-700">Descripción del plan</label>
+                            <textarea name="descripcion" id="descripcion"
+                                class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $plan->descripcion) }}</textarea>
+                            @error('descripcion')
+                                <small class="text-red-500">* {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-3">
+                            <div class="col">
+                                <div class="image-wrapper">
+                                    @if ($plan->imagen_url)
+                                        <img id="picture"
+                                            src="{{ asset('./imagenes/planes/' . old('imagen_url', $plan->imagen_url)) }}"
+                                            alt="{{ old('imagen_url', $plan->imagen_url) }}">
+                                    @else
+                                        <img id="picture" src="{{ asset('./imagenes/planes/placeholder.png') }}"
+                                            alt="{{ old('imagen_url', $plan->imagen_url) }}">
+                                    @endif
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="precio" class="block font-bold text-gray-700">Precio</label>
-                                <input type="number" name="precio" id="precio"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300"
-                                    value="{{ old('precio', $plan->precio) }}">
-                                @error('precio')
-                                    <small class="text-red-500">* {{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="flex space-x-2">
-                                <div class=" mb-3 grid grid-cols-2 gap-8">
-                                    <x-forms.button type="submit" text="Guardar cambios" />
-                                    <a href="{{ url()->previous() }}"
-                                        class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
-                                        type="submit">
-                                        Cancel
-                                    </a>
+                            <div class="col m-3">
+                                <div class="form-group">
+                                    {!! Form::label('imagen_url', 'Selecciona la imagen') !!}
+                                    <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
+                                        value="{{ old('imagen_url', $plan->imagen_url) }}">
+                                    @error('imagen_url')
+                                        <small class="text-red-500">* {{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="mb-3 m-3">
+                            <label for="precio" class="block font-bold text-gray-700">Precio</label>
+                            <input type="number" name="precio" id="precio"
+                                class="w-full rounded-xl text-gray-500 border-gray-300"
+                                value="{{ old('precio', $plan->precio) }}">
+                            @error('precio')
+                                <small class="text-red-500">* {{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <div class=" mb-3 grid grid-cols-2 gap-8">
+                            <x-forms.button type="submit" text="Guardar cambios" />
+                            <a href="{{ url()->previous() }}"
+                                class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
+                                type="submit">
+                                Cancel
+                            </a>
                         </div>
                     </div>
                 </form>
@@ -195,6 +193,7 @@
                     });
                 // CK Editor fin
             });
+
             function slugify(str) {
                 str = str.replace(/^\s+|\s+$/g, ''); // trim
                 str = str.toLowerCase();
@@ -213,6 +212,7 @@
 
                 return str;
             }
+
         </script>
     @endpush
 

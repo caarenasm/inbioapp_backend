@@ -44,7 +44,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$answer->respuesta}}
+                            {{strip_tags($answer->respuesta)}}
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$answer->ayuda}}
+                            {{strip_tags($answer->ayuda)}}
                         </div>
                     </div>
                 </div>

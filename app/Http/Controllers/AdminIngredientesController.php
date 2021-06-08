@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminIngredienteRequest;
 use App\Models\Alimento;
 use App\Models\Ingrediente;
 use App\Models\Receta;
@@ -31,7 +32,7 @@ class AdminIngredientesController extends Controller
     }
 
 
-    public function store(Request $request){
+    public function store(AdminIngredienteRequest $request){
 
         $ingrediente = new Ingrediente();
 
@@ -60,13 +61,8 @@ class AdminIngredientesController extends Controller
         return view('livewire.admin.ingredientes.editar-ingredientes', ['ingredientes' => $ingredientes, 'ingrediente' => $ingrediente, 'alimentos'=> $alimentos]);
     }
 
-    public function update(Request $request, Ingrediente $ingrediente)
+    public function update(AdminIngredienteRequest $request, Ingrediente $ingrediente)
     {
-        $request->validate([
-            'alimento_id' => 'required',
-            'porcion' => 'required',
-        ]);
-
         $ingrediente->alimento_id = $request -> alimento_id;
         $ingrediente->porcion = $request -> porcion;
         $ingrediente->receta_id = $request -> receta_id;

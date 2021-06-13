@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\AdminRespuestasController;
 use App\Http\Controllers\AdminTipoEnfermedadController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class);
+
+/*Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});*/
+
+/*Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('cache:clear');
+
+    return 'All routes cache has just been removed';
+});*/
 
 // Administración
 Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group(function(){

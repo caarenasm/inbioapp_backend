@@ -11,14 +11,18 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use Laravel\Passport\HasApiTokens as PassportApiTokens;
+
 class User extends Authenticatable
 {
-    use HasApiTokens;
+    //use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+
+    use PassportApiTokens;
 
     /**
      * The attributes that are mass assignable.

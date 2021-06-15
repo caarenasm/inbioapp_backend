@@ -25,7 +25,7 @@ class AlimentoModuleTest extends TestCase
         $this->usuario = User::factory()->create();
         $this->categoria_alimento = CategoriaAlimento::factory()->create();
 
-        // Aca se crea una categorias, y podemos controlar los datos creados
+        
         $this->alimento = Alimento::factory([
             'id'=>1,
             'nombre'=>'Prueba',
@@ -90,7 +90,7 @@ class AlimentoModuleTest extends TestCase
         
         $response->assertStatus(302);
 
-        // Acá deben haber 2 la creada en el setup y la agregada en post
+      
         $this->assertCount(2, Alimento::all());
 
         $alimento = Alimento::all()->last();
@@ -102,16 +102,15 @@ class AlimentoModuleTest extends TestCase
     {
 
         $response = $this->put(route('alimentos.update', $this->alimento), [
-            // el parametro es el del name del formulario, por eso no te funcionaba con solamente nombre
+            
             'nombre' => 'Test nombre',
         ]);
 
         $response->assertStatus(302);
 
-        // Acá deben haber 2 la creada en el setup y la agregada en post
         $this->assertCount(1, Alimento::all());
 
-        // Acá revisamos el primer registro agregado y modificado
+        
         $alimento = Alimento::find(1);
 
         $this->assertEquals($alimento->nombre, 'Test nombre');

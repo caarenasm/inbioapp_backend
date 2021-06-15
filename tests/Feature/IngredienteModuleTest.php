@@ -27,7 +27,7 @@ class IngredienteModuleTest extends TestCase
 
         $this->alimentos = Alimento::factory()->create();
 
-        // Aca se crea una categorias, y podemos controlar los datos creados
+       
         $this->ingredientes = Ingrediente::factory([
             'id'=>1,
             'porcion' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
@@ -90,7 +90,7 @@ class IngredienteModuleTest extends TestCase
 
         $response->assertStatus(302);
 
-        // Acá deben haber 2 la creada en el setup y la agregada en post
+        
         $this->assertCount(2, Ingrediente::all());
 
         $ingrediente = Ingrediente::all()->last();
@@ -109,10 +109,10 @@ class IngredienteModuleTest extends TestCase
 
         $response->assertStatus(302);
 
-        // Acá deben haber 2 la creada en el setup y la agregada en post
+        
         $this->assertCount(1, Ingrediente::all());
 
-        // Acá revisamos el primer registro agregado y modificado
+        
         $ingrediente = Ingrediente::find(1);
 
         $this->assertEquals($ingrediente->porcion, 'Test ingredientes');
@@ -120,7 +120,7 @@ class IngredienteModuleTest extends TestCase
 
     public function test_delete_ingredientes()
     {
-        // dd(route('ingredientes.delete',$this->ingredientes->id));
+        
         $response = $this->delete(route('ingredientes.delete',$this->ingredientes->id));
 
         $response->assertStatus(302);

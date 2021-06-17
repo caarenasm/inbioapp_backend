@@ -32,11 +32,6 @@
                    Enfermedades 
                 </a>
             </div>
-            <div class="p-1 mt-1">
-                <a href="{{ route('enfermedades-alimentos.index') }}" class="text-white">
-                    Alimentos y Enfermedades
-                </a>
-            </div>
         </div>
     </div>
 

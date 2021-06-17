@@ -4,8 +4,8 @@ use App\Http\Controllers\AdminAlimentosController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminCategoriaAlimentosController;
+use App\Http\Controllers\AdminEnfermedadAlimentoController;
 use App\Http\Controllers\AdminEnfermedadController;
-use App\Http\Controllers\AdminEnfermedadesAlimentosController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
 use App\Http\Controllers\AdminIngredientesController;
@@ -18,7 +18,6 @@ use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\AdminRespuestasController;
 use App\Http\Controllers\AdminTipoEnfermedadController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -154,5 +153,9 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/enfermedades/{enfermedad}', [AdminEnfermedadController::class, 'update'])->name('enfermedades.update');
     Route::delete('/enfermedades/{enfermedad}/eliminar', [AdminEnfermedadController::class, 'destroy'])->name('enfermedades.delete');
 
-    Route::get('/enfermedades-alimentos/index', [AdminEnfermedadesAlimentosController::class,'index'])->name('enfermedades-alimentos.index');
+    Route::get('/enfermedades-alimentos/{enfermedad}/index', [AdminEnfermedadAlimentoController::class,'index'])->name('enfermedades-alimentos.index');
+    Route::post('/enfermedades-alimentos/crear', [AdminEnfermedadAlimentoController::class, 'store'])->name('enfermedades-alimentos.store');
+    Route::get('/enfermedades-alimentos/{enfermedad_alimento}/editar', [AdminEnfermedadAlimentoController::class, 'edit'])->name('enfermedades-alimentos.edit');
+    Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->name('enfermedades-alimentos.update');
+    Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->name('enfermedades-alimentos.delete');
 });

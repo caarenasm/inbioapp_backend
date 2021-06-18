@@ -7,6 +7,7 @@ use App\Models\Alimento;
 use App\Models\Enfermedad;
 use App\Models\EnfermedadAlimento;
 use Attribute;
+use Dotenv\Parser\Entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -28,32 +29,24 @@ class AdminEnfermedadAlimentoController extends Controller
 
     public function store(AdminEnfermedadAlimentoRequest $request)
     {
-    
-       
 
-        for ($i = 0; $i < count($request->recomendacion); $i++) {
+        // dd(var_dump($request->recomendacion));
 
+        for ($i = 0; $i < count($request->alimento_id); $i++) {
+        
             // dd(count($request->recomendacion));
-    
-            $alimentos_enfermedad = new EnfermedadAlimento();
-            $alimentos_enfermedad->alimento_id = $request->alimento_id[$i];
-            $alimentos_enfermedad->enfermedad_id = $request->enfermedad_id[$i];
-            $alimentos_enfermedad->recomendacion = $request->recomendacion[$i];
-            $alimentos_enfermedad->save();
+            
+            if (!empty($request->recomendacion[$i])) {
+                $alimentos_enfermedad = new EnfermedadAlimento();
+                $alimentos_enfermedad->alimento_id = $request->alimento_id[$i];
+                $alimentos_enfermedad->enfermedad_id = $request->enfermedad_id[$i];
+                $alimentos_enfermedad->recomendacion = $request->recomendacion[$i];
+                $alimentos_enfermedad->save();
+            }
+        
+
         }
 
-
-        // $alimentos_enfermedad = new EnfermedadAlimento();
-        // foreach ($request->alimento_id as $alimentos) {
-        //     foreach ($request->alimento_id as $recomendaciones) {
-        //         foreach ($request->enfermedad_id as $enfermedades) {
-        //             $alimentos_enfermedad->alimento_id = $alimentos;
-        //             $alimentos_enfermedad->recomendacion = $recomendaciones;
-        //             $alimentos_enfermedad->enfermedad_id = $enfermedades;
-        //             $alimentos_enfermedad->save();
-        //         }
-        //     }
-        // }
         return redirect()->route('enfermedades-alimentos.index', $request->enfermedad_id);
     }
 
@@ -62,6 +55,8 @@ class AdminEnfermedadAlimentoController extends Controller
         $alimentos_enfermedad = Alimento::join('enfermedad_alimentos', 'alimento_id', '=', 'alimentos.id')
             ->select("*")
             ->get();
+
+        dd($alimentos_enfermedad);
 
         $alimentos = Alimento::all();
 

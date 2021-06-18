@@ -35,15 +35,6 @@
                             <div class="flex justify-items-center">
                                 <div class="ml-1">
                                     <div class="text-sm font-medium text-gray-900">
-                                        <input type="radio" class="form-checkbox" value="0" name="recomendacion[{{$i}}]"
-                                            id="radio">
-                                    </div>
-                                </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="flex justify-items-center">
-                                <div class="ml-1">
-                                    <div class="text-sm font-medium text-gray-900">
                                         <input type="radio" class="form-checkbox" value="1" name="recomendacion[{{$i}}]"
                                             id="radio">
                                     </div>
@@ -54,6 +45,15 @@
                                 <div class="ml-1">
                                     <div class="text-sm font-medium text-gray-900">
                                         <input type="radio" class="form-checkbox" value="2" name="recomendacion[{{$i}}]"
+                                            id="radio">
+                                    </div>
+                                </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex justify-items-center">
+                                <div class="ml-1">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        <input type="radio" class="form-checkbox" value="3" name="recomendacion[{{$i}}]"
                                             id="checkbox3">
                                     </div>
                                 </div>

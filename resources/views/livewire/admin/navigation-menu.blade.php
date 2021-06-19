@@ -32,6 +32,11 @@
                    Enfermedades 
                 </a>
             </div>
+            <div class="p-1 mt-1">
+                <a href="{{ route('semaforos-estados.index') }}" class="text-white">
+                   Semaforo estados 
+                </a>
+            </div>
         </div>
     </div>
 

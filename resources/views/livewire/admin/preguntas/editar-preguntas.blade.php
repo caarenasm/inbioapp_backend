@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', 'Editar categoria de alimentos')
+    @section('title', 'Editar pregunta')
 
         <div class="p-2 bg-white">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Editar nueva pregunta</h2>
@@ -29,13 +29,13 @@
                             </div>
                             <div class="flex-grow mb-3">
                                 <label><input type="radio" name="tipo_respuestas" value="0" {{ old('tipo_respuestas', $pregunta->tipo_respuestas) == '0' ? 'checked' : '' }}>Respuesta unica</label>
-                                <label><input type="radio" name="tipo_respuestas" value="1" {{ old('tipo_respuestas', $pregunta->tipo_respuestas) == '0' ? 'checked' : '' }}>Respuestas multiples</label>
+                                <label><input type="radio" name="tipo_respuestas" value="1" {{ old('tipo_respuestas', $pregunta->tipo_respuestas) == '1' ? 'checked' : '' }}>Respuestas multiples</label>
                                 @error('tipo_respuestas')
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-4 mb-3">
-                                <div class="col">
+                                {{-- <div class="col">
                                     <div class="image-wrapper">
                                         @if ($pregunta->icono)
                                             <img id="picture"
@@ -58,6 +58,17 @@
                                             <small class="text-red-500">* {{ $message }}</small>
                                         @enderror
                                     </div>
+                                </div> --}}
+
+                                <div class="m-3">
+                                    <p class="block font-bold text-gray-700">Elijé el icono de la pregunta</p>
+                                    <select wire:model="selectedState" class="form-control" id="icono" name="icono">
+                                        <option value="" selected>Escoge el icono</option>
+                                        @foreach ($iconos as $icono)
+                                            <option value="{{ $icono->nombre_icono }}" @if(old('icono') === $pregunta->icono || $pregunta->icono === $icono->nombre_icono) selected @endif>{{ $icono->nombre_icono }}</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="text-red-500"></small>
                                 </div>
                             </div>
 

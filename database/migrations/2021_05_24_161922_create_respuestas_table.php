@@ -17,7 +17,10 @@ class CreateRespuestasTable extends Migration
             $table->id();
 
             $table->text('respuesta');
+
             $table->text('ayuda')->nullable();
+
+            $table->tinyInteger('otro')->nullable();
 
             $table->foreignId('pregunta_id')->nullable()
             ->constrained('preguntas')

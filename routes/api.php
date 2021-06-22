@@ -39,7 +39,7 @@ Route::group([
         Route::post('login', [AuthController::class, 'login']);
         Route::post('registro', [AuthController::class, 'registro']);
         Route::get('receta', [RecetaController::class, 'lista']);
-        // Route::get('pregunta', [PreguntaController::class, 'lista']);
+        Route::get('pregunta', [PreguntaController::class, 'lista']);
 
         Route::group([
             'middleware' => 'auth:api'

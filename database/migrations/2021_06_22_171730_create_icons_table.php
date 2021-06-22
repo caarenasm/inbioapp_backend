@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRespuestasTable extends Migration
+class CreateIconsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,9 @@ class CreateRespuestasTable extends Migration
      */
     public function up()
     {
-        Schema::create('respuestas', function (Blueprint $table) {
+        Schema::create('icons', function (Blueprint $table) {
             $table->id();
-
-            $table->text('respuesta');
-
-            $table->text('ayuda')->nullable();
-
-            $table->tinyInteger('otro')->nullable();
-
-            $table->foreignId('pregunta_id')->nullable()
-            ->constrained('preguntas')
-            ->onDelete('cascade');
-
+            $table->string('nombre_icono',255);
             $table->timestamps();
         });
     }
@@ -37,6 +27,6 @@ class CreateRespuestasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('respuestas');
+        Schema::dropIfExists('icons');
     }
 }

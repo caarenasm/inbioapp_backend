@@ -1,5 +1,7 @@
 <x-app-layout>
     @section('title', 'Editar respuesta')
+    <div class="mb-3 bg-white rounded p-5">
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Editar respuesta</h2>
         <form action="{{ route('respuestas.update', $respuesta) }}" method="post">
             @csrf
             @method('put')
@@ -25,6 +27,15 @@
                         @enderror
                     </div>
                 </div>
+                <div class="flex-grow mb-3">
+                    <label class="inline-flex items-center mt-3">
+                        <input type="checkbox" name= "otro" value="1" class="form-checkbox h-5 w-5 text-gray-600" {{ old('otro', $respuesta->otro) == '1' ? 'checked' : '' }}>
+                        <span class="ml-2 text-gray-700">Tipo de respuesta: Otro</span>
+                    </label>
+                    @error('otro')
+                        <small class="text-red-500">* {{ $message }}</small>
+                    @enderror
+                </div>
                 <div class="flex space-x-2">
                     <div class=" mb-3 grid grid-cols-2 gap-8">
                         <x-forms.button type="submit" text="Guardar cambios" />
@@ -37,7 +48,7 @@
                 </div>
             </div>
         </form>
-
+    </div>
         @push('scripts')
 
             <script src="/js/ckeditor5.js"></script>

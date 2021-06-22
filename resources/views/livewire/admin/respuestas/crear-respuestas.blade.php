@@ -17,7 +17,15 @@
                 <small class="text-red-500">* {{ $message }}</small>
             @enderror
         </div>
-
+        <div class="flex-grow mb-3">
+            <label class="inline-flex items-center mt-3">
+                <input type="checkbox" name= "otro" value="1" class="form-checkbox h-5 w-5 text-gray-600">
+                <span class="ml-2 text-gray-700">Tipo de respuesta: Otro</span>
+            </label>
+            @error('otro')
+                <small class="text-red-500">* {{ $message }}</small>
+            @enderror
+        </div>
         <div class="flex space-x-2">
             <div class=" mb-3 grid grid-cols-2 gap-8">
                 <x-forms.button type="submit" text="Guardar cambios" />
@@ -155,6 +163,5 @@
                     console.error(error);
                 });
         });
-
     </script>
 @endpush

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminPreguntaRequest;
+use App\Models\Icon;
 use App\Models\Pregunta;
 use Illuminate\Http\Request;
 
@@ -13,19 +14,8 @@ class AdminPreguntaController extends Controller
     public function index(){
         
         $preguntas = Pregunta::all();
-        // return($preguntas);
-        return view('livewire.admin.preguntas.preguntas', ['preguntas'=>$preguntas]);
-    }
-
-    public function imagen()
-    {
-        return true;
-    }
-
-    public function create(){
-        
-        $preguntas = new Pregunta();
-        return view('livewire.admin.preguntas.crear-preguntas', ['preguntas' => $preguntas]);
+        $iconos = Icon::all();
+        return view('livewire.admin.preguntas.preguntas', ['preguntas'=>$preguntas,'iconos' => $iconos]);
     }
 
     public function store(AdminPreguntaRequest $request){
@@ -34,13 +24,15 @@ class AdminPreguntaController extends Controller
 
         $preguntas->pregunta = $request -> pregunta;
 
+        $preguntas->icono = $request -> icono;
+
         
-        if ($request->hasFile('icono')){
-            $file           = $request->file("icono");
-            $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/preguntas/"),$nombrearchivo);
-            $preguntas->icono      = $nombrearchivo;
-        }
+        // if ($request->hasFile('icono')){
+        //     $file           = $request->file("icono");
+        //     $nombrearchivo  = $file->getClientOriginalName();
+        //     $file->move(public_path("imagenes/preguntas/"),$nombrearchivo);
+        //     $preguntas->icono      = $nombrearchivo;
+        // }
 
         $preguntas->descripcion = $request -> descripcion;
 
@@ -54,7 +46,8 @@ class AdminPreguntaController extends Controller
     public function edit(Pregunta $pregunta)
     {
         $preguntas = Pregunta::all();
-        return view('livewire.admin.preguntas.editar-preguntas', ['preguntas'=>$preguntas, 'pregunta' => $pregunta]);
+        $iconos = Icon::all();
+        return view('livewire.admin.preguntas.editar-preguntas', ['preguntas'=>$preguntas, 'pregunta' => $pregunta,'iconos'=>$iconos]);
     }
 
     public function update(AdminPreguntaRequest $request, Pregunta $pregunta)
@@ -63,12 +56,14 @@ class AdminPreguntaController extends Controller
         $pregunta->pregunta = $request -> pregunta;
         $pregunta->descripcion = $request -> descripcion;
         $pregunta->tipo_respuestas = $request -> tipo_respuestas;
-        if ($request->hasFile('icono')){
-            $file           = $request->file("icono");
-            $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/preguntas/"),$nombrearchivo);
-            $pregunta->icono      = $nombrearchivo;
-        }
+        $pregunta->icono = $request -> icono;
+
+        // if ($request->hasFile('icono')){
+        //     $file           = $request->file("icono");
+        //     $nombrearchivo  = $file->getClientOriginalName();
+        //     $file->move(public_path("imagenes/preguntas/"),$nombrearchivo);
+        //     $pregunta->icono      = $nombrearchivo;
+        // }
        
         $pregunta->save();
         

@@ -18,9 +18,6 @@ class AdminRespuestasController extends Controller
         ->select('*')->where('pregunta_id', '=', $id)
         ->get();
 
-        // $respuestas = Respuesta::all();
-        // dd($preguntas);
-        // return $respuestas;
         return view('livewire.admin.respuestas.respuestas', ['respuestas'=>$respuestas,'preguntas'=>$preguntas]);
     }
 
@@ -37,6 +34,8 @@ class AdminRespuestasController extends Controller
         $respuesta->respuesta = $request -> respuesta;
 
         $respuesta->ayuda = $request -> ayuda;
+
+        $respuesta->otro = $request -> otro;
 
         $respuesta->pregunta_id = $request -> pregunta_id;
 
@@ -62,6 +61,8 @@ class AdminRespuestasController extends Controller
         $respuesta->respuesta = $request -> respuesta;
 
         $respuesta->ayuda = $request -> ayuda;
+ 
+        $respuesta->otro = $request -> otro;
 
         $respuesta->pregunta_id = $request -> pregunta_id;
 

@@ -22,7 +22,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            <img id="picture" src="{{ asset('./imagenes/preguntas/' . old('icono', $pregunta->icono)) }}" alt="pregunta" style="width: 200px; height: 100;">
+                            {{$pregunta->icono}}
                         </div>
                     </div>
                 </div>

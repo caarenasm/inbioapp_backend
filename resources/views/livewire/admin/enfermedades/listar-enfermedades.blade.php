@@ -52,6 +52,10 @@
                         <x-html.link href="{{ route('enfermedades.edit',$enfermedad) }}" text="Editar" isButton="true"
                             class="inline-block"/>
                     </h2>
+                    <h2 class="text-2xl text-fondo-verde font-extrabold" style="margin-right: 10px" >
+                        <x-html.link href="{{ route('enfermedades-alimentos.index', $enfermedad->id) }}" text="Alimentos" isButton="true"
+                            class="inline-block"/>
+                    </h2>
                     <h2>
                         <a href="{{ route('enfermedades.delete', $enfermedad->id) }}"
                             x-on:click="confirmDialog = confirmDialog !== true"

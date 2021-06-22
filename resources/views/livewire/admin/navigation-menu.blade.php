@@ -33,8 +33,8 @@
                 </a>
             </div>
             <div class="p-1 mt-1">
-                <a href="{{ route('enfermedades-alimentos.index') }}" class="text-white">
-                    Alimentos y Enfermedades
+                <a href="{{ route('semaforos-estados.index') }}" class="text-white">
+                   Semaforo estados 
                 </a>
             </div>
         </div>

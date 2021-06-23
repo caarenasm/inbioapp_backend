@@ -29,7 +29,7 @@ class RecetaFactory extends Factory
             'imagen_url' =>$this->faker->image(public_path("imagenes/recetas/"),640,682,null,false),
             'descripcion' => $this->faker->paragraph(),
             'preparacion' => $this->faker->paragraph(),
-            'fecha_publicacion' => $this->faker->title(),
+            'fecha_publicacion' => now(),
             'publicacion' => $this->faker->numberBetween(0,1),
             'grasa' => $this->faker->numberBetween(1,20),
             'caloria' => $this->faker->numberBetween(1,20),

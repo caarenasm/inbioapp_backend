@@ -23,7 +23,7 @@ class PreguntaFactory extends Factory
     {
         return [
             'pregunta' => $this->faker->title(),
-            'icono' =>$this->faker->image(public_path("imagenes/preguntas/"),640,682,null,false),
+            'icono' =>$this->faker->title(),
             'descripcion' => $this->faker->paragraph(),
             'tipo_respuestas' => $this->faker->numberBetween(0,1),
             'updated_at' => now(),

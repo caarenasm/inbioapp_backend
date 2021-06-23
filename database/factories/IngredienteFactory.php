@@ -24,9 +24,9 @@ class IngredienteFactory extends Factory
     public function definition()
     {
         return [
-            'porcion' => $this->faker->paragraph(),
-            'receta_id' => Receta::all()->random()->id,
-            'alimento_id' => Alimento::all()->random()->id,
+            'porcion' => $this->faker->title(),
+            'receta_id' => 1,
+            'alimento_id' => 1,
             'updated_at' => now(),
             'created_at' => now(),
         ];

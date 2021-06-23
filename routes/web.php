@@ -117,7 +117,6 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/asignar-mis-planes', [AdminPlanUserController::class,'index'])->name('asignar-mis-planes');
 
     Route::get('/preguntas', [AdminPreguntaController::class,'index'])->name('preguntas');
-    Route::get('/preguntas/crear', [AdminPreguntaController::class, 'create'])->name('preguntas.create');
     Route::post('/preguntas', [AdminPreguntaController::class, 'store'])->name('preguntas.store');
     Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->name('preguntas.edit');
     Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->name('preguntas.update');

@@ -49,12 +49,6 @@ class PreguntaModuleTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_create_preguntas()
-    {
-        $this->withoutExceptionHandling();
-        $response = $this->get(route('preguntas.create'));
-        $response->assertStatus(200);
-    }
 
     public function test_edit_preguntas()
     {
@@ -82,9 +76,12 @@ class PreguntaModuleTest extends TestCase
         $this->withoutExceptionHandling();
 
         $response = $this->post(route('preguntas.store'), [
-            'nombre_categoria' => 'Test nombre',
-            'create_at' => now(),
-            'update_at' => now(),
+            'pregunta' => 'Test nombre',
+            'icono' =>'placeholder.png',
+            'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure, officiis adipisci, illo perspiciatis harum obcaecati, inventore minus velit natus debitis. Accusamus ea nesciunt dolorem incidunt accusantium recusandae atque alias!',
+            'tipo_respuestas' => '1',
+            'updated_at' => now(),
+            'created_at' => now(),
         ]);
 
         $response->assertStatus(302);
@@ -92,17 +89,22 @@ class PreguntaModuleTest extends TestCase
        
         $this->assertCount(2, Pregunta::all());
 
-        $categoria_alimento = Pregunta::all()->last();
+        $preguntas = Pregunta::all()->last();
 
-        $this->assertEquals($categoria_alimento->nombre_categoria, 'Test nombre');
+        $this->assertEquals($preguntas->pregunta, 'Test nombre');
     }
 
     public function test_update_preguntas()
     {
 
-        $response = $this->put(route('preguntas.update', $this->categoria_alimento), [
+        $response = $this->put(route('preguntas.update', $this->preguntas->id), [
             
-            'nombre_categoria' => 'Test nombre',
+            'pregunta' => 'Test pregunta',
+            'icono' =>'placeholder.png',
+            'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure, officiis adipisci, illo perspiciatis harum obcaecati, inventore minus velit natus debitis. Accusamus ea nesciunt dolorem incidunt accusantium recusandae atque alias!',
+            'tipo_respuestas' => '1',
+            'updated_at' => now(),
+            'created_at' => now(),
         ]);
 
         $response->assertStatus(302);
@@ -111,15 +113,15 @@ class PreguntaModuleTest extends TestCase
         $this->assertCount(1, Pregunta::all());
 
         
-        $categoria_alimento = Pregunta::find(1);
+        $preguntas = Pregunta::find(1);
 
-        $this->assertEquals($categoria_alimento->nombre_categoria, 'Test nombre');
+        $this->assertEquals($preguntas->pregunta, 'Test pregunta');
     }
 
     public function test_delete_preguntas()
     {
 
-        $response = $this->delete(route('preguntas.delete', $this->categoria_alimento));
+        $response = $this->delete(route('preguntas.delete', $this->preguntas->id));
 
         $response->assertStatus(302);
 

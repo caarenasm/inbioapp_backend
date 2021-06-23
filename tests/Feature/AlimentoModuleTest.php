@@ -104,6 +104,7 @@ class AlimentoModuleTest extends TestCase
         $response = $this->put(route('alimentos.update', $this->alimento), [
             
             'nombre' => 'Test nombre',
+            'categoria_alimento_id' => $this->categoria_alimento->id,
         ]);
 
         $response->assertStatus(302);

@@ -23,12 +23,12 @@ class RespuestaModuleTest extends TestCase
 
         $this->preguntas = Pregunta::factory()->create();
 
-        // Aca se crea una categorias, y podemos controlar los datos creados
 
         $this->respuestas = Respuesta::factory([
             'id'=>1,
             'respuesta' => 'Test respuesta',
             'ayuda' => 'Test ayuda',
+            'otro' => '1',
             'pregunta_id' => $this->preguntas->id,
             'updated_at' => now(),
             'created_at' => now(),
@@ -80,6 +80,7 @@ class RespuestaModuleTest extends TestCase
             'id'=>1,
             'respuesta' => 'Test respuesta',
             'ayuda' => 'Test ayuda',
+            'otro' => '1',
             'pregunta_id' => $this->preguntas->id,
             'updated_at' => now(),
             'created_at' => now(),
@@ -87,7 +88,7 @@ class RespuestaModuleTest extends TestCase
 
         $response->assertStatus(302);
 
-        $this->assertCount(1, Respuesta::all());
+        $this->assertCount(2, Respuesta::all());
 
         $respuesta = Respuesta::all()->last();
 
@@ -99,7 +100,9 @@ class RespuestaModuleTest extends TestCase
 
         $response = $this->put(route('respuestas.update', $this->respuestas), [
             'respuesta' => 'Test respuestas 2',
-            'receta_id' => $this->preguntas->id,
+            'ayuda' => 'Test ayuda',
+            'otro' => '1',
+            'pregunta_id' => $this->preguntas->id
         ]);
 
         $response->assertStatus(302);

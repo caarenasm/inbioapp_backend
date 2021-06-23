@@ -69,11 +69,11 @@ class AdminIngredientesController extends Controller
 
         $ingrediente->save();
         
-        return redirect()->route('ingredientes.index',$request->receta_id);
+        return back();
     }
 
-    public function destroy(Request $request,$id){
+    public function destroy($id){
         Ingrediente::destroy($id);
-        return redirect()->route('ingredientes.index',$request->receta_id);
+        return back();
     }
 }

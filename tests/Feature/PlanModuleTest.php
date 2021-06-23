@@ -47,7 +47,7 @@ class PlanModuleTest extends TestCase
     {
         $response = $this->get(route('planes'));
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 
     public function test_create_planes()
@@ -107,6 +107,10 @@ class PlanModuleTest extends TestCase
 
         $response = $this->put(route('planes.update', $this->planes), [
             'titulo' => 'Test plan',
+            'slug'=>'test-planes',
+            'descripcion'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, impedit dolorum perspiciatis error incidunt tempora ducimus dicta natus! Delectus temporibus ipsum perspiciatis excepturi fuga omnis id animi voluptate cumque commodi!',
+            'imagen_url'=>'logo.png',
+            'precio'=>'30.0000',
         ]);
 
         $response->assertStatus(302);
@@ -117,7 +121,7 @@ class PlanModuleTest extends TestCase
         
         $plan = Plan::find(1);
 
-        $this->assertEquals($plan->titulo, 'Test nombre');
+        $this->assertEquals($plan->titulo, 'Test plan');
     }
 
     public function test_delete_planes()

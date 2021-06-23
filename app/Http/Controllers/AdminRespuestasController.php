@@ -71,9 +71,9 @@ class AdminRespuestasController extends Controller
         return redirect()->route('respuestas.index',$request->pregunta_id);
     }
 
-    public function destroy(Request $request,$id){
+    public function destroy($id){
         
         Respuesta::destroy($id);
-        return redirect()->route('respuestas.index',$request->pregunta_id);
+        return back();
     }
 }

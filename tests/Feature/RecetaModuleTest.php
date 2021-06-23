@@ -127,16 +127,31 @@ class RecetaModuleTest extends TestCase
     public function test_update_recetas()
     {
 
-        dd($this->receta);
+        Storage::fake('avatars');
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
 
         $response = $this->put(route('recetas.update', $this->receta), [
 
-            'titulo' => 'Test titlo 2',
+            'titulo' => 'Test titulo 2',
+            'slug' => 'Test titulo',
+            'seo_titulo' => 'Test seo_titulo',
+            'seo_descripcion' => 'Test seo_descripcion',
+            'imagen_url' => $file,
+            'descripcion' => 'Test descripcion',
+            'preparacion' => 'Test preparacion',
+            'fecha_publicacion' => now(),
+            'publicacion' => 1,
+            'caloria' => 2,
+            'grasa' => 2,
+            'proteina' => 2,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         $response->assertStatus(302);
 
-        $this->assertCount(2, Receta::all());
+        $this->assertCount(1, Receta::all());
 
         $recetas = Receta::find(1);
 

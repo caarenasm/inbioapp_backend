@@ -21,7 +21,7 @@ class PlanModuleTest extends TestCase
         $this->usuario = User::factory()->create();
 
 
-        // Aca se crea una categorias, y podemos controlar los datos creados
+        
         $this->planes = Plan::factory([
             'id'=>1,
             'titulo'=>'Prueba',
@@ -94,7 +94,7 @@ class PlanModuleTest extends TestCase
 
         $response->assertStatus(302);
 
-        // Acá deben haber 2 la creada en el setup y la agregada en post
+        
         $this->assertCount(2, Plan::all());
 
         $plan = Plan::all()->last();
@@ -111,10 +111,10 @@ class PlanModuleTest extends TestCase
 
         $response->assertStatus(302);
 
-        // Acá deben haber 2 la creada en el setup y la agregada en post
+       
         $this->assertCount(1, Plan::all());
 
-        // Acá revisamos el primer registro agregado y modificado
+        
         $plan = Plan::find(1);
 
         $this->assertEquals($plan->titulo, 'Test nombre');

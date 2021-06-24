@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\CategoriaAlimento;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminCategoriaAlimentoRequest;
 
 class AdminCategoriaAlimentosController extends Controller
 {
@@ -22,7 +23,7 @@ class AdminCategoriaAlimentosController extends Controller
         return view('livewire.admin.categoria-alimentos.crear-categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos]);
     }
 
-    public function store(Request $request)
+    public function store(AdminCategoriaAlimentoRequest $request)
     {
 
         $categorias_alimentos = new CategoriaAlimento();

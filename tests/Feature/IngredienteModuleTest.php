@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Alimento;
 use App\Models\Ingrediente;
+use App\Models\CategoriaAlimento;
 use App\Models\Receta;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

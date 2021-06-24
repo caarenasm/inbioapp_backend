@@ -13,7 +13,7 @@
                         <input type="text" name="nombre" id="nombre" class="w-full rounded-xl text-gray-500 border-gray-300"
                             value="">
                         @error('nombre')
-                            <small class="text-red-500"></small>
+                            <small class="text-red-500">* {{ $message }}</small>
                         @enderror
                     </div>
 
@@ -25,7 +25,9 @@
                                 <option value="{{$category->id}}">{{ $category->nombre_categoria }}</option>
                             @endforeach
                         </select>
-                        <small class="text-red-500"></small>
+                        @error('categoria_alimento_id')
+                        <small class="text-red-500">* {{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="w-1/2 mb-3 grid grid-cols-2 gap-4">
                         <x-forms.button type="submit" text="Guardar cambios" />

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Alimento;
 use App\Models\CategoriaAlimento;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminAlimentoRequest;
 
 class AdminAlimentosController extends Controller
 {
@@ -26,7 +27,7 @@ class AdminAlimentosController extends Controller
         // return $category_food;
     }
 
-    public function store(Request $request)
+    public function store(AdminAlimentoRequest $request)
     {
 
         $alimentos = new Alimento();
@@ -48,7 +49,7 @@ class AdminAlimentosController extends Controller
         // return $alimentos;
     }
 
-    public function update(Request $request, Alimento $food)
+    public function update(AdminAlimentoRequest $request, Alimento $food)
     {
         $request->validate([
             'nombre' => 'required',

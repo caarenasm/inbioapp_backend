@@ -42,6 +42,7 @@ Route::group([
         Route::get('receta', [RecetaController::class, 'lista']);
         Route::get('pregunta', [PreguntaController::class, 'lista']);
         Route::get('blog', [BlogApi::class, 'lista']);
+        Route::get('blog_categorias', [BlogApi::class, 'lista_categorias']);
 
         Route::group([
             'middleware' => 'auth:api'

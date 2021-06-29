@@ -92,17 +92,17 @@
 
         <div class="mb-3 grid grid-cols-2 space-x-2">
             <div>
-                <img src="{{$post->image_url==''?'/imagenes/blog/placeholder.png':'/storage/'.$post->image_url}}" id="imagenPrincipal">
+                <img src="{{$post->image_url==''?'/imagenes/blog/placeholder.png':'/imagenes/blog/'.old('image_url', $post->image_url)}}" id="picture">
             </div>
             <div>
-                <p class="font-bold text-gray-700">Imagen principal de la entrada</p>
-                <label for="imagen"
+                <p class="font-bold text-sgray-700">Imagen principal de la entrada</p>
+                <label for="image_url"
                        class="block text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Elegir
                     imagen</label>
-                <input type="file" name="imagen" id="imagen" class="hidden" accept="image/*">
+                <input type="file" name="image_url" id="image_url" class="hidden">
                 <p>Explicación de tamaño de imagen</p>
 
-                @error('imagen')
+                @error('image_url')
                 <small class="text-red-500">* {{$message}}</small>
                 @enderror
             </div>

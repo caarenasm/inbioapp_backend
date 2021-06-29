@@ -31,4 +31,15 @@ class BlogApi extends Controller
             ]);
             
     }
+
+    public function lista_categorias(){
+
+        $categorias = CategoriasBlog::select('id', 'name', 'slug', 'created_at', 'updated_at')
+        ->orderBy('id','asc')->get()->toArray();
+
+            return response([
+                'data' => $categorias
+            ]);
+            
+    }
 }

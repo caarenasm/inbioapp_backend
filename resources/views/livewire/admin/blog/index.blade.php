@@ -42,9 +42,10 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
-                                                <img class="h-10 w-10"
+                                                {{-- <img class="h-10 w-10"
                                                      src="{{$post->image_url!=null?'/storage/'.$post->image_url:''}}"
-                                                     alt="">
+                                                     alt=""> --}}
+                                                <img id="picture" src="{{ asset('./imagenes/blog/' . old('image_url', $post->image_url)) }}" alt="receta" style="width: 200px; height: 100;">
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">

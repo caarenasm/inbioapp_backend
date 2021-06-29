@@ -1,48 +1,74 @@
 <x-app-layout>
-    @section('title', 'Editar categoria de alimentos')
+    @section('title', 'Editar pregunta')
 
         <div class="p-2 bg-white">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Editar nueva pregunta</h2>
             <div class="flex flex-col">
-                <form method="post" action="{{ route('preguntas.update',$pregunta) }}" accept-charset="UTF-8"
+                <form method="post" action="{{ route('preguntas.update', $pregunta) }}" accept-charset="UTF-8"
                     enctype="multipart/form-data">
                     @csrf
                     @method('put')
-                    <div class="space-x-2 w-96">
+                    <div class="space-x-2 w-1/2">
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label for="pregunta" class="block font-bold text-gray-700">Pregunta</label>
                                 <input type="text" name="pregunta" id="pregunta"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300" value="{{old('pregunta', $pregunta->pregunta)}}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="descripcion" class="block font-bold text-gray-700">Descripción de la pregunta</label>
-                                @error('description')
+                                    class="w-full rounded-xl text-gray-500 border-gray-300"
+                                    value="{{ old('pregunta', $pregunta->pregunta) }}">
+                                @error('pregunta')
                                     <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
+                            </div>
+                            <div class="w-full mb-3">
+                                <label for="descripcion" class="block font-bold text-gray-700">Descripción</label>
                                 <textarea name="descripcion" id="descripcion"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{old('descripcion',$pregunta->descripcion)}}</textarea>
+                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $pregunta->descripcion) }}</textarea>
+                                @error('descripcion')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="flex-grow mb-3">
+                                <label><input type="radio" name="tipo_respuestas" value="0" {{ old('tipo_respuestas', $pregunta->tipo_respuestas) == '0' ? 'checked' : '' }}>Respuesta unica</label>
+                                <label><input type="radio" name="tipo_respuestas" value="1" {{ old('tipo_respuestas', $pregunta->tipo_respuestas) == '1' ? 'checked' : '' }}>Respuestas multiples</label>
+                                @error('tipo_respuestas')
+                                    <small class="text-red-500">* {{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="grid grid-cols-2 gap-4 mb-3">
-                                <div class="col">
+                                {{-- <div class="col">
                                     <div class="image-wrapper">
-                                    @if($pregunta->icono)
-                                        <img id="picture"
-                                                src="{{ asset('./imagenes/preguntas/'.old('icono',$pregunta->icono)) }}"
-                                                alt="{{old('icono',$pregunta->icono)}}">
-                                    @else
-                                        <img id="picture"
+                                        @if ($pregunta->icono)
+                                            <img id="picture"
+                                                src="{{ asset('./imagenes/preguntas/' . old('icono', $pregunta->icono)) }}"
+                                                alt="{{ old('icono', $pregunta->icono) }}">
+                                        @else
+                                            <img id="picture"
                                                 src="{{ asset('./imagenes/imagenes-preguntaes/placeholder.png') }}"
-                                                alt="{{old('icono',$pregunta->icono)}}">
-                                    @endif
+                                                alt="{{ old('icono', $pregunta->icono) }}">
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group">
                                         {!! Form::label('icono', 'Selecciona la imagen') !!}
-                                        <input type="file" name="icono" id="icono" class="form-control-file" value="{{old('icono',$pregunta->icono)}}">
+                                        <input type="file" name="icono" id="icono" class="form-control-file"
+                                            value="{{ old('icono', $pregunta->icono) }}">
+                                        @error('icono')
+                                            <small class="text-red-500">* {{ $message }}</small>
+                                        @enderror
                                     </div>
+                                </div> --}}
+
+                                <div class="m-3">
+                                    <p class="block font-bold text-gray-700">Elijé el icono de la pregunta</p>
+                                    <select wire:model="selectedState" class="form-control" id="icono" name="icono">
+                                        <option value="" selected>Escoge el icono</option>
+                                        @foreach ($iconos as $icono)
+                                            <option value="{{ $icono->nombre_icono }}" @if(old('icono') === $pregunta->icono || $pregunta->icono === $icono->nombre_icono) selected @endif>{{ $icono->nombre_icono }}</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="text-red-500"></small>
                                 </div>
                             </div>
 
@@ -94,6 +120,73 @@
             }
 
         </script>
+
+        <script src="/js/ckeditor5.js"></script>
+
+        <script>
+            document.addEventListener('livewire:load', function() {
+                // CK Editor
+                ClassicEditor
+                    .create(document.querySelector('#descripcion'), {
+                        toolbar: {
+                            items: [
+                                'heading',
+                                '|',
+                                'bold',
+                                'italic',
+                                'link',
+                                'bulletedList',
+                                'numberedList',
+                                '|',
+                                'imageUpload',
+                                'blockQuote',
+                                'insertTable',
+                                'mediaEmbed',
+                                'undo',
+                                'redo'
+                            ]
+                        },
+                        language: 'es',
+                        image: {
+                            toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                                '|',
+                                'resizeImage',
+                                '|',
+                                'imageTextAlternative'
+                            ],
+                            styles: [
+                                'alignLeft', 'alignCenter', 'alignRight'
+                            ],
+                        },
+                        table: {
+                            contentToolbar: [
+                                'tableColumn',
+                                'tableRow',
+                                'mergeTableCells'
+                            ]
+                        },
+                        simpleUpload: {
+                            uploadUrl: '{{ asset('./imagenes/preguntas/placeholder.png') }}',
+                            headers: {
+
+                            }
+                        },
+                    })
+                    .then(editor => {
+                        window.editor = editor;
+                    })
+                    .catch(error => {
+                        console.error('Oops, something went wrong!');
+                        console.error(
+                            'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
+                        );
+                        console.warn('Build id: smh51lc3zo1f-qavakagvqr26');
+                        console.error(error);
+                    });
+                // CK Editor fin
+            });
+
+        </script>
     @endpush
-    
+
 </x-app-layout>

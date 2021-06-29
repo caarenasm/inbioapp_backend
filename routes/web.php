@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminAlimentosController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminCategoriaAlimentosController;
+use App\Http\Controllers\AdminEnfermedadAlimentoController;
+use App\Http\Controllers\AdminEnfermedadController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
 use App\Http\Controllers\AdminIngredientesController;
@@ -14,6 +16,8 @@ use App\Http\Controllers\AdminPlanController;
 use App\Http\Controllers\AdminRecetaController;
 use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\AdminRespuestasController;
+use App\Http\Controllers\AdminSemaforoEstadoController;
+use App\Http\Controllers\AdminTipoEnfermedadController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +33,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class);
+
+/*Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});*/
+
+/*Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('cache:clear');
+
+    return 'All routes cache has just been removed';
+});*/
 
 // Administración
 Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group(function(){
@@ -75,10 +92,6 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/envio-pais/{pais}', [AdminEnvioPaisController::class, 'update'])->name('envio-pais.update');
     Route::delete('/envio-pais/{pais}/eliminar', [AdminEnvioPaisController::class, 'destroy'])->name('envio-pais.delete');
 
-    // Route::get('/enfermedades',AdminEnfermedadesController::class)->name('enfermedad');
-    // Route::get('/enfermedades/crear',AdminCrearEnfermedadController::class)->name('crear-enfermedad');
-    // Route::get('/enfermedades/editar',AdminEditarEnfermedadController::class)->name('editar-enfermedad');
-
     Route::get('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'index'])->name('categoria-alimentos');
     Route::get('/categoria-alimentos/crear', [AdminCategoriaAlimentosController::class, 'create'])->name('categoria-alimentos.create');
     Route::post('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'store'])->name('categoria-alimentos.store');
@@ -104,7 +117,6 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/asignar-mis-planes', [AdminPlanUserController::class,'index'])->name('asignar-mis-planes');
 
     Route::get('/preguntas', [AdminPreguntaController::class,'index'])->name('preguntas');
-    Route::get('/preguntas/crear', [AdminPreguntaController::class, 'create'])->name('preguntas.create');
     Route::post('/preguntas', [AdminPreguntaController::class, 'store'])->name('preguntas.store');
     Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->name('preguntas.edit');
     Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->name('preguntas.update');
@@ -129,4 +141,27 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/respuestas/{respuesta}', [AdminRespuestasController::class, 'update'])->name('respuestas.update');
     Route::delete('/respuestas/{respuesta}/eliminar', [AdminRespuestasController::class, 'destroy'])->name('respuestas.delete');
 
+    Route::get('/tipos-enfermedades/index', [AdminTipoEnfermedadController::class,'index'])->name('tipos-enfermedades.index');
+    Route::post('/tipos-enfermedades', [AdminTipoEnfermedadController::class, 'store'])->name('tipos-enfermedades.store');
+    Route::get('/tipos-enfermedades/{tipo_enfermedad}/editar', [AdminTipoEnfermedadController::class, 'edit'])->name('tipos-enfermedades.edit');
+    Route::put('/tipos-enfermedades/{tipo_enfermedad}', [AdminTipoEnfermedadController::class, 'update'])->name('tipos-enfermedades.update');
+    Route::delete('/tipos-enfermedades/{tipo_enfermedad}/eliminar', [AdminTipoEnfermedadController::class, 'destroy'])->name('tipos-enfermedades.delete');
+
+    Route::get('/enfermedades/index', [AdminEnfermedadController::class,'index'])->name('enfermedades.index');
+    Route::post('/enfermedades', [AdminEnfermedadController::class, 'store'])->name('enfermedades.store');
+    Route::get('/enfermedades/{enfermedad}/editar', [AdminEnfermedadController::class, 'edit'])->name('enfermedades.edit');
+    Route::put('/enfermedades/{enfermedad}', [AdminEnfermedadController::class, 'update'])->name('enfermedades.update');
+    Route::delete('/enfermedades/{enfermedad}/eliminar', [AdminEnfermedadController::class, 'destroy'])->name('enfermedades.delete');
+
+    Route::get('/semaforos-estados/index', [AdminSemaforoEstadoController::class,'index'])->name('semaforos-estados.index');
+    Route::post('/semaforos-estados', [AdminSemaforoEstadoController::class, 'store'])->name('semaforos-estados.store');
+    Route::get('/semaforos-estados/{semaforo_estado}/editar', [AdminSemaforoEstadoController::class, 'edit'])->name('semaforos-estados.edit');
+    Route::put('/semaforos-estados/{semaforo_estado}', [AdminSemaforoEstadoController::class, 'update'])->name('semaforos-estados.update');
+    Route::delete('/semaforos-estados/{semaforo_estado}/eliminar', [AdminSemaforoEstadoController::class, 'destroy'])->name('semaforos-estados.delete');
+
+    Route::get('/enfermedades-alimentos/{enfermedad}/index', [AdminEnfermedadAlimentoController::class,'index'])->name('enfermedades-alimentos.index');
+    Route::post('/enfermedades-alimentos/crear', [AdminEnfermedadAlimentoController::class, 'store'])->name('enfermedades-alimentos.store');
+    Route::get('/enfermedades-alimentos/{enfermedad_alimento}/editar', [AdminEnfermedadAlimentoController::class, 'edit'])->name('enfermedades-alimentos.edit');
+    Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->name('enfermedades-alimentos.update');
+    Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->name('enfermedades-alimentos.delete');
 });

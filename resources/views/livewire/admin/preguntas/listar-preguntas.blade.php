@@ -2,15 +2,14 @@
     <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Icono
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Pregunta
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Descripcion
             </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Icono
-            </th>
-
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Acciones
         </tr>
@@ -19,6 +18,15 @@
     <tbody class="bg-white divide-y divide-gray-200">
     @foreach($preguntas as $pregunta)
         <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="ml-1">
+                        <div class="text-sm font-medium text-gray-900">
+                            {{$pregunta->icono}}
+                        </div>
+                    </div>
+                </div>
+            </td>
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                     <div class="ml-1">
@@ -32,16 +40,7 @@
                 <div class="flex items-center">
                     <div class="ml-1">
                         <div class="text-sm font-medium text-gray-900">
-                            {{$pregunta->descripcion}}
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                    <div class="ml-1">
-                        <div class="text-sm font-medium text-gray-900">
-                            {{$pregunta->icono}}
+                            {{strip_tags($pregunta->descripcion)}}
                         </div>
                     </div>
                 </div>

@@ -63,14 +63,16 @@ class AdminBlogController extends Controller
         $blog->end_date = $request->end_date;
         $blog->published = $request->published;
         $blog->user_id = $request->author;
-        $blog->save();
+       
 
-        if ($request->file('imagen')) {
-            $extension = $request->file('imagen')->extension();
-            $url = Storage::putFileAs('blog', $request->file('imagen'), $request->slug . '.' . $extension);
-            $blog->image_url = $url;
-            $blog->save();
+        if ($request->hasFile('image_url')){
+            $file           = $request->file("image_url");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("imagenes/blog/"),$nombrearchivo);
+            $blog->image_url      = $nombrearchivo;
         }
+
+        $blog->save();
 
         if ($request->categoria) {
             $blog->categorias()->attach($request->categoria);
@@ -121,10 +123,11 @@ class AdminBlogController extends Controller
         $blog->published = $request->published;
         $blog->user_id = $request->author;
 
-        if ($request->file('imagen')) {
-            $extension = $request->file('imagen')->extension();
-            $url = Storage::putFileAs('blog', $request->file('imagen'), $request->slug . '.' . $extension);
-            $blog->image_url = $url;
+        if ($request->hasFile('image_url')){
+            $file           = $request->file("image_url");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("imagenes/blog/"),$nombrearchivo);
+            $blog->image_url      = $nombrearchivo;
         }
 
         $blog->save();

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\api\PreguntaController;
 use App\Http\Controllers\Api\RecetaController;
 use App\Http\Controllers\Api\BlogApi;
+use App\Http\Controllers\Api\PlanController;
 use Facade\FlareClient\Api;
 
 /*
@@ -42,6 +43,7 @@ Route::group([
         Route::get('receta', [RecetaController::class, 'lista']);
         Route::get('pregunta', [PreguntaController::class, 'lista']);
         Route::get('blog', [BlogApi::class, 'lista']);
+        Route::get('plan', [PlanController::class, 'lista']);
 
         Route::group([
             'middleware' => 'auth:api'

@@ -16,7 +16,7 @@ use App\Models\PlanUser;
 class PlanController extends Controller
 {
 
-    public function user_plan(){
+    public function user_plan(Request $request){
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
@@ -72,8 +72,8 @@ class PlanController extends Controller
         $plans = Plan::select('id', 'titulo', 'slug', 'descripcion', 'imagen_url', 'precio')
         ->orderBy('id','asc')->get()->toArray();
 
-        $response = [];
-        
+        $plans = [];
+
             return response([
                 'data' => $plans
             ]);

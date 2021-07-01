@@ -27,6 +27,7 @@ class RecetaController extends Controller
             $recetas[$key]['ingredientes'] = $ingredientes;
             $response = $recetas;
 
+            $response = [];
             }
 
             return response([

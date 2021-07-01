@@ -22,6 +22,7 @@ class PreguntaController extends Controller
             $preguntas[$key]['respuestas'] = $respuestas;
             $response = $preguntas;
 
+            $response = [];
             }
 
             return response([

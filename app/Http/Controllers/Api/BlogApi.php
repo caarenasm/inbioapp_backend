@@ -24,6 +24,8 @@ class BlogApi extends Controller
             $blogs[$key]['categorias_blogs'] = $categorias_blogs;
             $response = $blogs;
 
+            $response = [];
+
             }
 
             return response([

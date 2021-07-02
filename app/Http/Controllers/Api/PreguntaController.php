@@ -11,6 +11,8 @@ class PreguntaController extends Controller
 {
     public function lista(){
 
+        $response = [];
+
         $preguntas = Pregunta::select('id', 'pregunta', 'icono', 'descripcion', 'tipo_respuestas')
         ->orderBy('id','asc')->get()->toArray();
 

@@ -74,7 +74,7 @@ class AdminEnfermedadAlimentoController extends Controller
         return view('livewire.admin.enfermedad-alimentos.editar-enfermedad-alimento', ['enfermedades' => $enfermedades, 'enfermedad_alimento' => $enfermedad_alimento,'estados' => $estados,'alimentos_enfermedad'=>$alimentos_enfermedad]);
     }
 
-    public function update(AdminEnfermedadAlimentoRequest $request, EnfermedadAlimento $enfermedad_alimento)
+    public function update(Request $request, EnfermedadAlimento $enfermedad_alimento)
     {
         $enfermedad_alimento->alimento_id = $request->alimento_id;
         $enfermedad_alimento->enfermedad_id = $request->enfermedad_id;

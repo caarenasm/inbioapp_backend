@@ -13,6 +13,8 @@ class RecetaController extends Controller
 {
     public function lista(){
 
+        $reponse = [];
+        
         $recetas = Receta::select('id', 'titulo', 'slug', 'seo_titulo', 
         'seo_descripcion', 'imagen_url', 'descripcion', 'preparacion', 
         'fecha_publicacion', 'publicacion', 'caloria', 'grasa', 'proteina')

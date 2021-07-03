@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 //*******agregar esta linea******//
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Validator;
 use DB;
 use App\Models\User;
@@ -92,11 +93,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        
-        /*$loginData = $request->validate([
-            'email' => 'email|required',
-            'password' => 'required'
-        ]);*/
 
         $validator = Validator::make($request->all(), [
             'email' => 'email|required',
@@ -111,12 +107,48 @@ class AuthController extends Controller
         }
 
         if (!auth()->attempt($request->all())) {
-            return response(['message' => 'Credentiales invalidas']);
+            //return response(['message' => 'Credentiales invalidas']);
+            return response()->json([
+                'message' => 'Credentiales invalidas'
+            ], 401);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        /*$accessToken = auth()->user()->createToken('authToken')->accessToken;
+        return response(['user' => auth()->user(), 'access_token' => $accessToken]);*/
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        $user = $request->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        if ($request->remember_me){
+            $token->expires_at = Carbon::now()->addWeeks(1);
+        }
+        $token->save();
 
+        return response()->json([
+            'access_token' => $tokenResult->accessToken,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString()
+        ]);
+
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Cerrar sesión correctamente'
+        ]);
+    }
+
+        /**
+     * Get the authenticated User
+     *
+     * @return [json] user object
+     */
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
     }
 }

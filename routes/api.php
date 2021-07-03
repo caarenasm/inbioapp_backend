@@ -40,18 +40,20 @@ Route::group([
 
         Route::post('login', [AuthController::class, 'login']);
         Route::post('registro', [AuthController::class, 'registro']);
-        Route::post('plan/planUser', [PlanController::class, 'user_plan']);
-        Route::post('enfermedadAlimento/categoria', [EnfermedadAlimentoController::class, 'listar_alimentos_categoria']);
-        Route::post('enfermedadAlimento/enfermedad', [EnfermedadAlimentoController::class, 'listar_alimentos_enfermedad']);
-        Route::get('receta', [RecetaController::class, 'lista']);
-        Route::get('pregunta', [PreguntaController::class, 'lista']);
-        Route::get('blog', [BlogApi::class, 'lista']);
-        Route::get('plan', [PlanController::class, 'lista']);
 
         Route::group([
-            'middleware' => 'auth:api'
+            'middleware' => ['auth:api']
         ], function() {
-            Route::get('logout', 'AuthController@logout');
-            Route::get('user', 'AuthController@user');
+
+            Route::get('user', [AuthController::class, 'user']);
+            Route::post('plan/planUser', [PlanController::class, 'user_plan']);
+            Route::post('enfermedadAlimento/categoria', [EnfermedadAlimentoController::class, 'listar_alimentos_categoria']);
+            Route::post('enfermedadAlimento/enfermedad', [EnfermedadAlimentoController::class, 'listar_alimentos_enfermedad']);
+            Route::get('receta', [RecetaController::class, 'lista']);
+            Route::get('pregunta', [PreguntaController::class, 'lista']);
+            Route::get('blog', [BlogApi::class, 'lista']);
+            Route::get('plan', [PlanController::class, 'lista']);
+            Route::get('logout', [AuthController::class, 'logout']);
+            
         });
 });

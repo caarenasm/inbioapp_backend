@@ -26,14 +26,15 @@ class AdminEnfermedadAlimentoRequest extends FormRequest
         $alimento_enfermedad = $this->route()->parameter('enfermedadAlimento');
 
         $rules = [
-            'alimento_id' => 'required|unique:enfermedad_alimentos',
+            // 'alimento_id' => 'required|unique:enfermedad_alimentos',
+            'alimento_id' => 'required',
             'enfermedad_id' => 'required',
             'recomendacion' => 'required',
         ];
 
-        if ($alimento_enfermedad) {
-            $rules['alimento_id'] = 'required|unique:enfermedad_alimentos,alimento_id,' . $alimento_enfermedad->id;
-        }
+        // if ($alimento_enfermedad) {
+        //     $rules['alimento_id'] = 'required|unique:enfermedad_alimentos,alimento_id,' . $alimento_enfermedad->id;
+        // }
 
         return $rules;
     }

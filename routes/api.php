@@ -40,10 +40,12 @@ Route::group([
 
         Route::post('login', [AuthController::class, 'login']);
         Route::post('registro', [AuthController::class, 'registro']);
+        Route::post('plan/planUser', [PlanController::class, 'user_plan']);
+        Route::post('enfermedadAlimento/categoria', [EnfermedadAlimentoController::class, 'listar_alimentos_categoria']);
+        Route::post('enfermedadAlimento/enfermedad', [EnfermedadAlimentoController::class, 'listar_alimentos_enfermedad']);
         Route::get('receta', [RecetaController::class, 'lista']);
         Route::get('pregunta', [PreguntaController::class, 'lista']);
         Route::get('blog', [BlogApi::class, 'lista']);
-        Route::get('blog/categoria', [BlogApi::class, 'lista_categorias']);
         Route::get('plan', [PlanController::class, 'lista']);
 
         Route::group([

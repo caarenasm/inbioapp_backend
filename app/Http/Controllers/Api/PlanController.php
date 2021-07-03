@@ -69,10 +69,10 @@ class PlanController extends Controller
 
     public function lista(){
 
+        $plans = [];
+        
         $plans = Plan::select('id', 'titulo', 'slug', 'descripcion', 'imagen_url', 'precio')
         ->orderBy('id','asc')->get()->toArray();
-
-        $plans = [];
 
             return response([
                 'data' => $plans

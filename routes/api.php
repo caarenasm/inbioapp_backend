@@ -45,7 +45,7 @@ Route::group([
             'middleware' => ['auth:api']
         ], function() {
 
-            Route::get('user', [AuthController::class, 'user']);
+            Route::get('datos', [AuthController::class, 'user']);
             Route::post('plan/planUser', [PlanController::class, 'user_plan']);
             Route::post('enfermedadAlimento/categoria', [EnfermedadAlimentoController::class, 'listar_alimentos_categoria']);
             Route::post('enfermedadAlimento/enfermedad', [EnfermedadAlimentoController::class, 'listar_alimentos_enfermedad']);

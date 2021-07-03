@@ -71,7 +71,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Usuario creado con exito!',
-                'data' => $request->all()
+                //'data' => $request->all()
             ], 200);
 
         }catch (\Illuminate\Database\QueryException $e){
@@ -125,6 +125,7 @@ class AuthController extends Controller
         $token->save();
 
         return response()->json([
+            'message' => 'Usuario autenticado correctamente',
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
@@ -149,6 +150,15 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+
+        $User = User::select('users.id', 'name', 'email', 'profile_photo_path',
+        'sexo_id', 'fecha_nacimiento', 'nombre', 'apellido', 'estatura', 'peso_actual', 
+        'peso_deseado', 'imc', 'pgc', 'tdee', 'objetivo')
+        ->join('users_datos as t01','users.id','=','t01.users_id')
+        ->where('users.id','=', $request->user()->id )
+        ->first();
+
+        return response()->json($User);
+        //return response()->json($request->user());
     }
 }

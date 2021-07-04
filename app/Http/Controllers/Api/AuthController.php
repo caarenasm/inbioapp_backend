@@ -154,7 +154,7 @@ class AuthController extends Controller
         $User = User::select('users.id', 'name', 'email', 'profile_photo_path',
         'sexo_id', 'fecha_nacimiento', 'nombre', 'apellido', 'estatura', 'peso_actual', 
         'peso_deseado', 'imc', 'pgc', 'tdee', 'objetivo')
-        ->join('users_datos as t01','users.id','=','t01.users_id')
+        ->leftJoin('users_datos as t01','users.id','=','t01.users_id')
         ->where('users.id','=', $request->user()->id )
         ->first();
 

@@ -26,7 +26,7 @@ class AdminPreguntaRequest extends FormRequest
         $rules = [
             'pregunta' => 'required',
             'descripcion' => 'required',
-            'tipo_respuestas' => 'required|in:0,1'
+            'tipo_respuestas' => 'required|in:1,2'
         ];
 
         return $rules;

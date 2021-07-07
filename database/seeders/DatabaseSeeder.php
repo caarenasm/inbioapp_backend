@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(TipoEnfermedadSeeder::class);
         $this->call(CategorySedder::class);
+        $this->call(EnfermedadSeeder::class);
+        $this->call(EstadosSeeder::class);
+        $this->call(IconSeeder::class);
     }
 }

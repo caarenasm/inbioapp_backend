@@ -41,6 +41,8 @@ Route::group([
 
         Route::post('login', [AuthController::class, 'login']);
         Route::post('registro', [AuthController::class, 'registro']);
+        Route::get('quiz', [PreguntaController::class, 'lista']);
+        Route::post('quiz/guardar', [PreguntaController::class, 'guardar']);
 
         Route::group([
             'middleware' => ['auth:api']
@@ -54,7 +56,6 @@ Route::group([
             Route::post('semaforo/enfermedad/guardar', [EnfermedadAlimentoController::class, 'guardar']);
             Route::post('semaforo/alimento', [EnfermedadAlimentoController::class, 'semaforo']);
             Route::get('receta', [RecetaController::class, 'lista']);
-            Route::get('pregunta', [PreguntaController::class, 'lista']);
             Route::get('blog', [BlogApi::class, 'lista']);
             Route::get('plan', [PlanController::class, 'lista']);
             Route::get('logout', [AuthController::class, 'logout']);

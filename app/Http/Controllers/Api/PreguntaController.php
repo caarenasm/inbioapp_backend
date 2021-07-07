@@ -14,7 +14,9 @@ class PreguntaController extends Controller
         $response = [];
 
         $preguntas = Pregunta::select('id', 'pregunta', 'icono', 'descripcion', 'tipo_respuestas')
-        ->orderBy('id','asc')->get()->toArray();
+        ->orderBy('id','asc')->get();
+
+        $total = $preguntas->count();
 
         foreach ($preguntas as $key => $value) {
 
@@ -24,12 +26,12 @@ class PreguntaController extends Controller
             $preguntas[$key]['respuestas'] = $respuestas;
             $response = $preguntas;
 
-            $response = [];
-            }
+        }
 
-            return response([
-                'data' => $response
-            ]);
+        return response()->json([
+            'data' => $response,
+            'total' => $total
+        ]);
             
     }
 }

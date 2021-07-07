@@ -10,6 +10,7 @@ use App\Http\Controllers\api\PreguntaController;
 use App\Http\Controllers\Api\RecetaController;
 use App\Http\Controllers\Api\BlogApi;
 use App\Http\Controllers\Api\PlanController;
+use App\Http\Controllers\Api\EnfermedadAlimentoController;
 use Facade\FlareClient\Api;
 
 /*
@@ -47,8 +48,11 @@ Route::group([
 
             Route::get('datos', [AuthController::class, 'user']);
             Route::post('plan/planUser', [PlanController::class, 'user_plan']);
-            Route::post('enfermedadAlimento/categoria', [EnfermedadAlimentoController::class, 'listar_alimentos_categoria']);
-            Route::post('enfermedadAlimento/enfermedad', [EnfermedadAlimentoController::class, 'listar_alimentos_enfermedad']);
+            Route::get('semaforo/categoria', [EnfermedadAlimentoController::class, 'categoria']);
+            Route::get('semaforo/enfermedades/usuario', [EnfermedadAlimentoController::class, 'enfermedad_usuario']);
+            Route::post('semaforo/categoria/alimento', [EnfermedadAlimentoController::class, 'categoria_alimentos']);
+            Route::post('semaforo/enfermedad/guardar', [EnfermedadAlimentoController::class, 'guardar']);
+            Route::post('semaforo/alimento', [EnfermedadAlimentoController::class, 'semaforo']);
             Route::get('receta', [RecetaController::class, 'lista']);
             Route::get('pregunta', [PreguntaController::class, 'lista']);
             Route::get('blog', [BlogApi::class, 'lista']);

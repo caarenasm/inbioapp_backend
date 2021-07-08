@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminEnfermedadController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
 use App\Http\Controllers\AdminIngredientesController;
+use App\Http\Controllers\AdminObjetivoController;
 use App\Http\Controllers\AdminProductCategoryController;
 use App\Http\Controllers\AdminProductosController;
 use App\Http\Controllers\AdminUsuarioController;
@@ -164,4 +165,10 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/enfermedades-alimentos/{enfermedad_alimento}/editar', [AdminEnfermedadAlimentoController::class, 'edit'])->name('enfermedades-alimentos.edit');
     Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->name('enfermedades-alimentos.update');
     Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->name('enfermedades-alimentos.delete');
+
+    Route::get('/objetivos/index', [AdminObjetivoController::class,'index'])->name('objetivos');
+    Route::post('/objetivos', [AdminObjetivoController::class, 'store'])->name('objetivos.store');
+    Route::get('/objetivos/{objetivo}/editar', [AdminObjetivoController::class, 'edit'])->name('objetivos.edit');
+    Route::put('/objetivos/{objetivo}', [AdminObjetivoController::class, 'update'])->name('objetivos.update');
+    Route::delete('/objetivos/{objetivo}/eliminar', [AdminObjetivoController::class, 'destroy'])->name('objetivos.delete');
 });

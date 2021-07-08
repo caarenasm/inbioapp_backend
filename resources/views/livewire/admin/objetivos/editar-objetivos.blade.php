@@ -1,3 +1,4 @@
+<x-app-layout>
 @section('title', 'Editar objetivo')
 
     <div class="p-2 bg-white">
@@ -20,7 +21,7 @@
                         <div class="m-3">
                             <label for="descripcion" class="block font-bold text-gray-700">Descripción</label>
                             <textarea name="descripcion" id="descripcion"
-                                class="w-full rounded-xl text-gray-500 border-gray-300">{{old('nombre_objetivo',$objetivo->descripion)}}</textarea>
+                                class="w-full rounded-xl text-gray-500 border-gray-300">{{old('descripcion',$objetivo->descripcion)}}</textarea>
                             @error('descripcion')
                                 <small class="text-red-500">* {{ $message }}</small>
                             @enderror
@@ -166,3 +167,4 @@
         });
     </script>
 @endpush
+</x-app-layout>

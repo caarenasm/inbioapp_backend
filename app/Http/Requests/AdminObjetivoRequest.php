@@ -13,7 +13,7 @@ class AdminObjetivoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,7 @@ class AdminObjetivoRequest extends FormRequest
     {
         $rules = [
             'nombre_objetivo' => 'required',
-            'observacion' => 'required',
-            'imagen_url' => 'required',
+            'descripcion' => 'required',
         ];
 
         return $rules;

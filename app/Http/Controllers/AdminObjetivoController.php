@@ -31,7 +31,7 @@ class AdminObjetivoController extends Controller
 
         $objetivos->save();
         // return $objetivos;
-        return redirect()->route('objetivos/index');
+        return redirect()->route('objetivos');
     }
 
     public function edit(Objetivo $objetivo)
@@ -55,11 +55,11 @@ class AdminObjetivoController extends Controller
 
         $objetivo->save();
         
-        return redirect()->route('objetivos/index');
+        return redirect()->route('objetivos');
     }
 
     public function destroy($id){
         Objetivo::destroy($id);
-        return redirect()->route('objetivos/index');
+        return redirect()->route('objetivos');
     }
 }

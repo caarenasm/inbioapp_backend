@@ -85,7 +85,7 @@
                     </g>
                 </svg>
             </div>
-            Planes
+            Planes y Objetivos
         </a>
         <div x-show="openAlimentos">
             <div class="p-1 mt-1">
@@ -96,6 +96,11 @@
             <div class="p-1 mt-1">
                 <a href="{{ route('mis-planes') }}" class="text-white">
                     Mis planes
+                </a>
+            </div>
+            <div class="p-1 mt-1">
+                <a href="{{ route('objetivos') }}" class="text-white">
+                    Objetivos nutricionales
                 </a>
             </div>
         </div>

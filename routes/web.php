@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminEnfermedadAlimentoController;
 use App\Http\Controllers\AdminEnfermedadController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
+use App\Http\Controllers\AdminEventoController;
 use App\Http\Controllers\AdminIngredientesController;
 use App\Http\Controllers\AdminProductCategoryController;
 use App\Http\Controllers\AdminProductosController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\AdminRespuestasController;
 use App\Http\Controllers\AdminSemaforoEstadoController;
 use App\Http\Controllers\AdminTipoEnfermedadController;
+use App\Http\Controllers\AdminTipoEventoController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -164,4 +166,16 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::get('/enfermedades-alimentos/{enfermedad_alimento}/editar', [AdminEnfermedadAlimentoController::class, 'edit'])->name('enfermedades-alimentos.edit');
     Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->name('enfermedades-alimentos.update');
     Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->name('enfermedades-alimentos.delete');
-});
+
+    Route::get('/tipo-eventos/index', [AdminTipoEventoController::class,'index'])->name('tipo-eventos.index');
+    Route::post('/tipo-eventos/crear', [AdminTipoEventoController::class, 'store'])->name('tipo-eventos.store');
+    Route::get('/tipo-eventos/{tipo_evento}/editar', [AdminTipoEventoController::class, 'edit'])->name('tipo-eventos.edit');
+    Route::put('/tipo-eventos/{tipo_evento}', [AdminTipoEventoController::class, 'update'])->name('tipo-eventos.update');
+    Route::delete('/tipo-eventos/{tipo_evento}/eliminar', [AdminTipoEventoController::class, 'destroy'])->name('tipo-eventos.delete');
+
+    Route::get('/eventos/index', [AdminEventoController::class,'index'])->name('eventos.index');
+    Route::post('/eventos/crear', [AdminEventoController::class, 'store'])->name('eventos.store');
+    Route::get('/eventos/{evento}/editar', [AdminEventoController::class, 'edit'])->name('eventos.edit');
+    Route::put('/eventos/{evento}', [AdminEventoController::class, 'update'])->name('eventos.update');
+    Route::delete('/eventos/{evento}/eliminar', [AdminEventoController::class, 'destroy'])->name('eventos.delete');
+}); 

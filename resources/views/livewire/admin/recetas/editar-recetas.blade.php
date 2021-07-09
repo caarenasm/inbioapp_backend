@@ -261,67 +261,6 @@
                 // CK Editor fin
             });
 
-            document.addEventListener('livewire:load', function() {
-                ClassicEditor
-                    .create(document.querySelector('#preparacion'), {
-                        toolbar: {
-                            items: [
-                                'heading',
-                                '|',
-                                'bold',
-                                'italic',
-                                'link',
-                                'bulletedList',
-                                'numberedList',
-                                '|',
-                                'imageUpload',
-                                'blockQuote',
-                                'insertTable',
-                                'mediaEmbed',
-                                'undo',
-                                'redo'
-                            ]
-                        },
-                        language: 'es',
-                        image: {
-                            toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
-                                '|',
-                                'resizeImage',
-                                '|',
-                                'imageTextAlternative'
-                            ],
-                            styles: [
-                                'alignLeft', 'alignCenter', 'alignRight'
-                            ],
-                        },
-                        table: {
-                            contentToolbar: [
-                                'tableColumn',
-                                'tableRow',
-                                'mergeTableCells'
-                            ]
-                        },
-                        simpleUpload: {
-                            uploadUrl: '{{ asset('./imagenes/recetas/placeholder.png') }}',
-                            headers: {
-
-                            }
-                        },
-                    })
-                    .then(editor => {
-                        window.editor = editor;
-                    })
-                    .catch(error => {
-                        console.error('Oops, something went wrong!');
-                        console.error(
-                            'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
-                        );
-                        console.warn('Build id: smh51lc3zo1f-qavakagvqr26');
-                        console.error(error);
-                    });
-                // CK Editor fin
-            });
-
             function slugify(str) {
                 str = str.replace(/^\s+|\s+$/g, ''); // trim
                 str = str.toLowerCase();

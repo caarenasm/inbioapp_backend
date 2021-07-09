@@ -129,6 +129,34 @@
         </div>
     </div>
 
+    <div class="flex-col p-1" x-data="{ openAlimentos : false }">
+        <a class="border-b border-gray-300 p-1 block text-white" x-on:click="openAlimentos = openAlimentos !== true">
+            <div class="inline-block w-5 relative top-1">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="utensils" class="svg-inline--fa fa-utensils fa-w-13" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="m331 352.236c9.464 3.843 19.523 6.516 30 7.828v151.936h30v-151.936c59.115-7.404 105-57.975 105-119.064 0-66.168-53.832-120-120-120-15.906 0-31.096 3.118-45 8.764v-129.764h-216.262l-98.738 99.835v321.165h315zm135-111.236c0 49.626-40.374 90-90 90s-90-40.374-90-90 40.374-90 90-90 90 40.374 90 90zm-360-189.502v39.502h-39.068zm-60 339.502v-270h90v-91h165v117.399c-27.415 22.011-45 55.789-45 93.601s17.585 71.59 45 93.601v56.399z" />
+                    <path d="m361 292.213 81.213-81.213-21.213-21.213-60 60-30-30-21.213 21.213z" />
+                    <path d="m76 151h150v30h-150z" />
+                    <path d="m76 211h150v30h-150z" />
+                    <path d="m76 271h150v30h-150z" />
+                    <path d="m76 331h150v30h-150z" />
+                </svg>
+            </div>
+            Eventos
+        </a>
+        <div x-show="openAlimentos">
+            <div class="p-1 mt-1">
+                <a href="{{ route('tipo-eventos.index') }}" class="text-white">
+                   Tipo de eventos
+                </a>
+            </div>
+            <div class="p-1 mt-1">
+                <a href="{{ route('eventos.index') }}" class="text-white">
+                   Eventos
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="flex-col p-1" x-data="{ openBlog : false }">
         <a class="border-b border-gray-300 p-1 block text-white" x-on:click="openBlog = openBlog !== true">
             <div class="inline-block w-5 relative top-1">

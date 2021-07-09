@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminEnfermedadAlimentoController;
 use App\Http\Controllers\AdminEnfermedadController;
 use App\Http\Controllers\AdminEnvioPaisController;
 use App\Http\Controllers\AdminEscritorioController;
+use App\Http\Controllers\AdminEventoController;
 use App\Http\Controllers\AdminIngredientesController;
 use App\Http\Controllers\AdminObjetivoController;
 use App\Http\Controllers\AdminProductCategoryController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\AdminRespuestasController;
 use App\Http\Controllers\AdminSemaforoEstadoController;
 use App\Http\Controllers\AdminTipoEnfermedadController;
+use App\Http\Controllers\AdminTipoEventoController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 

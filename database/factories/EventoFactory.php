@@ -29,7 +29,7 @@ class EventoFactory extends Factory
             'descripcion' => $this->faker->paragraph(),
             'fecha_evento' => now(),
             'hora' => time(),
-            'tipo_evento_id' =>1,
+            'tipo_evento_id' =>TipoEvento::all()->random()->id,
             'updated_at' => now(),
             'created_at' => now(),
         ];

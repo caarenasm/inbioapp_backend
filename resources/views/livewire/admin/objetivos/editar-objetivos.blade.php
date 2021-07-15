@@ -107,7 +107,7 @@
         document.addEventListener('livewire:load', function() {
             // CK Editor
             ClassicEditor
-                .create(document.querySelector('#descripcion'), {
+                .create(document.querySelector('#descripcions'), {
                     toolbar: {
                         items: [
                             'heading',

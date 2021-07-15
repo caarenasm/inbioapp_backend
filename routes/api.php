@@ -44,6 +44,7 @@ Route::group([
         Route::post('registro', [AuthController::class, 'registro']);
         Route::get('quiz', [PreguntaController::class, 'lista']);
         Route::post('quiz/guardar', [PreguntaController::class, 'guardar']);
+        Route::post('email', [AuthController::class, 'email']);
 
         Route::group([
             'middleware' => ['auth:api']

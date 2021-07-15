@@ -185,6 +185,34 @@
         </div>
     </div>
 
+    <div class="flex-col p-1" x-data="{ openBlog : false }">
+        <a class="border-b border-gray-300 p-1 block text-white" x-on:click="openBlog = openBlog !== true">
+            <div class="inline-block w-5 relative top-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                </svg>
+            </div>
+            Lecturas (Diario nutricional)
+        </a>
+        <div x-show="openBlog">
+            <div class="p-1 mt-1">
+                <a href="{{ route('categorias-diarios.index') }}" class="text-white">
+                    Categoria Diario
+                </a>
+            </div>
+            <div class="p-1 mt-1">
+                <a href="{{ route('tipos-lecturas.index') }}" class="text-white">
+                    Tipos de lecturas
+                </a>
+            </div>
+            <div class="p-1">
+                <a href="{{ route('subtipos-lecturas.index') }}" class="text-white">
+                    Subtipo de Lecturas
+                </a>
+            </div>
+        </div>
+    </div>
+
 
     <div class="flex-col p-1" x-data="{ openProductos : false }">
         <a class="border-b border-gray-300 p-1 block text-white" x-on:click="openProductos = openProductos !== true">

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminAlimentosController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminCategoriaAlimentosController;
+use App\Http\Controllers\AdminCategoriaDiarioController;
 use App\Http\Controllers\AdminEnfermedadAlimentoController;
 use App\Http\Controllers\AdminEnfermedadController;
 use App\Http\Controllers\AdminEnvioPaisController;
@@ -19,8 +20,9 @@ use App\Http\Controllers\AdminRecetaController;
 use App\Http\Controllers\AdminPreguntaController;
 use App\Http\Controllers\AdminRespuestasController;
 use App\Http\Controllers\AdminSemaforoEstadoController;
+use App\Http\Controllers\AdminSubtipoLecturaController;
 use App\Http\Controllers\AdminTipoEnfermedadController;
-use App\Http\Controllers\AdminTipoEventoController;
+use App\Http\Controllers\AdminTipoLecturaController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -168,9 +170,22 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->name('enfermedades-alimentos.update');
     Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->name('enfermedades-alimentos.delete');
 
-    Route::get('/objetivos/index', [AdminObjetivoController::class,'index'])->name('objetivos');
-    Route::post('/objetivos', [AdminObjetivoController::class, 'store'])->name('objetivos.store');
-    Route::get('/objetivos/{objetivo}/editar', [AdminObjetivoController::class, 'edit'])->name('objetivos.edit');
-    Route::put('/objetivos/{objetivo}', [AdminObjetivoController::class, 'update'])->name('objetivos.update');
-    Route::delete('/objetivos/{objetivo}/eliminar', [AdminObjetivoController::class, 'destroy'])->name('objetivos.delete');
+    Route::get('/categorias-diarios/index', [AdminCategoriaDiarioController::class,'index'])->name('categorias-diarios.index');
+    Route::post('/categorias-diarios/crear', [AdminCategoriaDiarioController::class, 'store'])->name('categorias-diarios.store');
+    Route::get('/categorias-diarios/{categoria_diario}/editar', [AdminCategoriaDiarioController::class, 'edit'])->name('categorias-diarios.edit');
+    Route::put('/categorias-diarios/{categoria_diario}', [AdminCategoriaDiarioController::class, 'update'])->name('categorias-diarios.update');
+    Route::delete('/categorias-diarios/{categoria_diario}/eliminar', [AdminCategoriaDiarioController::class, 'destroy'])->name('categorias-diarios.delete');
+
+    Route::get('/tipos-lecturas/index', [AdminTipoLecturaController::class,'index'])->name('tipos-lecturas.index');
+    Route::post('/tipos-lecturas/crear', [AdminTipoLecturaController::class, 'store'])->name('tipos-lecturas.store');
+    Route::get('/tipos-lecturas/{tipo_lectura}/editar', [AdminTipoLecturaController::class, 'edit'])->name('tipos-lecturas.edit');
+    Route::put('/tipos-lecturas/{tipo_lectura}', [AdminTipoLecturaController::class, 'update'])->name('tipos-lecturas.update');
+    Route::delete('/tipos-lecturas/{tipo_lectura}/eliminar', [AdminTipoLecturaController::class, 'destroy'])->name('tipos-lecturas.delete');
+
+    Route::get('/subtipos-lecturas/index', [AdminSubtipoLecturaController::class,'index'])->name('subtipos-lecturas.index');
+    Route::post('/subtipos-lecturas/crear', [AdminSubtipoLecturaController::class, 'store'])->name('subtipos-lecturas.store');
+    Route::get('/subtipos-lecturas/{subtipo_lectura}/editar', [AdminSubtipoLecturaController::class, 'edit'])->name('subtipos-lecturas.edit');
+    Route::put('/subtipos-lecturas/{subtipo_lectura}', [AdminSubtipoLecturaController::class, 'update'])->name('subtipos-lecturas.update');
+    Route::delete('/subtipos-lecturas/{subtipo_lectura}/eliminar', [AdminSubtipoLecturaController::class, 'destroy'])->name('subtipos-lecturas.delete');
+
 });

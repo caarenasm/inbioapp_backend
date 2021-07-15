@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\RecetaController;
 use App\Http\Controllers\Api\BlogApi;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\EnfermedadAlimentoController;
+use App\Http\Controllers\api\EventoController;
 use App\Http\Controllers\api\TipoLecturaController;
 use Facade\FlareClient\Api;
 
@@ -60,6 +61,8 @@ Route::group([
             Route::get('receta', [RecetaController::class, 'lista']);
             Route::get('blog', [BlogApi::class, 'lista']);
             Route::get('plan', [PlanController::class, 'lista']);
+            Route::get('eventos', [EventoController::class, 'tipoEventos']);
+            Route::get('eventos/lista', [EventoController::class, 'lista_eventos']);
             Route::get('tipo/lecturas', [TipoLecturaController::class, 'tiposLecturas']);
             Route::get('tipo/lectura/subtipos', [TipoLecturaController::class, 'subtiposLecturas']);
             Route::get('logout', [AuthController::class, 'logout']);

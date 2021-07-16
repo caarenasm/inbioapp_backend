@@ -6,6 +6,9 @@ use App\Http\Requests\AdminObjetivoRequest;
 use App\Models\Objetivo;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+use File;
+
 class AdminObjetivoController extends Controller
 {
     public function index(){
@@ -25,8 +28,10 @@ class AdminObjetivoController extends Controller
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/objetivos/"),$nombrearchivo);
-            $objetivos->imagen_url      = $nombrearchivo;
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            $file->move(public_path("imagenes/objetivos/"),$nombre_archivo);
+            $objetivos->imagen_url      = $nombre_archivo;
         }
 
         $objetivos->save();
@@ -49,8 +54,10 @@ class AdminObjetivoController extends Controller
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/objetivos/"),$nombrearchivo);
-            $objetivo->imagen_url      = $nombrearchivo;
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            $file->move(public_path("imagenes/objetivos/"),$nombre_archivo);
+            $objetivo->imagen_url      = $nombre_archivo;
         }
 
         $objetivo->save();

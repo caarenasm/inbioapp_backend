@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\CategoriaDiario;
+use App\Models\LecturaUser;
 use App\Models\TipoLectura;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TipoLecturaFactory extends Factory
+class LecturaUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TipoLectura::class;
+    protected $model = LecturaUser::class;
 
     /**
      * Define the model's default state.
@@ -23,10 +24,9 @@ class TipoLecturaFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->title(),
-            'categoria_diario_id' =>CategoriaDiario::all()->random()->id,
-            'updated_at' => now(),
-            'created_at' => now(),
+            'user_id' => User::all()->random()->id,
+            'tipo_lectura_id' =>TipoLectura::all()->random()->id,
+            'datos_leidos' => '{"id":1,"nombre":"Sueño leve"}'
         ];
     }
 }

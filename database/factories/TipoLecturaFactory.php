@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CategoriaDiario;
 use App\Models\TipoLectura;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +24,7 @@ class TipoLecturaFactory extends Factory
     {
         return [
             'nombre' => $this->faker->title(),
+            'categoria_diario_id' =>CategoriaDiario::all()->random()->id,
             'updated_at' => now(),
             'created_at' => now(),
         ];

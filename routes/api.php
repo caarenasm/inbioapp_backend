@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\EnfermedadAlimentoController;
 use App\Http\Controllers\api\EventoController;
 use App\Http\Controllers\api\TipoLecturaController;
+use App\Http\Controllers\api\ObjetivoController;
 use Facade\FlareClient\Api;
 
 /*
@@ -50,7 +51,7 @@ Route::group([
         Route::group([
             'middleware' => ['auth:api']
         ], function() {
-
+            Route::get('logout', [AuthController::class, 'logout']);
             Route::get('datos', [AuthController::class, 'user']);
             Route::post('plan/planUser', [PlanController::class, 'user_plan']);
             Route::get('semaforo/categoria', [EnfermedadAlimentoController::class, 'categoria']);
@@ -65,7 +66,7 @@ Route::group([
             Route::get('eventos/lista', [EventoController::class, 'lista_eventos']);
             Route::get('tipo/lecturas', [TipoLecturaController::class, 'tiposLecturas']);
             Route::get('tipo/lectura/subtipos', [TipoLecturaController::class, 'subtiposLecturas']);
-            Route::get('logout', [AuthController::class, 'logout']);
-            
+            Route::get('objetivo', [ObjetivoController::class, 'lista']);
+            Route::post('objetivo/guardar', [ObjetivoController::class, 'guardar']);
         });
 });

@@ -14,10 +14,10 @@ use App\Models\ObjetivoUser;
 
 class ObjetivoController extends Controller
 {
-    public function user_objetivo(Request $request){
+    public function guardar(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
+            /*'user_id' => 'required',*/
             'objetivo_id' => 'required',
         ]);
 
@@ -34,17 +34,16 @@ class ObjetivoController extends Controller
         try {
 
             $user_objetivo = New ObjetivoUser;
-
-            $user_objetivo->user_id = $request->user_id;
-            // $user_objetivo->user_id = Auth::$id;
+            /*$user_objetivo->user_id = $request->user_id;*/
+            $user_objetivo->user_id = $request->user()->id;
             $user_objetivo->objetivo_id = $request->objetivo_id;
             $user_objetivo->save();
 
             DB::commit();
 
             return response()->json([
-                'message' => 'Usuario creado con exito!',
-                'data' => $request->all()
+                'message' => 'Datos guardados con exito!',
+                'status' => true
             ], 200);
 
         }catch (\Illuminate\Database\QueryException $e){
@@ -52,7 +51,6 @@ class ObjetivoController extends Controller
             DB::rollback();
 
             // $response['errors']  = array('ERROR ('.$e->getCode().'):'=> $e->getMessage());
-
             // return response()->json([
             //     $response
             // ], 400);
@@ -67,14 +65,19 @@ class ObjetivoController extends Controller
 
     public function lista(){
 
-        $objetivos = [];
+        $response = [];
         
         $objetivos = Objetivo::select('id', 'nombre_objetivo', 'descripcion', 'imagen_url')
         ->orderBy('id','asc')->get()->toArray();
 
-            return response([
-                'data' => $objetivos
-            ]);
+        foreach ($objetivos as $key => $value) {
+            $response[$key]['id'] = $value['id'];
+            $response[$key]['nombre'] = $value['nombre_objetivo'];
+            $response[$key]['descripcion'] = $value['descripcion'];
+            $response[$key]['imagen_url'] = asset('imagenes/objetivos/' . $value['imagen_url']);
+        }
+
+        return response()->json($response);
             
     }
 }

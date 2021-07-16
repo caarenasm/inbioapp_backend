@@ -31,6 +31,7 @@ class AuthController extends Controller
             'estatura' => 'required|numeric',
             'peso_actual' => 'required|numeric',
             'peso_deseado' => 'required|numeric',
+            'respuestas' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -46,7 +47,24 @@ class AuthController extends Controller
         try {
 
             $name = $request->nombre.' '.$request->apellido;
-            $fecha_nacimiento = $request->anio.'-'.$request->mes.'-'.$request->dia;
+
+            $dia = date("d",strtotime($request->dia));
+            $mes = date("m",strtotime($request->mes));
+            $anio = date("Y",strtotime($request->anio));
+
+            /*$fecha_nacimiento = $request->anio.'-'.$request->mes.'-'.$request->dia;*/
+            $fecha_nacimiento = $anio.'-'.$mes.'-'.$dia;
+            $quiz = $request->respuestas;
+
+            foreach ($quiz as $key => $value) {
+                if(is_array($value)){
+                    $respuesta[$key] =  $value;
+                }else{
+                    $respuesta[$key] =  $value;
+                }
+            }
+
+            /*dd($respuesta);*/
 
             $password = Str::random(30);
 
@@ -71,6 +89,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Usuario creado con exito!',
+                'status' => true,
                 //'data' => $request->all()
             ], 200);
 
@@ -85,7 +104,9 @@ class AuthController extends Controller
             ], 400);*/
 
             return response()->json([
-                'message' => 'Error en operacion!'
+                /*'message' => 'Error en operacion!',*/
+                'message' => array('ERROR ('.$e->getCode().'):'=> $e->getMessage()),
+                'status' => false,
             ], 400);
         }
 
@@ -160,5 +181,23 @@ class AuthController extends Controller
 
         return response()->json($User);
         //return response()->json($request->user());
+    }
+
+    public function email(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->getMessageBag()->toArray(), 
+                'status' => false
+            ], 500);
+        }
+
+        return response()->json([
+            'status' => true
+        ], 200);
     }
 }

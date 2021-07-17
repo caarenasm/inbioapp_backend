@@ -12,6 +12,8 @@ use Validator;
 use DB;
 use App\Models\User;
 use App\Models\Users_datos;
+use App\Models\UserQuiz;
+use App\Models\Respuesta;
 //*******************************//
 
 class AuthController extends Controller
@@ -56,16 +58,6 @@ class AuthController extends Controller
             $fecha_nacimiento = $anio.'-'.$mes.'-'.$dia;
             $quiz = $request->respuestas;
 
-            foreach ($quiz as $key => $value) {
-                if(is_array($value)){
-                    $respuesta[$key] =  $value;
-                }else{
-                    $respuesta[$key] =  $value;
-                }
-            }
-
-            /*dd($respuesta);*/
-
             $password = Str::random(30);
 
             $tab_user = new User;
@@ -84,6 +76,51 @@ class AuthController extends Controller
             $tab_user_datos->peso_actual = $request->peso_actual;
             $tab_user_datos->peso_deseado = $request->peso_deseado;
             $tab_user_datos->save();
+
+            $i = 0;
+
+            foreach ($quiz as $key => $value) {
+                if(is_array($value)){
+                    /*$respuesta[$key] =  $value;*/
+                    foreach ($value as $value_arreglo) {
+                        $respuesta = Respuesta::select('pregunta_id')
+                        ->where('id','=', $value_arreglo )
+                        ->first();
+
+                        $user_quiz = new UserQuiz;
+                        $user_quiz->user_id = $tab_user->id;;
+                        $user_quiz->pregunta_id = $respuesta->pregunta_id;
+                        $user_quiz->respuesta_id = $value_arreglo;
+                        $user_quiz->save();
+                    }
+                }else{
+                    /*$respuesta[$key] =  $value;*/
+                    if(!empty($value)){
+                        $respuesta = Respuesta::select('pregunta_id', 'otro')
+                        ->where('id','=', $value )
+                        ->first();
+
+                        if(!empty($respuesta)){
+
+                            if(empty($respuesta->otro)){
+                                $user_quiz = new UserQuiz;
+                                $user_quiz->user_id = $tab_user->id;;
+                                $user_quiz->pregunta_id = $respuesta->pregunta_id;
+                                $user_quiz->respuesta_id = $value;
+                                $user_quiz->save();
+                            }else{
+                                $user_quiz = new UserQuiz;
+                                $user_quiz->user_id = $tab_user->id;;
+                                $user_quiz->pregunta_id = $respuesta->pregunta_id;
+                                $user_quiz->respuesta_id = $value;
+                                $user_quiz->de_respuesta = $quiz['otro['.$i.']'];
+                                $user_quiz->save();
+                            }
+                        }
+                    }
+                }
+                $i++;
+            }
 
             DB::commit();
 

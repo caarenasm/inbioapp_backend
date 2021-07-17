@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\EnfermedadAlimentoController;
 use App\Http\Controllers\api\LecturaUserController;
 use App\Http\Controllers\api\TipoLecturaController;
-use App\Models\LecturaUser;
+use App\Http\Controllers\api\ObjetivoController;
 use Facade\FlareClient\Api;
 
 /*
@@ -67,7 +67,8 @@ Route::group([
             Route::get('tipo/lecturas', [TipoLecturaController::class, 'tiposLecturas']);
             Route::get('tipo/lectura/subtipos', [TipoLecturaController::class, 'subtiposLecturas']);
             Route::post('tipo/lectura/users', [LecturaUserController::class, 'guardar']);
-            Route::get('logout', [AuthController::class, 'logout']);
+            Route::get('objetivo', [ObjetivoController::class, 'lista']);
+            Route::post('objetivo/guardar', [ObjetivoController::class, 'guardar']);
             
         });
 });

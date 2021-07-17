@@ -167,7 +167,8 @@ class AuthController extends Controller
         if (!auth()->attempt($request->all())) {
             //return response(['message' => 'Credentiales invalidas']);
             return response()->json([
-                'message' => 'Credentiales invalidas'
+                'message' => 'Credentiales invalidas',
+                'status' => false
             ], 401);
         }
 
@@ -197,7 +198,8 @@ class AuthController extends Controller
     {
         $request->user()->token()->revoke();
         return response()->json([
-            'message' => 'Cerrar sesión correctamente'
+            'message' => 'Sesión cerrada correctamente!',
+            'status' => true
         ]);
     }
 

@@ -8,6 +8,9 @@ use App\Models\Alimento;
 use App\Models\Receta;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+use File;
+
 class AdminRecetaController extends Controller
 {
     public function index(){
@@ -43,8 +46,10 @@ class AdminRecetaController extends Controller
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/recetas/"),$nombrearchivo);
-            $recetas->imagen_url      = $nombrearchivo;
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            $file->move(public_path("imagenes/recetas/"),$nombre_archivo);
+            $recetas->imagen_url      = $nombre_archivo;
         }
 
         $recetas->publicacion = $request -> publicacion;
@@ -83,8 +88,10 @@ class AdminRecetaController extends Controller
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/recetas/"),$nombrearchivo);
-            $receta->imagen_url      = $nombrearchivo;
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            $file->move(public_path("imagenes/recetas/"),$nombre_archivo);
+            $receta->imagen_url      = $nombre_archivo;
         }
 
         $receta->publicacion = $request -> publicacion;

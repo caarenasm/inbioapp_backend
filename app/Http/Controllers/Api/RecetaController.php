@@ -13,7 +13,7 @@ class RecetaController extends Controller
 {
     public function lista(){
 
-        $reponse = [];
+        $response = [];
         
         $recetas = Receta::select('id', 'titulo', 'slug', 'seo_titulo', 
         'seo_descripcion', 'imagen_url', 'descripcion', 'preparacion', 
@@ -26,15 +26,19 @@ class RecetaController extends Controller
             ->join('alimentos as t01','ingredientes.alimento_id','=','t01.id')
             ->where('receta_id','=',$value['id'])->orderBy('id','asc')->get()->toArray();
 
-            $recetas[$key]['ingredientes'] = $ingredientes;
-            $response = $recetas;
+            $response[$key]['id'] = $value['id'];
+            $response[$key]['titulo'] = $value['titulo'];
+            $response[$key]['descripcion'] = $value['descripcion'];
+            $response[$key]['preparacion'] = $value['preparacion'];
+            $response[$key]['fecha_publicacion'] = $value['fecha_publicacion'];
+            $response[$key]['imagen_url'] = asset('imagenes/recetas/' . $value['imagen_url']);
+            $response[$key]['ingredientes'] = $ingredientes;
+            
+        }
 
-            $response = [];
-            }
-
-            return response([
-                'data' => $response
-            ]);
+        return response([
+            'data' => $response
+        ]);
             
     }
 }

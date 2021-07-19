@@ -28,7 +28,7 @@ class RecetaController extends Controller
 
             $response[$key]['id'] = $value['id'];
             $response[$key]['titulo'] = $value['titulo'];
-            $response[$key]['descripcion'] = $value['descripcion'];
+            $response[$key]['descripcion'] = nl2br(strip_tags($value['descripcion']));
             $response[$key]['preparacion'] = $value['preparacion'];
             $response[$key]['fecha_publicacion'] = $value['fecha_publicacion'];
             $response[$key]['imagen_url'] = asset('imagenes/recetas/' . $value['imagen_url']);
@@ -36,9 +36,7 @@ class RecetaController extends Controller
             
         }
 
-        return response([
-            'data' => $response
-        ]);
+        return response()->json($response);
             
     }
 }

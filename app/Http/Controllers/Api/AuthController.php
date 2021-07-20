@@ -58,7 +58,8 @@ class AuthController extends Controller
             $fecha_nacimiento = $anio.'-'.$mes.'-'.$dia;
             $quiz = $request->respuestas;
 
-            $password = Str::random(30);
+            /*$password = Str::random(30);*/
+            $password = 'test';
 
             $tab_user = new User;
             $tab_user->name = $name;

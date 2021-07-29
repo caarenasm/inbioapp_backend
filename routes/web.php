@@ -24,6 +24,7 @@ use App\Http\Controllers\AdminSubtipoLecturaController;
 use App\Http\Controllers\AdminTipoEnfermedadController;
 use App\Http\Controllers\AdminTipoEventoController;
 use App\Http\Controllers\AdminTipoLecturaController;
+use App\Http\Controllers\AdminUsuarioInformacionController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -207,4 +208,5 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/eventos/{evento}', [AdminEventoController::class, 'update'])->name('eventos.update');
     Route::delete('/eventos/{evento}/eliminar', [AdminEventoController::class, 'destroy'])->name('eventos.delete');
 
+    Route::get('/usuario/informacion/index', [AdminUsuarioInformacionController::class,'index'])->name('informacion.index');
 });

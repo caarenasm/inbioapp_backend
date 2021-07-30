@@ -209,4 +209,6 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::delete('/eventos/{evento}/eliminar', [AdminEventoController::class, 'destroy'])->name('eventos.delete');
 
     Route::get('/usuario/informacion/index', [AdminUsuarioInformacionController::class,'index'])->name('informacion.index');
+    Route::get('/usuario/informacion/{id}/index', [AdminUsuarioInformacionController::class,'indexEstadisticas'])->name('estadisticas.index');
+
 });

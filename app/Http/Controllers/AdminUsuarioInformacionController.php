@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Users_datos;
 use App\Models\Plan;
-
+use App\Models\TipoLectura;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -50,4 +50,17 @@ class AdminUsuarioInformacionController extends Controller
         }
         return view('livewire.admin.usuario-informacion.usuario-informacion', ['users_datos' => $users_datos]);
     }
+
+    public function indexEstadisticas($id)
+    {
+                $tipo_lectura = TipoLectura::join('lectura_users', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
+                ->select('tipo_lecturas.nombre')
+                ->where('tipo_lecturas.user_id', '=', $id)
+                ->get()->toArray();
+
+
+        return view('livewire.admin.usuario-informacion.estadisticas');
+    }
+
+
 }

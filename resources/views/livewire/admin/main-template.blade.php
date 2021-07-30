@@ -16,6 +16,12 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href=" https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+   
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased" x-data="{ confirmDialog : false }">
 

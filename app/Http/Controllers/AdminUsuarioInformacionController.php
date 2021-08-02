@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Users_datos;
 use App\Models\Plan;
 use App\Models\TipoLectura;
+use App\Models\LecturaUser;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -48,19 +49,32 @@ class AdminUsuarioInformacionController extends Controller
                 $users_datos[$key]['titulo'] = $value['titulo'];
             }
         }
+
+        // dd($users_datos);
         return view('livewire.admin.usuario-informacion.usuario-informacion', ['users_datos' => $users_datos]);
     }
 
-    public function indexEstadisticas($id)
+    public function indexEstadisticas($user_id)
     {
-                $tipo_lectura = TipoLectura::join('lectura_users', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
-                ->select('tipo_lecturas.nombre')
-                ->where('tipo_lecturas.user_id', '=', $id)
-                ->get()->toArray();
 
+                $lecturas = LecturaUser::join('tipo_lecturas', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
+                ->select('datos_leidos','tipo_lecturas.nombre')
+                ->where('lectura_users.user_id', '=', $user_id)
+                ->where('lectura_users.tipo_lectura_id','=',1)
+                ->get();
 
-        return view('livewire.admin.usuario-informacion.estadisticas');
+                
+                foreach ($lecturas as $key => $value) {
+
+                    $data = json_decode($value['datos_leidos'], true);
+
+                    $lecturas[$key]['calidad_sueño'] = $data['calidad_sueño'];
+                    $lecturas[$key]['hora_inicio'] = $data['hora_inicio'];
+                    $lecturas[$key]['hora_fin'] = $data['hora_fin'];
+                    $lecturas[$key]['total_horas'] = $data['total_horas'];
+                }
+
+                // dd($lecturas);
+        return view('livewire.admin.usuario-informacion.estadisticas',['lecturas' => $lecturas]);
     }
-
-
 }

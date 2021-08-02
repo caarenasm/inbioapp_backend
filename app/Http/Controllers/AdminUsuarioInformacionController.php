@@ -54,27 +54,38 @@ class AdminUsuarioInformacionController extends Controller
         return view('livewire.admin.usuario-informacion.usuario-informacion', ['users_datos' => $users_datos]);
     }
 
-    public function indexEstadisticas($user_id)
+    public function indexEstadisticas($user_id,$tipo_lectura_id)
     {
+
+                $tipo_lectura = TipoLectura::all();
 
                 $lecturas = LecturaUser::join('tipo_lecturas', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
                 ->select('datos_leidos','tipo_lecturas.nombre')
                 ->where('lectura_users.user_id', '=', $user_id)
-                ->where('lectura_users.tipo_lectura_id','=',1)
+                ->where('lectura_users.tipo_lectura_id','=',$tipo_lectura_id)
                 ->get();
 
-                
                 foreach ($lecturas as $key => $value) {
 
                     $data = json_decode($value['datos_leidos'], true);
 
-                    $lecturas[$key]['calidad_sueño'] = $data['calidad_sueño'];
-                    $lecturas[$key]['hora_inicio'] = $data['hora_inicio'];
-                    $lecturas[$key]['hora_fin'] = $data['hora_fin'];
-                    $lecturas[$key]['total_horas'] = $data['total_horas'];
+                    switch ($tipo_lectura_id) {
+                        case 1:
+                            $lecturas[$key]['calidad_sueño'] = $data['calidad_sueño'];
+                            $lecturas[$key]['hora_inicio'] = $data['hora_inicio'];
+                            $lecturas[$key]['hora_fin'] = $data['hora_fin'];
+                            $lecturas[$key]['total_horas'] = $data['total_horas'];
+                            break;
+                        case 2:
+                            $lecturas_peso[$key]['peso_actual'] = $data['peso_actual'];
+                            break;
+                        default:
+                            dd("No esta la opcion");
+                            break;
+                    }
+                    
                 }
-
-                // dd($lecturas);
-        return view('livewire.admin.usuario-informacion.estadisticas',['lecturas' => $lecturas]);
+        return view('livewire.admin.usuario-informacion.estadisticas',['lecturas' => $lecturas,'tipo_lectura' => $tipo_lectura]);
     }
+
 }

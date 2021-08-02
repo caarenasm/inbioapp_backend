@@ -54,7 +54,7 @@ class AdminUsuarioInformacionController extends Controller
         return view('livewire.admin.usuario-informacion.usuario-informacion', ['users_datos' => $users_datos]);
     }
 
-    public function indexEstadisticas($user_id,$tipo_lectura_id)
+    public function indexEstadisticas(Request $request, $user_id)
     {
 
                 $tipo_lectura = TipoLectura::all();
@@ -62,14 +62,14 @@ class AdminUsuarioInformacionController extends Controller
                 $lecturas = LecturaUser::join('tipo_lecturas', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
                 ->select('datos_leidos','tipo_lecturas.nombre')
                 ->where('lectura_users.user_id', '=', $user_id)
-                ->where('lectura_users.tipo_lectura_id','=',$tipo_lectura_id)
+                ->where('lectura_users.tipo_lectura_id','=',$request->tipo_lectura_id)
                 ->get();
 
                 foreach ($lecturas as $key => $value) {
 
                     $data = json_decode($value['datos_leidos'], true);
 
-                    switch ($tipo_lectura_id) {
+                    switch ($request->tipo_lectura_id) {
                         case 1:
                             $lecturas[$key]['calidad_sueño'] = $data['calidad_sueño'];
                             $lecturas[$key]['hora_inicio'] = $data['hora_inicio'];

@@ -122,10 +122,12 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
-                                @foreach ($lectura->alimentos as $item)
-                                    <div class="text-sm font-medium text-gray-900">
-                                        {{ $item }}
-                                    </div>
+                                @foreach ((array) $lectura->incomodidades as $key => $item)
+                                    @foreach ($item as $i)
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $i->nombre }}
+                                        </div>
+                                    @endforeach
                                 @endforeach
                             </div>
                         </div>

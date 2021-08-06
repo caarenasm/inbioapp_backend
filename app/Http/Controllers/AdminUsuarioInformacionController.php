@@ -149,6 +149,33 @@ class AdminUsuarioInformacionController extends Controller
                     }
                     
                     break;
+                case 7:
+
+                    if ($data['estado'] == false) {
+
+                        $lecturas[$key]['estado'] = "No";
+
+                    }else{
+    
+                        $productos = $data['productos'];
+                        
+                        $lista = [];
+
+                        foreach ($productos as $item => $value) {
+                           
+                            $resultado = Producto::select('title')
+                            ->where('productos.id', '=', $value)
+                            ->get();
+
+                            array_push($lista,$resultado);
+                        }
+                       
+                        $lecturas[$key]['estado'] = "Si";
+
+                        $lecturas[$key]['productos'] = $lista;
+                    }
+                    
+                    break;
                 default:
                     # code...
                     break;

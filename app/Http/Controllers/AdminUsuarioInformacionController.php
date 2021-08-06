@@ -125,7 +125,9 @@ class AdminUsuarioInformacionController extends Controller
                 case 6:
 
                     if ($data['estado'] == false) {
+
                         $lecturas[$key]['estado'] = "No";
+
                     }else{
     
                         $alimentos = $data['alimentos'];
@@ -136,18 +138,14 @@ class AdminUsuarioInformacionController extends Controller
                            
                             $resultado = Alimento::select('nombre')
                             ->where('alimentos.id', '=', $value)
-                            ->get()->toArray();
+                            ->get();
 
-                            foreach ($resultado as $otro => $value) {
-                                array_push($lista,$value['nombre']);
-                            }
-                            
+                            array_push($lista,$resultado);
                         }
                        
                         $lecturas[$key]['estado'] = "Si";
-                        $lecturas[$key]['alimentos'] = $lista;
 
-                        dd($lecturas);
+                        $lecturas[$key]['incomodidades'] = $lista;
                     }
                     
                     break;

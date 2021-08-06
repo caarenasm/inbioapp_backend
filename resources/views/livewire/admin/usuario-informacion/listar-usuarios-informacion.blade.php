@@ -199,7 +199,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="grid grid-cols-2 gap-2">
                             <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                <x-html.link href="{{ route('estadisticas.indexEstadisticas',$dato->users_id) }}" text="Estadisticas"
+                                <x-html.link href="{{ route('estadisticas',$dato->users_id) }}" text="Estadisticas"
                                     isButton="true" class="inline-block mb-2 ml-1" />
                             </h2>
                         </div>

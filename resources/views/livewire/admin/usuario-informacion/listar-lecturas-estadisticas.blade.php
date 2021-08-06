@@ -97,6 +97,9 @@
             <div x-show="activeTab===5">
                 @include('livewire/admin/usuario-informacion/incomodidad-estadisticas')
             </div>
+            <div x-show="activeTab===6">
+                @include('livewire/admin/usuario-informacion/suplementos-estadisticas')
+            </div>
 		</div>
 
 		<ul class="flex justify-center items-center my-4">
@@ -132,7 +135,8 @@
           "Actividad",
           "Comidas",
           "Vasos de agua",
-          "Incomodidad"
+          "Incomodidad",
+          "Suplementos"
       ]
     };
   };

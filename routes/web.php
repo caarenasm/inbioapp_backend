@@ -210,5 +210,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::delete('/eventos/{evento}/eliminar', [AdminEventoController::class, 'destroy'])->name('eventos.delete');
 
     Route::get('/usuario-informacion/index', [AdminUsuarioInformacionController::class,'index'])->name('informacion.index');
-    Route::get('/usuario-informacion/{user_id}/estadisticas', [AdminUsuarioInformacionController::class,'indexEstadisticas'])->name('estadisticas.indexEstadisticas');
+    Route::get('/usuario-informacion/{user_id}/estadisticas', [AdminUsuarioInformacionController::class,'estadisticas_lecturas'])->name('estadisticas');
+    Route::get('/usuario-informacion/{user_id}/sueño', [AdminUsuarioInformacionController::class,'sueño'])->name('sueño');
+
 });

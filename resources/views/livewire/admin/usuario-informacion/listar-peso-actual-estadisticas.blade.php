@@ -94,50 +94,27 @@
 </style>
 
 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-    <table id="example" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+    <table id="peso" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
         <thead>
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     data-priority="1">
-                    Nombre completo
+                    Típo de lectura
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="2">
-                    Fecha de nacimiento
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="3">
-                    Fecha de creación del usuario
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="4">
-                    Plan actual
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="5">
-                    Fecha de inscripcion
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="6">
-                    Fecha finalización del plan
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="">
-                    Días restantes
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Acciones
+                    data-priority="1">
+                    Peso actual
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($users_datos as $dato)
+            @foreach ($lecturas_peso as $peso)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->nombre }} {{ $dato->apellido }}
+                                    {{ $peso->nombre }}
                                 </div>
                             </div>
                         </div>
@@ -146,68 +123,14 @@
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_nacimiento }}
+                                    {{ $peso->peso_actual }}
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_creacion_usuario }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->titulo }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_inscripcion }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_terminacion }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->dias_restantes }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="grid grid-cols-2 gap-2">
-                            <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                <x-html.link href="{{ route('estadisticas',$dato->users_id) }}" text="Estadisticas"
-                                    isButton="true" class="inline-block mb-2 ml-1" />
-                            </h2>
                         </div>
                     </td>
                 </tr>
             @endforeach
         </tbody>
-
     </table>
 </div>
 
@@ -222,7 +145,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#example').DataTable({
+            var table = $('#peso').DataTable({
                     responsive: true
                 })
                 .columns.adjust()

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Users_datos;
+
+use App\Models\LecturaUser;
 use App\Models\Plan;
-use App\Models\TipoLectura;
+use App\Models\Receta;
+use App\Models\Alimento;
+use App\Models\Users_datos;
 use DateTime;
-use Illuminate\Http\Request;
 
 class AdminUsuarioInformacionController extends Controller
 {
@@ -48,19 +50,139 @@ class AdminUsuarioInformacionController extends Controller
                 $users_datos[$key]['titulo'] = $value['titulo'];
             }
         }
+
+        // dd($users_datos);
         return view('livewire.admin.usuario-informacion.usuario-informacion', ['users_datos' => $users_datos]);
     }
 
-    public function indexEstadisticas($id)
+    public function estadisticas_lecturas($user_id)
     {
-                $tipo_lectura = TipoLectura::join('lectura_users', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
-                ->select('tipo_lecturas.nombre')
-                ->where('tipo_lecturas.user_id', '=', $id)
-                ->get()->toArray();
+        $lecturas = LecturaUser::join('tipo_lecturas', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
+            ->select('lectura_users.id', 'datos_leidos', 'tipo_lecturas.nombre', 'lectura_users.tipo_lectura_id','lectura_users.created_at')
+            ->where('lectura_users.user_id', '=', $user_id)
+            ->get();
 
+        foreach ($lecturas as $key => $value) {
 
-        return view('livewire.admin.usuario-informacion.estadisticas');
+            $data = json_decode($value['datos_leidos'], true);
+
+            switch ($value['tipo_lectura_id']) {
+
+                case 1:
+                    $lecturas[$key]['calidad_sueño'] = $data['calidad_sueño'];
+                    $lecturas[$key]['hora_inicio'] = $data['hora_inicio'];
+                    $lecturas[$key]['hora_fin'] = $data['hora_fin'];
+                    $lecturas[$key]['total_horas'] = $data['total_horas'];
+                    break;
+                case 2:
+                    $lecturas[$key]['peso_actual'] = $data['peso_actual'];
+                    break;
+                case 3:
+                    $lecturas[$key]['actividad_fisica'] = $data['actividad_fisica'];
+                    $lecturas[$key]['tiempo'] = $data['tiempo'];
+                    $lecturas[$key]['distancia'] = $data['distancia'];
+                    $lecturas[$key]['nivel_fatiga'] = $data['nivel_fatiga'];
+                    $lecturas[$key]['nivel_energia'] = $data['nivel_energia'];
+                    break;
+                 case 4:
+                    $desayuno = $data['desayuno'];
+                    $almuerzo = $data['almuerzo'];
+                    $cena = $data['cena'];
+                    $snack = $data['mi_snack'];
+                    $otro = $data['otro'];
+                    
+                    $recetas_desayuno = Receta::select('titulo')
+                    ->where('recetas.id', '=', $desayuno)
+                    ->get();
+
+                    $recetas_almuerzo = Receta::select('titulo')
+                    ->where('recetas.id', '=', $almuerzo)
+                    ->get();
+
+                    $recetas_cena = Receta::select('titulo')
+                    ->where('recetas.id', '=', $cena)
+                    ->get();
+
+                    $recetas_snack = Receta::select('titulo')
+                    ->where('recetas.id', '=', $snack)
+                    ->get();
+
+                    $recetas_otro = Receta::select('titulo')
+                    ->where('recetas.id', '=', $otro)
+                    ->get();
+                    
+                    $lecturas[$key]['desayuno'] = $recetas_desayuno;
+                    $lecturas[$key]['almuerzo'] = $recetas_almuerzo;
+                    $lecturas[$key]['cena'] = $recetas_cena;
+                    $lecturas[$key]['snack'] = $recetas_snack;
+                    $lecturas[$key]['otro'] = $recetas_otro;
+
+                    break;
+
+                case 5:
+                    $lecturas[$key]['vasos_agua'] = $data['vasos_agua'];
+                    break;
+                case 6:
+
+                    if ($data['estado'] == false) {
+
+                        $lecturas[$key]['estado'] = "No";
+
+                    }else{
+    
+                        $alimentos = $data['alimentos'];
+                        
+                        $lista = [];
+
+                        foreach ($alimentos as $item => $value) {
+                           
+                            $resultado = Alimento::select('nombre')
+                            ->where('alimentos.id', '=', $value)
+                            ->get();
+
+                            array_push($lista,$resultado);
+                        }
+                       
+                        $lecturas[$key]['estado'] = "Si";
+
+                        $lecturas[$key]['incomodidades'] = $lista;
+                    }
+                    
+                    break;
+                case 7:
+
+                    if ($data['estado'] == false) {
+
+                        $lecturas[$key]['estado'] = "No";
+
+                    }else{
+    
+                        $productos = $data['productos'];
+                        
+                        $lista = [];
+
+                        foreach ($productos as $item => $value) {
+                           
+                            $resultado = Producto::select('title')
+                            ->where('productos.id', '=', $value)
+                            ->get();
+
+                            array_push($lista,$resultado);
+                        }
+                       
+                        $lecturas[$key]['estado'] = "Si";
+
+                        $lecturas[$key]['productos'] = $lista;
+                    }
+                    
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+        }
+        return view('livewire.admin.usuario-informacion.estadisticas', ['lecturas' => $lecturas]);
     }
-
 
 }

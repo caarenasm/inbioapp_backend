@@ -125,7 +125,7 @@
                                 @foreach ((array) $lectura->productos as $key => $item)
                                     @foreach ($item as $i)
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{ $i->nombre }}
+                                            {{ $i->title }}
                                         </div>
                                     @endforeach
                                 @endforeach

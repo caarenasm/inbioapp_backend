@@ -11,6 +11,7 @@ use App\Models\Receta;
 use App\Models\EnfermedadRegulada;
 use App\Models\ZonaCuerpo;
 use App\Models\Users_datos;
+use App\Models\Productos;
 use DateTime;
 
 class AdminUsuarioInformacionController extends Controller
@@ -100,7 +101,8 @@ class AdminUsuarioInformacionController extends Controller
                     $almuerzo = $data['almuerzo'];
                     $cena = $data['cena'];
                     $snack = $data['mi_snack'];
-                    $otro = $data['otro'];
+
+                    // $otro = $data['otro'];
 
                     $recetas_desayuno = Receta::select('titulo')
                         ->where('recetas.id', '=', $desayuno)
@@ -118,15 +120,15 @@ class AdminUsuarioInformacionController extends Controller
                         ->where('recetas.id', '=', $snack)
                         ->get();
 
-                    $recetas_otro = Receta::select('titulo')
-                        ->where('recetas.id', '=', $otro)
-                        ->get();
+                    // $recetas_otro = Receta::select('titulo')
+                    //     ->where('recetas.id', '=', $otro)
+                    //     ->get();
 
                     $lecturas[$key]['desayuno'] = $recetas_desayuno;
                     $lecturas[$key]['almuerzo'] = $recetas_almuerzo;
                     $lecturas[$key]['cena'] = $recetas_cena;
                     $lecturas[$key]['snack'] = $recetas_snack;
-                    $lecturas[$key]['otro'] = $recetas_otro;
+                    // $lecturas[$key]['otro'] = $recetas_otro;
 
                     break;
                 
@@ -179,7 +181,7 @@ class AdminUsuarioInformacionController extends Controller
 
                         foreach ($productos as $item => $value) {
 
-                            $resultado = Producto::select('title')
+                            $resultado = Productos::select('title')
                                 ->where('productos.id', '=', $value)
                                 ->get();
 
@@ -218,7 +220,7 @@ class AdminUsuarioInformacionController extends Controller
                     } else {
 
                         $lecturas[$key]['tipo_deposicion'] = $data['tipo_deposicion'];
-                        
+
                         $lecturas[$key]['color'] = $data['color'];
 
                         $productos = $data['productos'];

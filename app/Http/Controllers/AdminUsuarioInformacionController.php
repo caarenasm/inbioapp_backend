@@ -208,7 +208,7 @@ class AdminUsuarioInformacionController extends Controller
 
                         foreach ($productos as $item => $value) {
 
-                            $resultado = Producto::select('title')
+                            $resultado = Productos::select('title')
                                 ->where('productos.id', '=', $value)
                                 ->get();
 
@@ -229,7 +229,7 @@ class AdminUsuarioInformacionController extends Controller
 
                         foreach ($productos as $item => $value) {
 
-                            $resultado = Producto::select('title')
+                            $resultado = Productos::select('title')
                                 ->where('productos.id', '=', $value)
                                 ->get();
 

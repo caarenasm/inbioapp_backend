@@ -93,7 +93,7 @@
 
 </style>
 
-<table id="suplementos" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+<table id="deposiciones" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
     <thead>
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -102,19 +102,49 @@
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 data-priority="2">
+                Tipo de deposición
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="2">
+                Color
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="2">
                 Productos
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="1">
+                Otros
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach ($lecturas as $lectura)
-            @if ($lectura->tipo_lectura_id === 7)
+            @if ($lectura->tipo_lectura_id === 8)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
                                     {{ $lectura->estado }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->tipo_deposicion }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->color }}
                                 </div>
                             </div>
                         </div>
@@ -129,6 +159,15 @@
                                         </div>
                                     @endforeach
                                 @endforeach
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->otros }}
+                                </div>
                             </div>
                         </div>
                     </td>
@@ -148,7 +187,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#suplementos').DataTable({
+            var table = $('#deposiciones').DataTable({
                     responsive: true
                 })
                 .columns.adjust()

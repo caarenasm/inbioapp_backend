@@ -93,7 +93,7 @@
 
 </style>
 
-<table id="suplementos" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+<table id="estacionales" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
     <thead>
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -102,13 +102,13 @@
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 data-priority="2">
-                Productos
+                Enfermedades estacionales
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach ($lecturas as $lectura)
-            @if ($lectura->tipo_lectura_id === 7)
+            @if ($lectura->tipo_lectura_id === 9)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
@@ -122,10 +122,10 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
-                                @foreach ((array) $lectura->productos as $key => $item)
+                                @foreach ((array) $lectura->enfermedades_estacionales as $key => $item)
                                     @foreach ($item as $i)
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{ $i->title }}
+                                            {{ $i->enfermedad }}
                                         </div>
                                     @endforeach
                                 @endforeach
@@ -148,7 +148,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#suplementos').DataTable({
+            var table = $('#estacionales').DataTable({
                     responsive: true
                 })
                 .columns.adjust()

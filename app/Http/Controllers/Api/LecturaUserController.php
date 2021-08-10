@@ -222,7 +222,7 @@ class LecturaUserController extends Controller
             //***Dolencias cuerpo***//
             case 13:
                 $rules = [
-                    'zona_cuerpo' => 'required',
+                    'zona_cuerpo_id' => 'required',
                     'dolencias_cuerpo' => 'required',
                 ];
                 $validator = Validator::make($data, $rules);

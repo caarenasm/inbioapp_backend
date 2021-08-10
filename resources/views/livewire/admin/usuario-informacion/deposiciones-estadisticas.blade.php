@@ -93,51 +93,40 @@
 
 </style>
 
-<div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-    <table id="example" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-        <thead>
-            <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="1">
-                    Nombre completo
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="2">
-                    Fecha de nacimiento
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="3">
-                    Fecha de creación del usuario
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="4">
-                    Plan actual
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="5">
-                    Fecha de inscripcion
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="6">
-                    Fecha finalización del plan
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    data-priority="">
-                    Días restantes
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Acciones
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users_datos as $dato)
+<table id="deposiciones" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+    <thead>
+        <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="1">
+                Estado
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="2">
+                Tipo de deposición
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="2">
+                Color
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="2">
+                Productos
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="1">
+                Otros
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($lecturas as $lectura)
+            @if ($lectura->tipo_lectura_id === 8)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->nombre }} {{ $dato->apellido }}
+                                    {{ $lectura->estado }}
                                 </div>
                             </div>
                         </div>
@@ -146,7 +135,7 @@
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_nacimiento }}
+                                    {{ $lectura->tipo_deposicion }}
                                 </div>
                             </div>
                         </div>
@@ -155,7 +144,7 @@
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_creacion_usuario }}
+                                    {{ $lectura->color }}
                                 </div>
                             </div>
                         </div>
@@ -163,9 +152,13 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->titulo }}
-                                </div>
+                                @foreach ((array) $lectura->productos as $key => $item)
+                                    @foreach ($item as $i)
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $i->title }}
+                                        </div>
+                                    @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </td>
@@ -173,44 +166,16 @@
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_inscripcion }}
+                                    {{ $lectura->otros }}
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->fecha_terminacion }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $dato->dias_restantes }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="grid grid-cols-2 gap-2">
-                            <h2 class="text-2xl text-fondo-verde font-extrabold">
-                                <x-html.link href="{{ route('estadisticas',$dato->users_id) }}" text="Estadisticas"
-                                    isButton="true" class="inline-block mb-2 ml-1" />
-                            </h2>
                         </div>
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
-
-    </table>
-</div>
-
+            @endif
+        @endforeach
+    </tbody>
+</table>
 
 @push('scripts')
     <!-- jQuery -->
@@ -222,7 +187,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#example').DataTable({
+            var table = $('#deposiciones').DataTable({
                     responsive: true
                 })
                 .columns.adjust()

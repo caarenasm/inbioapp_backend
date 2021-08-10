@@ -14,10 +14,10 @@ class CreateTipoActividadesFisicasTable extends Migration
     public function up()
     {
         Schema::create('tipo_actividades_fisicas', function (Blueprint $table) {
+            
             $table->id();
+
             $table->string('tipo_actividad',100);
-    
-            $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
 
             $table->timestamps();
         });

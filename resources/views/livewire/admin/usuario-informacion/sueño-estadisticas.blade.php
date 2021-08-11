@@ -116,45 +116,47 @@
     </thead>
     <tbody>
         @foreach ($lecturas as $lectura)
-        @if ($lectura->tipo_lectura_id === 1)
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->calidad_sueño }}
+            @if ($lectura->tipo_lectura_id === 1)
+                <tr>
+                    @foreach ($lectura->calidad_sueño as $item)
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="ml-1">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ $item->tipo }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    @endforeach
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->hora_inicio }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->hora_inicio }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->hora_fin }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->hora_fin }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->total_horas }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->total_horas }}
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             @endif
         @endforeach
     </tbody>

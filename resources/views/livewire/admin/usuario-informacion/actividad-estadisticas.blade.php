@@ -114,60 +114,62 @@
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 data-priority="4">
-               Nivel de energia
+                Nivel de energia
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach ($lecturas as $lectura)
-        @if ($lectura->tipo_lectura_id === 3)
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->actividad_fisica }}
+            @if ($lectura->tipo_lectura_id === 3)
+                <tr>
+                    @foreach ($lectura->actividad_fisica as $item)
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="ml-1">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ $item->tipo_actividad }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    @endforeach
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->tiempo }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->tiempo }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->distancia }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->distancia }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->nivel_fatiga }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->nivel_fatiga }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->nivel_energia }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                {{ $lectura->nivel_energia }}
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             @endif
         @endforeach
     </tbody>

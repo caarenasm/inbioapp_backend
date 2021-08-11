@@ -211,6 +211,5 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
 
     Route::get('/usuario-informacion/index', [AdminUsuarioInformacionController::class,'index'])->name('informacion.index');
     Route::get('/usuario-informacion/{user_id}/estadisticas', [AdminUsuarioInformacionController::class,'estadisticas_lecturas'])->name('estadisticas');
-    Route::get('/usuario-informacion/{user_id}/sueño', [AdminUsuarioInformacionController::class,'sueño'])->name('sueño');
-
+    Route::get('/usuario-informacion/{user_id}/estadisticas/enfermedades', [AdminUsuarioInformacionController::class,'estadisticas_enfermedades'])->name('estadisticas-enfermedades');
 });

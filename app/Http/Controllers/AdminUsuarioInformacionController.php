@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Alimento;
 use App\Models\Enfermedad;
+use App\Models\EnfermedadRegulada;
 use App\Models\LecturaUser;
 use App\Models\Plan;
-use App\Models\Producto;
-use App\Models\Receta;
-use App\Models\EnfermedadRegulada;
-use App\Models\ZonaCuerpo;
-use App\Models\Users_datos;
 use App\Models\Productos;
+use App\Models\Receta;
+use App\Models\Suplemento;
+use App\Models\TipoSueño;
+use App\Models\TipoDeposicion;
+use App\Models\TipoColor;
+use App\Models\TipoActividad;
+use App\Models\Users_datos;
+use App\Models\Medicamento;
+use App\Models\ZonaCuerpo;
 use DateTime;
 
 class AdminUsuarioInformacionController extends Controller
@@ -62,6 +67,8 @@ class AdminUsuarioInformacionController extends Controller
 
     public function estadisticas_lecturas($user_id)
     {
+        $usuario = $user_id;
+
         $lecturas = LecturaUser::join('tipo_lecturas', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
             ->select('lectura_users.id', 'datos_leidos', 'tipo_lecturas.nombre', 'lectura_users.tipo_lectura_id', 'lectura_users.created_at')
             ->where('lectura_users.user_id', '=', $user_id)
@@ -75,7 +82,14 @@ class AdminUsuarioInformacionController extends Controller
 
                 //***Regular sueño***//
                 case 1:
-                    $lecturas[$key]['calidad_sueño'] = $data['calidad_sueño'];
+
+                    $sueño = $data['calidad_sueño'];
+
+                    $estado = TipoSueño::select('tipo')
+                    ->where('tipo_sueños.id','=', $sueño)
+                    ->get();
+
+                    $lecturas[$key]['calidad_sueño'] = $estado;
                     $lecturas[$key]['hora_inicio'] = $data['hora_inicio'];
                     $lecturas[$key]['hora_fin'] = $data['hora_fin'];
                     $lecturas[$key]['total_horas'] = $data['total_horas'];
@@ -85,10 +99,17 @@ class AdminUsuarioInformacionController extends Controller
                 case 2:
                     $lecturas[$key]['peso_actual'] = $data['peso_actual'];
                     break;
-                
+
                 //***Actividad fisica***//
                 case 3:
-                    $lecturas[$key]['actividad_fisica'] = $data['actividad_fisica'];
+                    $actividad = $data['actividad_fisica'];
+
+                    $estado = TipoActividad::select('tipo_actividad')
+                    ->where('tipo_actividades_fisicas.id','=', $actividad)
+                    ->get();
+
+                  
+                    $lecturas[$key]['actividad_fisica'] = $estado;
                     $lecturas[$key]['tiempo'] = $data['tiempo'];
                     $lecturas[$key]['distancia'] = $data['distancia'];
                     $lecturas[$key]['nivel_fatiga'] = $data['nivel_fatiga'];
@@ -120,23 +141,20 @@ class AdminUsuarioInformacionController extends Controller
                         ->where('recetas.id', '=', $snack)
                         ->get();
 
-                    // $recetas_otro = Receta::select('titulo')
-                    //     ->where('recetas.id', '=', $otro)
-                    //     ->get();
 
                     $lecturas[$key]['desayuno'] = $recetas_desayuno;
                     $lecturas[$key]['almuerzo'] = $recetas_almuerzo;
                     $lecturas[$key]['cena'] = $recetas_cena;
                     $lecturas[$key]['snack'] = $recetas_snack;
-                    // $lecturas[$key]['otro'] = $recetas_otro;
+                    $lecturas[$key]['otro'] = $data['otro'];
 
                     break;
-                
+
                 //***Vasos de agua***//
                 case 5:
                     $lecturas[$key]['vasos_agua'] = $data['vasos_agua'];
                     break;
-                
+
                 //***Incomodidad alimento***//
                 case 6:
 
@@ -165,7 +183,7 @@ class AdminUsuarioInformacionController extends Controller
                     }
 
                     break;
-                
+
                 //***Suplementos***//
                 case 7:
 
@@ -177,7 +195,10 @@ class AdminUsuarioInformacionController extends Controller
 
                         $productos = $data['productos'];
 
+                        $suplementos = $data['suplementos'];
+
                         $lista = [];
+                        $lista_dos = [];
 
                         foreach ($productos as $item => $value) {
 
@@ -188,13 +209,24 @@ class AdminUsuarioInformacionController extends Controller
                             array_push($lista, $resultado);
                         }
 
+                        foreach ($suplementos as $item => $value) {
+
+                            $resultado = Suplemento::select('suplemento')
+                                ->where('suplementos.id', '=', $value)
+                                ->get();
+
+                            array_push($lista_dos, $resultado);
+                        }
+
                         $lecturas[$key]['estado'] = "Si";
 
                         $lecturas[$key]['productos'] = $lista;
+
+                        $lecturas[$key]['suplementos'] = $lista_dos;
                     }
 
                     break;
-                
+
                 //***Deposiciones***//
                 case 8:
 
@@ -204,7 +236,11 @@ class AdminUsuarioInformacionController extends Controller
                         $lecturas[$key]['otros'] = $data['otros'];
                         $productos = $data['productos'];
 
+                        $medicamentos = $data['medicamentos'];
+                    
                         $lista = [];
+
+                        $lista_dos = [];
 
                         foreach ($productos as $item => $value) {
 
@@ -215,17 +251,41 @@ class AdminUsuarioInformacionController extends Controller
                             array_push($lista, $resultado);
                         }
 
+                        foreach ($medicamentos as $item => $value) {
+
+                            $resultado = Medicamento::select('medicamento')
+                                ->where('medicamentos.id', '=', $value)
+                                ->get();
+
+                            array_push($lista_dos, $resultado);
+                        }
+
                         $lecturas[$key]['productos'] = $lista;
+
+                        $lecturas[$key]['medicamentos'] = $lista_dos;
 
                     } else {
 
-                        $lecturas[$key]['tipo_deposicion'] = $data['tipo_deposicion'];
+                        $deposicion = $data['tipo_deposicion'];
+                        $color = $data['color'];
 
-                        $lecturas[$key]['color'] = $data['color'];
+                        $deposiciones = TipoDeposicion::select('tipo')
+                        ->where('tipo_deposiciones.id','=', $deposicion)
+                        ->get();
+
+                        $colores = TipoColor::select('tipo')
+                        ->where('tipo_colores.id','=', $color)
+                        ->get();
+
+                        $lecturas[$key]['tipo_deposicion'] = $deposiciones;
+                        $lecturas[$key]['color'] = $colores;
 
                         $productos = $data['productos'];
+                        $medicamentos = $data['medicamentos'];
 
                         $lista = [];
+
+                        $lista_dos = [];
 
                         foreach ($productos as $item => $value) {
 
@@ -236,13 +296,23 @@ class AdminUsuarioInformacionController extends Controller
                             array_push($lista, $resultado);
                         }
 
-                        $lecturas[$key]['estado'] = "Si";
+                        foreach ($medicamentos as $item => $value) {
 
+                            $resultado = Medicamento::select('medicamento')
+                                ->where('medicamentos.id', '=', $value)
+                                ->get();
+
+                            array_push($lista_dos, $resultado);
+                        }
+
+                        $lecturas[$key]['estado'] = "Si";
+                        $lecturas[$key]['otro'] = $data['otro'];
                         $lecturas[$key]['productos'] = $lista;
+                        $lecturas[$key]['medicamentos'] = $lista_dos;
                     }
 
                     break;
-                
+
                 //***Enfermedades estacionales***//
                 case 9:
 
@@ -271,7 +341,7 @@ class AdminUsuarioInformacionController extends Controller
                     }
 
                     break;
-                
+
                 //***Regular enfermedad***//
                 case 10:
 
@@ -330,7 +400,7 @@ class AdminUsuarioInformacionController extends Controller
                         }
                     }
                     break;
-                
+
                 //***Enfermedad en la visión***//
                 case 11:
 
@@ -350,7 +420,7 @@ class AdminUsuarioInformacionController extends Controller
                     $lecturas[$key]['vision'] = $lista;
 
                     break;
-                
+
                 //***Enfermedades gastricas***//
                 case 12:
 
@@ -370,8 +440,8 @@ class AdminUsuarioInformacionController extends Controller
                     $lecturas[$key]['gastricas'] = $lista;
 
                     break;
-                
-               //***Dolencias cuerpo***//
+
+                //***Dolencias cuerpo***//
                 case 13:
 
                     $zona = $data['zona_cuerpo_id'];
@@ -401,7 +471,7 @@ class AdminUsuarioInformacionController extends Controller
                     $lecturas[$key]['dolencias'] = $lista;
 
                     break;
-                
+
                 //***Señales en el organismo***//
                 case 14:
 
@@ -421,7 +491,7 @@ class AdminUsuarioInformacionController extends Controller
                     $lecturas[$key]['señales'] = $lista;
 
                     break;
-                
+
                 //***Alergias***//
                 case 15:
 
@@ -447,7 +517,208 @@ class AdminUsuarioInformacionController extends Controller
             }
 
         }
-        return view('livewire.admin.usuario-informacion.estadisticas', ['lecturas' => $lecturas]);
+
+        return view('livewire.admin.usuario-informacion.estadisticas', ['lecturas' => $lecturas, 'usuario' => $usuario]);
+
     }
 
+    public function estadisticas_enfermedades($user_id)
+    {
+        $usuario = $user_id;
+
+        $lecturas = LecturaUser::join('tipo_lecturas', 'tipo_lectura_id', '=', 'tipo_lecturas.id')
+            ->select('lectura_users.id', 'datos_leidos', 'tipo_lecturas.nombre', 'lectura_users.tipo_lectura_id', 'lectura_users.created_at')
+            ->where('lectura_users.user_id', '=', $user_id)
+            ->get();
+
+        foreach ($lecturas as $key => $value) {
+
+            $data = json_decode($value['datos_leidos'], true);
+
+            switch ($value['tipo_lectura_id']) {
+
+                //***Regular enfermedad***//
+                case 10:
+
+                    $lecturas[$key]['hora_medicion'] = $data['hora_medicion'];
+
+                    $id = $data['enfermedad_regulada_id'];
+
+                    //***Glucosa****//
+                    if ($id === 1) {
+
+                        $resultado = EnfermedadRegulada::select('enfermedad_regulada')
+                            ->where('enfermedad_reguladas.id', '=', $id)
+                            ->get();
+
+                        foreach ($resultado as $item => $value) {
+
+                            $lecturas[$key]['enfermedad'] = $value['enfermedad_regulada'];
+                        }
+
+                        $lecturas[$key]['mgdl'] = $data['mgdl'];
+
+                    } else {
+
+                        //***Presion Arterial***//
+                        if ($id === 2) {
+
+                            $resultado = EnfermedadRegulada::select('enfermedad_regulada')
+                                ->where('enfermedad_reguladas.id', '=', $id)
+                                ->get();
+
+                            foreach ($resultado as $item => $value) {
+
+                                $lecturas[$key]['enfermedad'] = $value['enfermedad_regulada'];
+                            }
+
+                            $lecturas[$key]['sys'] = $data['sys'];
+                            $lecturas[$key]['dia'] = $data['dia'];
+                            $lecturas[$key]['pul'] = $data['pul'];
+                        } else {
+
+                            //***Oxigeno***//
+                            if ($id === 3) {
+
+                                $resultado = EnfermedadRegulada::select('enfermedad_regulada')
+                                    ->where('enfermedad_reguladas.id', '=', $id)
+                                    ->get();
+
+                                foreach ($resultado as $item => $value) {
+
+                                    $lecturas[$key]['enfermedad'] = $value['enfermedad_regulada'];
+                                }
+
+                                $lecturas[$key]['spo'] = $data['spo'];
+                                $lecturas[$key]['prbpm'] = $data['prbpm'];
+                            }
+                        }
+                    }
+                    break;
+
+                //***Enfermedad en la visión***//
+                case 11:
+
+                    $enfermedad_vision = $data['enfermedades_vision'];
+
+                    $lista = [];
+
+                    foreach ($enfermedad_vision as $item => $value) {
+
+                        $resultado = Enfermedad::select('enfermedad')
+                            ->where('enfermedades.id', '=', $value)
+                            ->get();
+
+                        array_push($lista, $resultado);
+                    }
+
+                    $lecturas[$key]['vision'] = $lista;
+
+                    break;
+
+                //***Enfermedades gastricas***//
+                case 12:
+
+                    $enfermedades_gastricas = $data['enfermedades_gastricas'];
+
+                    $lista = [];
+
+                    foreach ($enfermedades_gastricas as $item => $value) {
+
+                        $resultado = Enfermedad::select('enfermedad')
+                            ->where('enfermedades.id', '=', $value)
+                            ->get();
+
+                        array_push($lista, $resultado);
+                    }
+
+                    $lecturas[$key]['gastricas'] = $lista;
+
+                    break;
+
+                //***Dolencias cuerpo***//
+                case 13:
+
+                    $zona = $data['zona_cuerpo_id'];
+
+                    $zonas = ZonaCuerpo::select('zona')
+                        ->where('zona_cuerpos.id', '=', $zona)
+                        ->get();
+
+                    foreach ($zonas as $item => $value) {
+
+                        $lecturas[$key]['zona'] = $value['zona'];
+                    }
+
+                    $dolencias_cuerpo = $data['dolencias_cuerpo'];
+
+                    $lista = [];
+
+                    foreach ($dolencias_cuerpo as $item => $value) {
+
+                        $resultado = Enfermedad::select('enfermedad')
+                            ->where('enfermedades.id', '=', $value)
+                            ->get();
+
+                        array_push($lista, $resultado);
+                    }
+
+                    $lecturas[$key]['dolencias'] = $lista;
+
+                    break;
+
+                //***Señales en el organismo***//
+                case 14:
+
+                    $señales = $data['señales'];
+
+                    $lista = [];
+
+                    foreach ($señales as $item => $value) {
+
+                        $resultado = Enfermedad::select('enfermedad')
+                            ->where('enfermedades.id', '=', $value)
+                            ->get();
+
+                        array_push($lista, $resultado);
+                    }
+
+                    $lecturas[$key]['señales'] = $lista;
+
+                    break;
+
+                //***Alergias***//
+                case 15:
+
+                    $alergias = $data['alergias'];
+
+                    $lista = [];
+
+                    foreach ($alergias as $item => $value) {
+
+                        $resultado = Enfermedad::select('enfermedad')
+                            ->where('enfermedades.id', '=', $value)
+                            ->get();
+
+                        array_push($lista, $resultado);
+                    }
+
+                    $lecturas[$key]['alergias'] = $lista;
+
+                    break;
+                case 16:
+
+                    $lecturas[$key]['medicamentos'] = $data['medicamentos$medicamentos'];
+
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+        }
+
+        return view('livewire.admin.usuario-informacion.estadisticas-enfermedades', ['lecturas' => $lecturas, 'usuario' => $usuario]);
+
+    }
 }

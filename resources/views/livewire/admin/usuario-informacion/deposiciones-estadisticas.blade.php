@@ -116,6 +116,10 @@
                 data-priority="1">
                 Otros
             </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="1">
+                Medicamentos
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -131,24 +135,28 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->tipo_deposicion }}
+                    @foreach ($lectura->tipo_deposicion as $item)
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="ml-1">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ $item->tipo }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->color }}
+                        </td>
+                    @endforeach
+                    @foreach ($lectura->color as $item)
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="ml-1">
+                                    <div class="text-sm font-medium text-gray-900">
+                                        {{ $item->tipo }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
+                    @endforeach
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
@@ -168,6 +176,19 @@
                                 <div class="text-sm font-medium text-gray-900">
                                     {{ $lectura->otros }}
                                 </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                @foreach ((array) $lectura->medicamentos as $key => $item)
+                                    @foreach ($item as $i)
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $i->medicamento }}
+                                        </div>
+                                    @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </td>

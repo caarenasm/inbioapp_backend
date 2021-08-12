@@ -346,7 +346,7 @@ class AdminUsuarioInformacionController extends Controller
                 case 10:
 
                     $lecturas[$key]['hora_medicion'] = $data['hora_medicion'];
-
+                    
                     $id = $data['enfermedad_regulada_id'];
 
                     //***Glucosa****//
@@ -363,6 +363,7 @@ class AdminUsuarioInformacionController extends Controller
 
                         $lecturas[$key]['mgdl'] = $data['mgdl'];
 
+                        
                     } else {
 
                         //***Presion Arterial***//

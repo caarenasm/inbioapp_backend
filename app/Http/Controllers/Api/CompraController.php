@@ -55,17 +55,26 @@ class CompraController extends Controller
 
             $user_compra = new Compra;
 
-            $user_compra_detalle = new CompraDetalle;
-
             $user_compra->productos = $request->productos;
 
-            $user_compra_detalle->user_id = $request->user_id;
-            // $user_compra_detalle->user_id = Auth::$id;
-            $user_compra_detalle->compra_id = $request->compra_id;
-            $user_compra_detalle->fecha = $request->fecha;
-            $user_compra_detalle->consecutivo = $request->consecutivo;
-
             $user_compra->save();
+        
+            foreach ($user_compra as $key => $value) {
+
+                $user_compra_detalle = new CompraDetalle;
+
+                $user_compra_detalle->user_id = $request->user_id;
+                // $user_compra_detalle->user_id = Auth::$id;
+                $user_compra_detalle->compra_id = $value->id;
+                $user_compra_detalle->fecha = now();
+
+
+                $user_compra_detalle->consecutivo = $request->consecutivo;
+                $user_compra_detalle->total_compra = $request->total_compra;
+
+                $user_compra_detalle->save();
+            }
+            
 
             DB::commit();
 

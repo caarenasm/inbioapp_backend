@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\EnfermedadAlimentoController;
 use App\Http\Controllers\api\LecturaUserController;
 use App\Http\Controllers\api\TipoLecturaController;
 use App\Http\Controllers\api\ObjetivoController;
+use App\Http\Controllers\api\CompraController;
 use Facade\FlareClient\Api;
 
 /*
@@ -69,6 +70,8 @@ Route::group([
             Route::post('tipo/lectura/users', [LecturaUserController::class, 'guardar']);
             Route::get('objetivo', [ObjetivoController::class, 'lista']);
             Route::post('objetivo/guardar', [ObjetivoController::class, 'guardar']);
+            Route::post('compra/guardar', [CompraController::class, 'user_compra']);
+            
             
         });
 });

@@ -93,32 +93,28 @@
 
 </style>
 
-<table id="glucosa" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+<table id="vision" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
     <thead>
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 data-priority="1">
-                Enfermedad Regulada
+                Fecha
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 data-priority="2">
-                Hora Medición
-            </th>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                data-priority="3">
-                Mgdl
+                Enfermedades
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach ($lecturas as $lectura)
-            @if ($lectura->tipo_lectura_id === 10 && $lectura->enfermedad == "Glucosa")
+            @if ($lectura->tipo_lectura_id === 11)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->enfermedad }}
+                                    {{ $lectura->created_at }}
                                 </div>
                             </div>
                         </div>
@@ -126,18 +122,13 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->hora_medicion }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-1">
-                                <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->mgdl }}
-                                </div>
+                                @foreach ((array) $lectura->vision as $key => $item)
+                                    @foreach ($item as $i)
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $i->enfermedad }}
+                                        </div>
+                                    @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </td>
@@ -157,7 +148,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#glucosa').DataTable({
+            var table = $('#vision').DataTable({
                     responsive: true
                 })
                 .columns.adjust()
@@ -165,4 +156,3 @@
         });
     </script>
 @endpush
- 

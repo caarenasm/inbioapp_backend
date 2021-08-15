@@ -93,7 +93,7 @@
 
 </style>
 
-<table id="glucosa" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+<table id="oxigeno" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
     <thead>
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -106,13 +106,17 @@
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 data-priority="3">
-                Mgdl
+                Spo
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                data-priority="3">
+                Prbpm
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach ($lecturas as $lectura)
-            @if ($lectura->tipo_lectura_id === 10 && $lectura->enfermedad == "Glucosa")
+            @if ($lectura->tipo_lectura_id === 10 && $lectura->enfermedad == "Oxigeno")
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
@@ -136,7 +140,16 @@
                         <div class="flex items-center">
                             <div class="ml-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    {{ $lectura->mgdl }}
+                                    {{ $lectura->spo }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <div class="ml-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    {{ $lectura->prbpm }}
                                 </div>
                             </div>
                         </div>
@@ -157,7 +170,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#glucosa').DataTable({
+            var table = $('#oxigeno').DataTable({
                     responsive: true
                 })
                 .columns.adjust()

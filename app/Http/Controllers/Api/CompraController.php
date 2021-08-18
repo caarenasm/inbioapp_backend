@@ -5,11 +5,12 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 
 //*******agregar esta linea******//
+use App\Models\Compra;
+use App\Models\CompraDetalle;
 use DB;
 use Illuminate\Http\Request;
 use Validator;
-use App\Models\Compra;
-use App\Models\CompraDetalle;
+
 //*******************************//
 
 class CompraController extends Controller
@@ -18,23 +19,17 @@ class CompraController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
             'productos' => 'required',
-            'fecha' => 'required',
-            'consecutivo' => 'required',
-            'compra_id' => 'required',
-            "total_compra" => 'required',
         ]);
 
         $data = json_decode($request->productos, true);
 
-        
         foreach ((array) $data as $key => $value) {
             $rules[$key] = [
-                'alimento_id' => 'required',
+                'producto_id' => 'required',
                 'cantidad' => 'required',
-                'valor_unitario' => 'required',
-                'valor_total' => 'required',
+                'mo_unitario' => 'required',
+                'mo_total' => 'required',
             ];
         }
 
@@ -53,28 +48,41 @@ class CompraController extends Controller
 
         try {
 
-            $user_compra = new Compra;
+            $documentos = Compra::count();
 
-            $user_compra->productos = $request->productos;
-
-            $user_compra->save();
-        
-            foreach ($user_compra as $key => $value) {
-
-                $user_compra_detalle = new CompraDetalle;
-
-                $user_compra_detalle->user_id = $request->user_id;
-                // $user_compra_detalle->user_id = Auth::$id;
-                $user_compra_detalle->compra_id = $value->id;
-                $user_compra_detalle->fecha = now();
-
-
-                $user_compra_detalle->consecutivo = $request->consecutivo;
-                $user_compra_detalle->total_compra = $request->total_compra;
-
-                $user_compra_detalle->save();
+            if ($documentos == 0) {
+                $documentos = 1;
+                $correlativo = str_pad($documentos, 5, "0", STR_PAD_LEFT );
+            } else {
+                $documentos = $documentos + 1;
+                $correlativo = str_pad($documentos, 5, "0", STR_PAD_LEFT );
             }
+
+            $user_compra = new Compra;
+            $user_compra->user_id = $request->user()->id;
+            $user_compra->nu_compra = $correlativo;
+            $user_compra->productos = $request->productos;
+            $user_compra->save();
+
+            $total = 0;
+            $compras = json_decode($request->productos, true);
             
+            foreach ($compras as $key => $value) {
+                $user_compra_detalle = new CompraDetalle;
+                $user_compra_detalle->user_id = $request->user()->id;
+                $user_compra_detalle->compra_id = $user_compra->id;
+                $user_compra_detalle->producto_id = $value['producto_id'];
+                $user_compra_detalle->cantidad = $value['cantidad'];
+                $user_compra_detalle->mo_unitario = $value['mo_unitario'];
+                $user_compra_detalle->mo_total = $value['mo_total'];
+                $user_compra_detalle->save();
+
+                $total = $total + $value['mo_total'];
+            }
+
+            $user_compra = Compra::find($user_compra->id);
+            $user_compra->total = $total;
+            $user_compra->save();
 
             DB::commit();
 
@@ -87,10 +95,10 @@ class CompraController extends Controller
 
             DB::rollback();
 
-            $response['errors']  = array('ERROR ('.$e->getCode().'):'=> $e->getMessage());
+            $response['errors'] = array('ERROR (' . $e->getCode() . '):' => $e->getMessage());
 
             return response()->json([
-            $response
+                $response,
             ], 400);
 
             return response()->json([

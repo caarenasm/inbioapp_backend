@@ -15,7 +15,16 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
+            
             $table->json('productos');
+
+            $table->foreignId('user_id')
+            ->constrained('users');
+
+            $table->double('total');
+
+            $table->string('nu_compra');
+
             $table->timestamps();
         });
     }

@@ -16,17 +16,17 @@ class CreateCompraDetallesTable extends Migration
         Schema::create('compra_detalles', function (Blueprint $table) {
             $table->id();
 
-            $table->date('fecha');
-
-            $table->string('consecutivo');
-            
-            $table->foreignId('user_id')
-            ->constrained('users');
-
             $table->foreignId('compra_id')
             ->constrained('compras');
 
-            $table->double('total_compra');
+            $table->foreignId('producto_id')
+            ->constrained('productos');
+
+            $table->integer('cantidad');
+
+            $table->double('mo_unitario');
+
+            $table->double('mo_total');
 
             $table->timestamps();
         });

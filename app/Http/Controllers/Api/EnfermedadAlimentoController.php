@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Alimento;
 use App\Models\CategoriaAlimento;
-use App\Models\EnfermedadUser;
 use App\Models\EnfermedadAlimento;
-//*******agregar esta linea******//
-use Validator;
+use App\Models\EnfermedadUser;
+use App\Models\Alimento;
 use DB;
+//*******agregar esta linea******//
+use Illuminate\Http\Request;
+use Validator;
+
 //*******************************//
 
 class EnfermedadAlimentoController extends Controller
@@ -20,10 +21,10 @@ class EnfermedadAlimentoController extends Controller
     {
         $categorias_alimentos = [];
 
-        $categorias_alimentos = CategoriaAlimento::select('categoria_alimentos.id','nombre_categoria')->get()->toArray();
+        $categorias_alimentos = CategoriaAlimento::select('categoria_alimentos.id', 'nombre_categoria')->get()->toArray();
 
         return response([
-            'data' => $categorias_alimentos
+            'data' => $categorias_alimentos,
         ]);
     }
 
@@ -32,11 +33,11 @@ class EnfermedadAlimentoController extends Controller
         $enfermedades_usuario = [];
 
         $enfermedades_usuario = EnfermedadUser::join('enfermedades', 'enfermedad_id', '=', 'enfermedades.id')
-            ->select('enfermedad_users.id','enfermedad_users.enfermedad_id','enfermedad')->where('enfermedad_users.user_id', '=', $request->User()->id)
+            ->select('enfermedad_users.id', 'enfermedad_users.enfermedad_id', 'enfermedad')->where('enfermedad_users.user_id', '=', $request->User()->id)
             ->get()->toArray();
 
         return response([
-            'data' => $enfermedades_usuario
+            'data' => $enfermedades_usuario,
         ]);
     }
 
@@ -47,14 +48,14 @@ class EnfermedadAlimentoController extends Controller
         // dd(count($arreglo_enfermedades));
         $validator = Validator::make($request->all(), [
             'enfermedad_id' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                //'message' => $validator->errors()->first(), 
+                //'message' => $validator->errors()->first(),
                 'message' => $validator->getMessageBag()->toArray(),
-                'status' => false
+                'status' => false,
             ], 500);
         }
 
@@ -76,20 +77,20 @@ class EnfermedadAlimentoController extends Controller
 
             return response()->json([
                 'message' => 'realcion creada con exito!',
-                'data' => $request->all()
+                'data' => $request->all(),
             ], 200);
         } catch (\Illuminate\Database\QueryException $e) {
 
             DB::rollback();
 
-            $response['errors']  = array('ERROR (' . $e->getCode() . '):' => $e->getMessage());
+            $response['errors'] = array('ERROR (' . $e->getCode() . '):' => $e->getMessage());
 
             return response()->json([
-                $response
+                $response,
             ], 400);
 
             return response()->json([
-                'message' => 'Error en operacion!'
+                'message' => 'Error en operacion!',
             ], 400);
         }
     }
@@ -109,7 +110,56 @@ class EnfermedadAlimentoController extends Controller
             ->toArray();
 
         return response([
-            'data' => $semaforo
+            'data' => $semaforo,
+        ]);
+    }
+
+    public function recetas_recomendadas(Request $request)
+    {
+        $lista = [];
+
+        $enfermedades_usuario = EnfermedadUser::join('enfermedades', 'enfermedad_id', '=', 'enfermedades.id')
+            ->select('enfermedades.id', 'enfermedad_users.enfermedad_id', 'enfermedad')->where('enfermedad_users.user_id', '=', $request->User()->id)
+            ->get()->toArray();
+
+        foreach ($enfermedades_usuario as $key => $value) {
+
+            $alimentos = EnfermedadAlimento::join('enfermedades', 'enfermedad_id', '=', 'enfermedades.id')
+                ->select('alimento_id', 'enfermedad_id', 'recomendacion')
+                ->where('enfermedades.id', '=', $value['enfermedad_id'])
+                ->get()->toArray();
+
+                $lista[$key] = $alimentos;
+
+        }
+
+        foreach ($lista as $key => $value) {
+            foreach ($lista[$key] as $item) {
+                if ($item['recomendacion'] === 2 && $item['recomendacion'] === 3) {
+                    return response([
+                        'data' => 'No hay data',
+                    ]);
+                } else {
+                    $recetas = Alimento::join('ingredientes','alimento_id','=','alimentos.id')
+                    ->join('recetas','recetas.id','=','ingredientes.receta_id')
+                    ->select('receta_id', 'descripcion','imagen_url')
+                    ->where('alimento_id','=',$item['alimento_id'])
+                    ->get();
+                }
+            }
+        }
+
+        $response  = [];
+
+        foreach ($recetas as $key => $value) {
+            $response[$key]['receta_id'] = $value['receta_id'];
+            $response[$key]['descripcion'] = $value['descripcion'];
+            $response[$key]['imagen_url'] = asset('imagenes/objetivos/' . $value['imagen_url']);
+        }
+
+        return response([
+            'data' => $response,
+            'status' => true
         ]);
     }
 }

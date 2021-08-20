@@ -21,7 +21,6 @@ class Ingredientes extends Migration
             
             $table->foreignId('alimento_id')
             ->constrained('alimentos');
-            
 
             $table->foreignId('receta_id')->nullable()
             ->constrained('recetas')

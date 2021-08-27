@@ -75,9 +75,9 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{$producto->price}}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{$producto->variantes()->count()}}
-                                    </td>
+                                    </td> --}}
                                     <td class="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <x-html.link text="Editar" href="{{ route('producto.edit', $producto) }}"
                                                      isButton="true"/>

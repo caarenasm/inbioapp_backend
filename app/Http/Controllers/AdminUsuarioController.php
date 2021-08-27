@@ -15,7 +15,7 @@ class AdminUsuarioController extends Controller
      */
     public function index()
     {
-        $users = User::role(['Administrador', 'Editor'])->get();
+        $users = User::role(['Administrador', 'Editor','Coach Nutrición', 'Coach Huertas'])->get();
         return view('livewire.admin.usuarios.usuarios', ['users' => $users]);
     }
 

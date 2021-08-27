@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoriasProducto;
+use App\Models\Resolucion;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Support\Str;
-use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminProductCategoryController extends Controller
 {
@@ -20,7 +21,9 @@ class AdminProductCategoryController extends Controller
     {
         $category = new CategoriasProducto();
         $caterories = CategoriasProducto::orderBy('name', 'ASC')->get();
-        return view('livewire.admin.product.categories', ['categories'=>$caterories, 'category' => $category]);
+
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.product.categories', ['categories' => $caterories, 'category' => $category, 'resoluciones' => $resoluciones]);
     }
 
     /**
@@ -52,18 +55,50 @@ class AdminProductCategoryController extends Controller
         //     $url = Storage::putFile('banner-categorias', $request->file('imagen'));
         // }
 
-
         $category = new CategoriasProducto();
         $category->name = $request->name;
         $category->slug = $request->slug;
+        $category->dimension = $request->dimension;
 
-        if ($request->hasFile('imagen')){
-            $file           = $request->file("imagen");
-            $nombrearchivo  = $file->getClientOriginalName();
-            $extension= File::extension(basename($file->getClientOriginalName()));
-            $nombre_archivo = Str::random(30).'.'.$extension;
-            $file->move(public_path("imagenes/categorias_productos/"),$nombre_archivo);
-            $category->imagen      = $nombre_archivo;
+        $resolucion = $request->dimension;
+
+        if ($request->hasFile('imagen')) {
+            $file = $request->file("imagen");
+            $nombrearchivo = $file->getClientOriginalName();
+            $extension = File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30) . '.' . $extension;
+
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(320, 240)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(640, 480)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(854, 480)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(800, 600)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(1024, 576)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(1024, 768)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+            $category->imagen = $nombre_archivo;
         }
 
         // $category->url = $url;
@@ -89,8 +124,10 @@ class AdminProductCategoryController extends Controller
      */
     public function edit(CategoriasProducto $category)
     {
+        $resoluciones = Resolucion::all();
         $caterories = CategoriasProducto::orderBy('name', 'ASC')->get();
-        return view('livewire.admin.product.categories', ['categories'=>$caterories, 'category' => $category]);
+
+        return view('livewire.admin.product.categories', ['categories' => $caterories, 'category' => $category, 'resoluciones' => $resoluciones]);
     }
 
     /**
@@ -105,8 +142,9 @@ class AdminProductCategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'slug' => 'required|unique:categorias_productos,slug,' . $category->id,
-            'imagen' => 'image'
+            'imagen' => 'image',
         ]);
+
         // if($request->file()){
         //     Storage::delete($category->url);
         //     $url = Storage::putFile('banner-categorias', $request->file('imagen'));
@@ -115,17 +153,51 @@ class AdminProductCategoryController extends Controller
 
         $category->name = $request->name;
         $category->slug = $request->slug;
+        $category->dimension = $request->dimension;
 
-        if ($request->hasFile('imagen')){
-            $file           = $request->file("imagen");
-            $nombrearchivo  = $file->getClientOriginalName();
-            $extension= File::extension(basename($file->getClientOriginalName()));
-            $nombre_archivo = Str::random(30).'.'.$extension;
-            $file->move(public_path("imagenes/categorias_productos/"),$nombre_archivo);
-            $category->imagen      = $nombre_archivo;
+        $resolucion = $request->dimension;
+
+        if ($request->hasFile('imagen')) {
+            $file = $request->file("imagen");
+            $nombrearchivo = $file->getClientOriginalName();
+            $extension = File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30) . '.' . $extension;
+
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("imagen"))->resize(320, 240)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("imagen"))->resize(640, 480)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("imagen"))->resize(854, 480)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("imagen"))->resize(800, 600)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("imagen"))->resize(1024, 576)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("imagen"))->resize(1024, 768)
+                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+            $category->imagen = $nombre_archivo;
         }
-        
+
         $category->save();
+
         return redirect()->route('product-category');
     }
 

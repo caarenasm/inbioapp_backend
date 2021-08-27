@@ -6,6 +6,9 @@ use App\Models\CategoriasProducto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Str;
+use File;
+
 class AdminProductCategoryController extends Controller
 {
     /**
@@ -38,20 +41,32 @@ class AdminProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:categorias_productos',
-            'imagen' => 'image'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'slug' => 'required|unique:categorias_productos',
+        //     'imagen' => 'image'
+        // ]);
 
-        $url = '';
-        if($request->file('imagen')){
-            $url = Storage::putFile('banner-categorias', $request->file('imagen'));
-        }
+        // $url = '';
+        // if($request->file('imagen')){
+        //     $url = Storage::putFile('banner-categorias', $request->file('imagen'));
+        // }
+
+
         $category = new CategoriasProducto();
         $category->name = $request->name;
         $category->slug = $request->slug;
-        $category->url = $url;
+
+        if ($request->hasFile('imagen')){
+            $file           = $request->file("imagen");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            $file->move(public_path("imagenes/categorias_productos/"),$nombre_archivo);
+            $category->imagen      = $nombre_archivo;
+        }
+
+        // $category->url = $url;
         $category->save();
         return redirect()->route('product-category');
     }
@@ -92,13 +107,24 @@ class AdminProductCategoryController extends Controller
             'slug' => 'required|unique:categorias_productos,slug,' . $category->id,
             'imagen' => 'image'
         ]);
-        if($request->file()){
-            Storage::delete($category->url);
-            $url = Storage::putFile('banner-categorias', $request->file('imagen'));
-            $category->url = $url;
-        }
+        // if($request->file()){
+        //     Storage::delete($category->url);
+        //     $url = Storage::putFile('banner-categorias', $request->file('imagen'));
+        //     $category->url = $url;
+        // }
+
         $category->name = $request->name;
         $category->slug = $request->slug;
+
+        if ($request->hasFile('imagen')){
+            $file           = $request->file("imagen");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            $file->move(public_path("imagenes/categorias_productos/"),$nombre_archivo);
+            $category->imagen      = $nombre_archivo;
+        }
+        
         $category->save();
         return redirect()->route('product-category');
     }

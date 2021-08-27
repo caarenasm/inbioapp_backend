@@ -35,6 +35,16 @@
     <small class="text-red-500">* {{$message}}</small>
     @enderror
 </div> --}}
+<div class="w-1/2 mb-3">
+    <p class="block font-bold text-gray-700">Elijé la resolución para la imagen</p>
+    <select wire:model="selectedState" class="form-control" id="dimension" name="dimension" required>
+        <option value="" selected>Escoge la resolución</option>
+        @foreach ($resoluciones as $dimension)
+            <option value="{{$dimension->id}}" @if(old('dimension') == $dimension->id || $dimension->id == $category->dimension) selected @endif> {{ $dimension->resolucion }}</option>
+        @endforeach
+    </select>
+    <small class="text-red-500"></small>
+</div>
 
 <div class="grid grid-cols-2 gap-4 mb-3">
     <div class="col">
@@ -54,8 +64,8 @@
     <div class="col">
         <div class="form-group">
             <div class="label" name="imagen">Selecciona la imagen</div>
-            <input type="file" name="imagen" id="imagen" class="form-control-file"
-                value="{{ old('imagen', $category->imagen) }}">
+            <input type="file" name="imagen" id="imagen" class="form-control-file" accept="image/png, .jpeg, .jpg, image/gif"
+                value="{{asset('./imagenes/categorias_productos/' . old('imagen', $category->imagen))}}">
         </div>
     </div>
 </div>

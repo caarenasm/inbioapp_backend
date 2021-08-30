@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminProductRequest;
 use App\Models\CategoriasProducto;
-use App\Models\Imagenes;
+use App\Models\Resolucion;
 use App\Models\Productos;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +21,8 @@ class AdminProductosController extends Controller
     public function index()
     {
         $productos = Productos::orderBy('created_at', 'desc')->paginate(10);
-        return view('livewire.admin.product.index', ['productos' => $productos]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.product.index', ['productos' => $productos,'resoluciones' => $resoluciones]);
     }
 
     /**
@@ -33,8 +34,8 @@ class AdminProductosController extends Controller
     {
         $producto = new Productos();
         $categories = CategoriasProducto::orderBy('name', 'asc')->get();
-
-        return view('livewire.admin.product.nuevo', compact('categories', 'producto'));
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.product.nuevo', compact('categories', 'producto','resoluciones'));
     }
 
     /**
@@ -55,6 +56,7 @@ class AdminProductosController extends Controller
         $producto->price = $request->price;
         $producto->weight = $request->weight;
         $producto->published = $request->published;
+        $producto->resolucion = $request->resolucion;
         
 
         // $orden = 0;
@@ -98,8 +100,10 @@ class AdminProductosController extends Controller
         $categories = CategoriasProducto::orderBy('name', 'asc')->get();
         // $imagenes = $producto->imagenes()->orderBy('orden')->get();
 
+        $resoluciones = Resolucion::all();
+
         // return view('livewire.admin.product.edit', compact('categories', 'producto', 'imagenes'));
-        return view('livewire.admin.product.edit', compact('categories', 'producto'));
+        return view('livewire.admin.product.edit', compact('categories', 'producto','resoluciones'));
     }
 
     /**
@@ -119,6 +123,7 @@ class AdminProductosController extends Controller
         $producto->price = $request->price;
         $producto->weight = $request->weight;
         $producto->published = $request->published;
+        $producto->resolucion = $request->resolucion;
 
         if ($request->hasFile('imagenes')){
             $file           = $request->file("imagenes");

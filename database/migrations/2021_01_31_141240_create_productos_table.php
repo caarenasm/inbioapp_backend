@@ -23,6 +23,8 @@ class CreateProductosTable extends Migration
             $table->double('price', 10, 2)->nullable()->default(0);
             $table->double('weight', 10, 2)->nullable()->default(0);
             $table->boolean('published')->default(0);
+            $table->string('imagenes', 100);
+            $table->integer('resolucion');
 
             $table->timestamps();
         });

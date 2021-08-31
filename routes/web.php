@@ -61,155 +61,182 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     
     Route::get('/', AdminEscritorioController::class)->name('escritorio');
 
-    Route::get('/usuarios/{user}/editar', [AdminUsuarioController::class, 'edit'])->name('usuarios.edit');
-    Route::get('/usuarios', [AdminUsuarioController::class, 'index'])->name('usuarios');
-    Route::get('/usuarios/crear', [AdminUsuarioController::class, 'create'])->name('usuarios.create');
-    Route::post('/usuarios', [AdminUsuarioController::class, 'store'])->name('usuarios.store');
-    Route::put('/usuarios/{user}', [AdminUsuarioController::class, 'update'])->name('usuarios.update');
-    Route::delete('/usuarios/{user}/eliminar', [AdminUsuarioController::class, 'destroy'])->name('usuarios.delete');
+    Route::get('/usuarios/{user}/editar', [AdminUsuarioController::class, 'edit'])->middleware('can:editar_admin_editor')->name('usuarios.edit');
+    Route::get('/usuarios', [AdminUsuarioController::class, 'index'])->middleware('can:editar_admin_editor')->name('usuarios');
+    Route::get('/usuarios/crear', [AdminUsuarioController::class, 'create'])->middleware('can:admin')->name('usuarios.create');
+    Route::post('/usuarios', [AdminUsuarioController::class, 'store'])->middleware('can:admin')->name('usuarios.store');
+    Route::put('/usuarios/{user}', [AdminUsuarioController::class, 'update'])->middleware('can:admin')->name('usuarios.update');
+    Route::delete('/usuarios/{user}/eliminar', [AdminUsuarioController::class, 'destroy'])->middleware('can:admin')->name('usuarios.delete');
 
-    Route::get('/blog/{blog}/editar', [AdminBlogController::class, 'edit'])->name('blog.edit');
-    Route::get('/blog', [AdminBlogController::class, 'index'])->name('blog');
-    Route::get('/blog/crear', [AdminBlogController::class, 'create'])->name('blog.create');
-    Route::post('/blog', [AdminBlogController::class, 'store'])->name('blog.store');
-    Route::put('/blog/{blog}', [AdminBlogController::class, 'update'])->name('blog.update');
-    Route::delete('/blog/{blog}/eliminar', [AdminBlogController::class, 'destroy'])->name('blog.delete');
+    Route::get('/blog/{blog}/editar', [AdminBlogController::class, 'edit'])->middleware('can:editar_admin_editor')->name('blog.edit');
+    Route::get('/blog', [AdminBlogController::class, 'index'])->middleware('can:editar_admin_editor')->name('blog');
+    Route::get('/blog/crear', [AdminBlogController::class, 'create'])->middleware('can:admin')->name('blog.create');
+    Route::post('/blog', [AdminBlogController::class, 'store'])->middleware('can:admin')->name('blog.store');
+    Route::put('/blog/{blog}', [AdminBlogController::class, 'update'])->middleware('can:admin')->name('blog.update');
+    Route::delete('/blog/{blog}/eliminar', [AdminBlogController::class, 'destroy'])->middleware('can:admin')->name('blog.delete');
 
-    Route::get('/blog-category', [AdminBlogCategoryController::class, 'index'])->name('blog-category');
-    Route::post('/blog-category', [AdminBlogCategoryController::class, 'store'])->name('blog-category.store');
-    Route::get('/blog-category/{category}/editar', [AdminBlogCategoryController::class, 'edit'])->name('blog-category.edit');
-    Route::put('/blog-category/{category}', [AdminBlogCategoryController::class, 'update'])->name('blog-category.update');
-    Route::delete('/blog-category/{category}/eliminar', [AdminBlogCategoryController::class, 'destroy'])->name('blog-category.delete');
+    Route::get('/blog-category', [AdminBlogCategoryController::class, 'index'])->middleware('can:editar_admin_editor')->name('blog-category');
+    Route::post('/blog-category', [AdminBlogCategoryController::class, 'store'])->middleware('can:admin')->name('blog-category.store');
+    Route::get('/blog-category/{category}/editar', [AdminBlogCategoryController::class, 'edit'])->middleware('can:editar_admin_editor')->name('blog-category.edit');
+    Route::put('/blog-category/{category}', [AdminBlogCategoryController::class, 'update'])->middleware('can:admin')->name('blog-category.update');
+    Route::delete('/blog-category/{category}/eliminar', [AdminBlogCategoryController::class, 'destroy'])->middleware('can:admin')->name('blog-category.delete');
 
-    Route::get('/product-category', [AdminProductCategoryController::class, 'index'])->name('product-category');
-    Route::post('/product-category', [AdminProductCategoryController::class, 'store'])->name('product-category.store');
-    Route::get('/product-category/{category}/editar', [AdminProductCategoryController::class, 'edit'])->name('product-category.edit');
-    Route::put('/product-category/{category}', [AdminProductCategoryController::class, 'update'])->name('product-category.update');
-    Route::delete('/product-category/{category}/eliminar', [AdminProductCategoryController::class, 'destroy'])->name('product-category.delete');
+    Route::get('/product-category', [AdminProductCategoryController::class, 'index'])->middleware('can:editar_admin_editor')->name('product-category');
+    Route::post('/product-category', [AdminProductCategoryController::class, 'store'])->middleware('can:admin')->name('product-category.store');
+    Route::get('/product-category/{category}/editar', [AdminProductCategoryController::class, 'edit'])->middleware('can:editar_admin_editor')->name('product-category.edit');
+    Route::put('/product-category/{category}', [AdminProductCategoryController::class, 'update'])->middleware('can:admin')->name('product-category.update');
+    Route::delete('/product-category/{category}/eliminar', [AdminProductCategoryController::class, 'destroy'])->middleware('can:admin')->name('product-category.delete');
 
-    Route::get('/productos/{producto}/editar', [AdminProductosController::class, 'edit'])->name('producto.edit');
-    Route::get('/productos', [AdminProductosController::class, 'index'])->name('producto');
-    Route::get('/productos/crear', [AdminProductosController::class, 'create'])->name('producto.create');
-    Route::post('/productos', [AdminProductosController::class, 'store'])->name('producto.store');
-    Route::put('/productos/{producto}', [AdminProductosController::class, 'update'])->name('producto.update');
-    Route::delete('/productos/{producto}/eliminar', [AdminProductosController::class, 'destroy'])->name('producto.delete');
+    Route::get('/productos/{producto}/editar', [AdminProductosController::class, 'edit'])->middleware('can:editar_admin_editor')->name('producto.edit');
+    Route::get('/productos', [AdminProductosController::class, 'index'])->middleware('can:editar_admin_editor')->name('producto');
+    Route::get('/productos/crear', [AdminProductosController::class, 'create'])->middleware('can:admin')->name('producto.create');
+    Route::post('/productos', [AdminProductosController::class, 'store'])->middleware('can:admin')->name('producto.store');
+    Route::put('/productos/{producto}', [AdminProductosController::class, 'update'])->middleware('can:admin')->name('producto.update');
+    Route::delete('/productos/{producto}/eliminar', [AdminProductosController::class, 'destroy'])->middleware('can:admin')->name('producto.delete');
 
-    Route::get('/envio-pais', [AdminEnvioPaisController::class, 'index'])->name('envio-pais');
-    Route::post('/envio-pais', [AdminEnvioPaisController::class, 'store'])->name('envio-pais.store');
-    Route::get('/envio-pais/{pais}/editar', [AdminEnvioPaisController::class, 'edit'])->name('envio-pais.edit');
-    Route::put('/envio-pais/{pais}', [AdminEnvioPaisController::class, 'update'])->name('envio-pais.update');
-    Route::delete('/envio-pais/{pais}/eliminar', [AdminEnvioPaisController::class, 'destroy'])->name('envio-pais.delete');
+    Route::get('/envio-pais', [AdminEnvioPaisController::class, 'index'])->middleware('can:editar_admin_editor')->name('envio-pais');
+    Route::post('/envio-pais', [AdminEnvioPaisController::class, 'store'])->middleware('can:admin')->name('envio-pais.store');
+    Route::get('/envio-pais/{pais}/editar', [AdminEnvioPaisController::class, 'edit'])->middleware('can:editar_admin_editor')->name('envio-pais.edit');
+    Route::put('/envio-pais/{pais}', [AdminEnvioPaisController::class, 'update'])->middleware('can:admin')->name('envio-pais.update');
+    Route::delete('/envio-pais/{pais}/eliminar', [AdminEnvioPaisController::class, 'destroy'])->middleware('can:admin')->name('envio-pais.delete');
 
-    Route::get('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'index'])->name('categoria-alimentos');
-    Route::get('/categoria-alimentos/crear', [AdminCategoriaAlimentosController::class, 'create'])->name('categoria-alimentos.create');
-    Route::post('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'store'])->name('categoria-alimentos.store');
-    Route::get('/categoria-alimentos/{category_food}/editar', [AdminCategoriaAlimentosController::class, 'edit'])->name('categoria-alimentos.edit');
-    Route::put('/categoria-alimentos/{category_food}', [AdminCategoriaAlimentosController::class, 'update'])->name('categoria-alimentos.update');
-    Route::delete('/categoria-alimentos/{category_food}/eliminar', [AdminCategoriaAlimentosController::class, 'destroy'])->name('categoria-alimentos.delete');
+    Route::get('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'index'])->middleware('can:editar_admin_editor')->name('categoria-alimentos');
+    Route::get('/categoria-alimentos/crear', [AdminCategoriaAlimentosController::class, 'create'])->middleware('can:admin')->name('categoria-alimentos.create');
+    Route::post('/categoria-alimentos', [AdminCategoriaAlimentosController::class, 'store'])->middleware('can:admin')->name('categoria-alimentos.store');
+    Route::get('/categoria-alimentos/{category_food}/editar', [AdminCategoriaAlimentosController::class, 'edit'])->middleware('can:editar_admin_editor')->name('categoria-alimentos.edit');
+    Route::put('/categoria-alimentos/{category_food}', [AdminCategoriaAlimentosController::class, 'update'])->middleware('can:admin')->name('categoria-alimentos.update');
+    Route::delete('/categoria-alimentos/{category_food}/eliminar', [AdminCategoriaAlimentosController::class, 'destroy'])->middleware('can:admin')->name('categoria-alimentos.delete');
 
-    Route::get('/alimentos', [AdminAlimentosController::class,'index'])->name('alimentos');
-    Route::get('/alimentos/crear', [AdminAlimentosController::class, 'create'])->name('alimentos.create');
-    Route::post('/alimentos', [AdminAlimentosController::class, 'store'])->name('alimentos.store');
-    Route::get('/alimentos/{food}/editar', [AdminAlimentosController::class, 'edit'])->name('alimentos.edit');
-    Route::put('/alimentos/{food}', [AdminAlimentosController::class, 'update'])->name('alimentos.update');
-    Route::delete('/alimentos/{food}/eliminar', [AdminAlimentosController::class, 'destroy'])->name('alimentos.delete');
+    Route::get('/alimentos', [AdminAlimentosController::class,'index'])->middleware('can:editar_admin_editor')->name('alimentos');
+    Route::get('/alimentos/crear', [AdminAlimentosController::class, 'create'])->middleware('can:admin')->name('alimentos.create');
+    Route::post('/alimentos', [AdminAlimentosController::class, 'store'])->middleware('can:admin')->name('alimentos.store');
+    Route::get('/alimentos/{food}/editar', [AdminAlimentosController::class, 'edit'])->middleware('can:editar_admin_editor')->name('alimentos.edit');
+    Route::put('/alimentos/{food}', [AdminAlimentosController::class, 'update'])->middleware('can:admin')->name('alimentos.update');
+    Route::delete('/alimentos/{food}/eliminar', [AdminAlimentosController::class, 'destroy'])->middleware('can:admin')->name('alimentos.delete');
 
-    Route::get('/planes', [AdminPlanController::class,'index'])->name('planes');
-    Route::get('/planes/crear', [AdminPlanController::class, 'create'])->name('planes.create');
-    Route::post('/planes', [AdminPlanController::class, 'store'])->name('planes.store');
-    Route::get('/planes/{plan}/editar', [AdminPlanController::class, 'edit'])->name('planes.edit');
-    Route::put('/planes/{plan}', [AdminPlanController::class, 'update'])->name('planes.update');
-    Route::delete('/planes/{plan}/eliminar', [AdminPlanController::class, 'destroy'])->name('planes.delete');
+    Route::get('/planes', [AdminPlanController::class,'index'])->middleware('can:editar_admin_editor')->name('planes');
+    Route::get('/planes/crear', [AdminPlanController::class, 'create'])->middleware('can:admin')->name('planes.create');
+    Route::post('/planes', [AdminPlanController::class, 'store'])->middleware('can:admin')->name('planes.store');
+    Route::get('/planes/{plan}/editar', [AdminPlanController::class, 'edit'])->middleware('can:editar_admin_editor')->name('planes.edit');
+    Route::put('/planes/{plan}', [AdminPlanController::class, 'update'])->middleware('can:admin')->name('planes.update');
+    Route::delete('/planes/{plan}/eliminar', [AdminPlanController::class, 'destroy'])->middleware('can:admin')->name('planes.delete');
 
-    Route::get('/mis-planes', [AdminPlanUserController::class,'index'])->name('mis-planes');
-    Route::get('/asignar-mis-planes', [AdminPlanUserController::class,'index'])->name('asignar-mis-planes');
+    Route::get('/mis-planes', [AdminPlanUserController::class,'index'])->middleware('can:editar_admin_editor')->name('mis-planes');
+    Route::get('/asignar-mis-planes', [AdminPlanUserController::class,'index'])->middleware('can:editar_admin_editor')->name('asignar-mis-planes');
 
-    Route::get('/preguntas', [AdminPreguntaController::class,'index'])->name('preguntas');
-    Route::post('/preguntas', [AdminPreguntaController::class, 'store'])->name('preguntas.store');
-    Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->name('preguntas.edit');
-    Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->name('preguntas.update');
-    Route::delete('/preguntas/{pregunta}/eliminar', [AdminPreguntaController::class, 'destroy'])->name('preguntas.delete');
+    Route::get('/preguntas', [AdminPreguntaController::class,'index'])->middleware('can:editar_admin_editor')->name('preguntas');
+    Route::post('/preguntas', [AdminPreguntaController::class, 'store'])->middleware('can:admin')->name('preguntas.store');
+    Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->middleware('can:editar_admin_editor')->name('preguntas.edit');
+    Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->middleware('can:admin')->name('preguntas.update');
+    Route::delete('/preguntas/{pregunta}/eliminar', [AdminPreguntaController::class, 'destroy'])->middleware('can:admin')->name('preguntas.delete');
 
-    Route::get('/recetas', [AdminRecetaController::class,'index'])->name('recetas');
-    Route::get('/recetas/crear', [AdminRecetaController::class, 'create'])->name('recetas.create');
-    Route::post('/recetas', [AdminRecetaController::class, 'store'])->name('recetas.store');
-    Route::get('/recetas/{receta}/editar', [AdminRecetaController::class, 'edit'])->name('recetas.edit');
-    Route::put('/recetas/{receta}', [AdminRecetaController::class, 'update'])->name('recetas.update');
-    Route::delete('/recetas/{receta}/eliminar', [AdminRecetaController::class, 'destroy'])->name('recetas.delete');
+    Route::get('/recetas', [AdminRecetaController::class,'index'])->middleware('can:editar_admin_editor')->name('recetas');
+    Route::get('/recetas/crear', [AdminRecetaController::class, 'create'])->middleware('can:admin')->name('recetas.create');
+    Route::post('/recetas', [AdminRecetaController::class, 'store'])->middleware('can:admin')->name('recetas.store');
+    Route::get('/recetas/{receta}/editar', [AdminRecetaController::class, 'edit'])->middleware('can:editar_admin_editor')->name('recetas.edit');
+    Route::put('/recetas/{receta}', [AdminRecetaController::class, 'update'])->middleware('can:admin')->name('recetas.update');
+    Route::delete('/recetas/{receta}/eliminar', [AdminRecetaController::class, 'destroy'])->middleware('can:admin')->name('recetas.delete');
 
-    Route::get('/ingredientes/{receta}/index', [AdminIngredientesController::class,'index'])->name('ingredientes.index');
-    Route::post('/ingredientes', [AdminIngredientesController::class, 'store'])->name('ingredientes.store');
-    Route::get('/ingredientes/{ingrediente}/editar', [AdminIngredientesController::class, 'edit'])->name('ingredientes.edit');
-    Route::put('/ingredientes/{ingrediente}', [AdminIngredientesController::class, 'update'])->name('ingredientes.update');
-    Route::delete('/ingredientes/{ingrediente}/eliminar', [AdminIngredientesController::class, 'destroy'])->name('ingredientes.delete');
+    Route::get('/ingredientes/{receta}/index', [AdminIngredientesController::class,'index'])->middleware('can:editar_admin_editor')->name('ingredientes.index');
+    Route::post('/ingredientes', [AdminIngredientesController::class, 'store'])->middleware('can:admin')->name('ingredientes.store');
+    Route::get('/ingredientes/{ingrediente}/editar', [AdminIngredientesController::class, 'edit'])->middleware('can:editar_admin_editor')->name('ingredientes.edit');
+    Route::put('/ingredientes/{ingrediente}', [AdminIngredientesController::class, 'update'])->middleware('can:admin')->name('ingredientes.update');
+    Route::delete('/ingredientes/{ingrediente}/eliminar', [AdminIngredientesController::class, 'destroy'])->middleware('can:admin')->name('ingredientes.delete');
 
-    Route::get('/respuestas/{pregunta}/index', [AdminRespuestasController::class,'index'])->name('respuestas.index');
-    Route::post('/respuestas', [AdminRespuestasController::class, 'store'])->name('respuestas.store');
-    Route::get('/respuestas/{respuesta}/editar', [AdminRespuestasController::class, 'edit'])->name('respuestas.edit');
-    Route::put('/respuestas/{respuesta}', [AdminRespuestasController::class, 'update'])->name('respuestas.update');
-    Route::delete('/respuestas/{respuesta}/eliminar', [AdminRespuestasController::class, 'destroy'])->name('respuestas.delete');
+    Route::get('/respuestas/{pregunta}/index', [AdminRespuestasController::class,'index'])->middleware('can:editar_admin_editor')->name('respuestas.index');
+    Route::post('/respuestas', [AdminRespuestasController::class, 'store'])->middleware('can:admin')->name('respuestas.store');
+    Route::get('/respuestas/{respuesta}/editar', [AdminRespuestasController::class, 'edit'])->middleware('can:editar_admin_editor')->name('respuestas.edit');
+    Route::put('/respuestas/{respuesta}', [AdminRespuestasController::class, 'update'])->middleware('can:admin')->name('respuestas.update');
+    Route::delete('/respuestas/{respuesta}/eliminar', [AdminRespuestasController::class, 'destroy'])->middleware('can:admin')->name('respuestas.delete');
 
-    Route::get('/tipos-enfermedades/index', [AdminTipoEnfermedadController::class,'index'])->name('tipos-enfermedades.index');
-    Route::post('/tipos-enfermedades', [AdminTipoEnfermedadController::class, 'store'])->name('tipos-enfermedades.store');
-    Route::get('/tipos-enfermedades/{tipo_enfermedad}/editar', [AdminTipoEnfermedadController::class, 'edit'])->name('tipos-enfermedades.edit');
-    Route::put('/tipos-enfermedades/{tipo_enfermedad}', [AdminTipoEnfermedadController::class, 'update'])->name('tipos-enfermedades.update');
-    Route::delete('/tipos-enfermedades/{tipo_enfermedad}/eliminar', [AdminTipoEnfermedadController::class, 'destroy'])->name('tipos-enfermedades.delete');
+    Route::get('/tipos-enfermedades/index', [AdminTipoEnfermedadController::class,'index'])->middleware('can:editar_admin_editor')->name('tipos-enfermedades.index');
+    Route::post('/tipos-enfermedades', [AdminTipoEnfermedadController::class, 'store'])->middleware('can:admin')->name('tipos-enfermedades.store');
+    Route::get('/tipos-enfermedades/{tipo_enfermedad}/editar', [AdminTipoEnfermedadController::class, 'edit'])->middleware('can:editar_admin_editor')->name('tipos-enfermedades.edit');
+    Route::put('/tipos-enfermedades/{tipo_enfermedad}', [AdminTipoEnfermedadController::class, 'update'])->middleware('can:admin')->name('tipos-enfermedades.update');
+    Route::delete('/tipos-enfermedades/{tipo_enfermedad}/eliminar', [AdminTipoEnfermedadController::class, 'destroy'])->middleware('can:admin')->name('tipos-enfermedades.delete');
 
-    Route::get('/enfermedades/index', [AdminEnfermedadController::class,'index'])->name('enfermedades.index');
-    Route::post('/enfermedades', [AdminEnfermedadController::class, 'store'])->name('enfermedades.store');
-    Route::get('/enfermedades/{enfermedad}/editar', [AdminEnfermedadController::class, 'edit'])->name('enfermedades.edit');
-    Route::put('/enfermedades/{enfermedad}', [AdminEnfermedadController::class, 'update'])->name('enfermedades.update');
-    Route::delete('/enfermedades/{enfermedad}/eliminar', [AdminEnfermedadController::class, 'destroy'])->name('enfermedades.delete');
+    Route::get('/enfermedades/index', [AdminEnfermedadController::class,'index'])->middleware('can:editar_admin_editor')->name('enfermedades.index');
+    Route::post('/enfermedades', [AdminEnfermedadController::class, 'store'])->middleware('can:admin')->name('enfermedades.store');
+    Route::get('/enfermedades/{enfermedad}/editar', [AdminEnfermedadController::class, 'edit'])->middleware('can:editar_admin_editor')->name('enfermedades.edit');
+    Route::put('/enfermedades/{enfermedad}', [AdminEnfermedadController::class, 'update'])->middleware('can:admin')->name('enfermedades.update');
+    Route::delete('/enfermedades/{enfermedad}/eliminar', [AdminEnfermedadController::class, 'destroy'])->middleware('can:admin')->name('enfermedades.delete');
 
-    Route::get('/semaforos-estados/index', [AdminSemaforoEstadoController::class,'index'])->name('semaforos-estados.index');
-    Route::post('/semaforos-estados', [AdminSemaforoEstadoController::class, 'store'])->name('semaforos-estados.store');
-    Route::get('/semaforos-estados/{semaforo_estado}/editar', [AdminSemaforoEstadoController::class, 'edit'])->name('semaforos-estados.edit');
-    Route::put('/semaforos-estados/{semaforo_estado}', [AdminSemaforoEstadoController::class, 'update'])->name('semaforos-estados.update');
-    Route::delete('/semaforos-estados/{semaforo_estado}/eliminar', [AdminSemaforoEstadoController::class, 'destroy'])->name('semaforos-estados.delete');
+    Route::get('/semaforos-estados/index', [AdminSemaforoEstadoController::class,'index'])->middleware('can:editar_admin_editor')->name('semaforos-estados.index');
+    Route::post('/semaforos-estados', [AdminSemaforoEstadoController::class, 'store'])->middleware('can:admin')->name('semaforos-estados.store');
+    Route::get('/semaforos-estados/{semaforo_estado}/editar', [AdminSemaforoEstadoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('semaforos-estados.edit');
+    Route::put('/semaforos-estados/{semaforo_estado}', [AdminSemaforoEstadoController::class, 'update'])->middleware('can:admin')->name('semaforos-estados.update');
+    Route::delete('/semaforos-estados/{semaforo_estado}/eliminar', [AdminSemaforoEstadoController::class, 'destroy'])->middleware('can:admin')->name('semaforos-estados.delete');
 
-    Route::get('/enfermedades-alimentos/{enfermedad}/index', [AdminEnfermedadAlimentoController::class,'index'])->name('enfermedades-alimentos.index');
-    Route::post('/enfermedades-alimentos/crear', [AdminEnfermedadAlimentoController::class, 'store'])->name('enfermedades-alimentos.store');
-    Route::get('/enfermedades-alimentos/{enfermedad_alimento}/editar', [AdminEnfermedadAlimentoController::class, 'edit'])->name('enfermedades-alimentos.edit');
-    Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->name('enfermedades-alimentos.update');
-    Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->name('enfermedades-alimentos.delete');
+    Route::get('/enfermedades-alimentos/{enfermedad}/index', [AdminEnfermedadAlimentoController::class,'index'])->middleware('can:editar_admin_editor')->name('enfermedades-alimentos.index');
+    Route::post('/enfermedades-alimentos/crear', [AdminEnfermedadAlimentoController::class, 'store'])->middleware('can:admin')->name('enfermedades-alimentos.store');
+    Route::get('/enfermedades-alimentos/{enfermedad_alimento}/editar', [AdminEnfermedadAlimentoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('enfermedades-alimentos.edit');
+    Route::put('/enfermedades-alimentos/{enfermedad_alimento}', [AdminEnfermedadAlimentoController::class, 'update'])->middleware('can:admin')->name('enfermedades-alimentos.update');
+    Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->middleware('can:admin')->name('enfermedades-alimentos.delete');
 
-    Route::get('/objetivos/index', [AdminObjetivoController::class,'index'])->name('objetivos');
-    Route::post('/objetivos', [AdminObjetivoController::class, 'store'])->name('objetivos.store');
-    Route::get('/objetivos/{objetivo}/editar', [AdminObjetivoController::class, 'edit'])->name('objetivos.edit');
-    Route::put('/objetivos/{objetivo}', [AdminObjetivoController::class, 'update'])->name('objetivos.update');
-    Route::delete('/objetivos/{objetivo}/eliminar', [AdminObjetivoController::class, 'destroy'])->name('objetivos.delete');
+    Route::get('/objetivos/index', [AdminObjetivoController::class,'index'])->middleware('can:editar_admin_editor')->name('objetivos');
+    Route::post('/objetivos', [AdminObjetivoController::class, 'store'])->middleware('can:admin')->name('objetivos.store');
+    Route::get('/objetivos/{objetivo}/editar', [AdminObjetivoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('objetivos.edit');
+    Route::put('/objetivos/{objetivo}', [AdminObjetivoController::class, 'update'])->middleware('can:admin')->name('objetivos.update');
+    Route::delete('/objetivos/{objetivo}/eliminar', [AdminObjetivoController::class, 'destroy'])->middleware('can:admin')->name('objetivos.delete');
 
-    Route::get('/categorias-diarios/index', [AdminCategoriaDiarioController::class,'index'])->name('categorias-diarios.index');
-    Route::post('/categorias-diarios/crear', [AdminCategoriaDiarioController::class, 'store'])->name('categorias-diarios.store');
-    Route::get('/categorias-diarios/{categoria_diario}/editar', [AdminCategoriaDiarioController::class, 'edit'])->name('categorias-diarios.edit');
-    Route::put('/categorias-diarios/{categoria_diario}', [AdminCategoriaDiarioController::class, 'update'])->name('categorias-diarios.update');
-    Route::delete('/categorias-diarios/{categoria_diario}/eliminar', [AdminCategoriaDiarioController::class, 'destroy'])->name('categorias-diarios.delete');
+    Route::get('/categorias-diarios/index', [AdminCategoriaDiarioController::class,'index'])->middleware('can:editar_admin_editor')->name('categorias-diarios.index');
+    Route::post('/categorias-diarios/crear', [AdminCategoriaDiarioController::class, 'store'])->middleware('can:admin')->name('categorias-diarios.store');
+    Route::get('/categorias-diarios/{categoria_diario}/editar', [AdminCategoriaDiarioController::class, 'edit'])->middleware('can:editar_admin_editor')->name('categorias-diarios.edit');
+    Route::put('/categorias-diarios/{categoria_diario}', [AdminCategoriaDiarioController::class, 'update'])->middleware('can:admin')->name('categorias-diarios.update');
+    Route::delete('/categorias-diarios/{categoria_diario}/eliminar', [AdminCategoriaDiarioController::class, 'destroy'])->middleware('can:admin')->name('categorias-diarios.delete');
 
-    Route::get('/tipos-lecturas/index', [AdminTipoLecturaController::class,'index'])->name('tipos-lecturas.index');
-    Route::post('/tipos-lecturas/crear', [AdminTipoLecturaController::class, 'store'])->name('tipos-lecturas.store');
-    Route::get('/tipos-lecturas/{tipo_lectura}/editar', [AdminTipoLecturaController::class, 'edit'])->name('tipos-lecturas.edit');
-    Route::put('/tipos-lecturas/{tipo_lectura}', [AdminTipoLecturaController::class, 'update'])->name('tipos-lecturas.update');
-    Route::delete('/tipos-lecturas/{tipo_lectura}/eliminar', [AdminTipoLecturaController::class, 'destroy'])->name('tipos-lecturas.delete');
+    Route::get('/tipos-lecturas/index', [AdminTipoLecturaController::class,'index'])->middleware('can:editar_admin_editor')->name('tipos-lecturas.index');
+    Route::post('/tipos-lecturas/crear', [AdminTipoLecturaController::class, 'store'])->middleware('can:admin')->name('tipos-lecturas.store');
+    Route::get('/tipos-lecturas/{tipo_lectura}/editar', [AdminTipoLecturaController::class, 'edit'])->middleware('can:editar_admin_editor')->name('tipos-lecturas.edit');
+    Route::put('/tipos-lecturas/{tipo_lectura}', [AdminTipoLecturaController::class, 'update'])->middleware('can:admin')->name('tipos-lecturas.update');
+    Route::delete('/tipos-lecturas/{tipo_lectura}/eliminar', [AdminTipoLecturaController::class, 'destroy'])->middleware('can:admin')->name('tipos-lecturas.delete');
 
-    Route::get('/subtipos-lecturas/index', [AdminSubtipoLecturaController::class,'index'])->name('subtipos-lecturas.index');
-    Route::post('/subtipos-lecturas/crear', [AdminSubtipoLecturaController::class, 'store'])->name('subtipos-lecturas.store');
-    Route::get('/subtipos-lecturas/{subtipo_lectura}/editar', [AdminSubtipoLecturaController::class, 'edit'])->name('subtipos-lecturas.edit');
-    Route::put('/subtipos-lecturas/{subtipo_lectura}', [AdminSubtipoLecturaController::class, 'update'])->name('subtipos-lecturas.update');
-    Route::delete('/subtipos-lecturas/{subtipo_lectura}/eliminar', [AdminSubtipoLecturaController::class, 'destroy'])->name('subtipos-lecturas.delete');
+    Route::get('/subtipos-lecturas/index', [AdminSubtipoLecturaController::class,'index'])->middleware('can:editar_admin_editor')->name('subtipos-lecturas.index');
+    Route::post('/subtipos-lecturas/crear', [AdminSubtipoLecturaController::class, 'store'])->middleware('can:admin')->name('subtipos-lecturas.store');
+    Route::get('/subtipos-lecturas/{subtipo_lectura}/editar', [AdminSubtipoLecturaController::class, 'edit'])->middleware('can:editar_admin_editor')->name('subtipos-lecturas.edit');
+    Route::put('/subtipos-lecturas/{subtipo_lectura}', [AdminSubtipoLecturaController::class, 'update'])->middleware('can:admin')->name('subtipos-lecturas.update');
+    Route::delete('/subtipos-lecturas/{subtipo_lectura}/eliminar', [AdminSubtipoLecturaController::class, 'destroy'])->middleware('can:admin')->name('subtipos-lecturas.delete');
 
-    Route::get('/tipo-eventos/index', [AdminTipoEventoController::class,'index'])->name('tipo-eventos.index');
-    Route::post('/tipo-eventos/crear', [AdminTipoEventoController::class, 'store'])->name('tipo-eventos.store');
-    Route::get('/tipo-eventos/{tipo_evento}/editar', [AdminTipoEventoController::class, 'edit'])->name('tipo-eventos.edit');
-    Route::put('/tipo-eventos/{tipo_evento}', [AdminTipoEventoController::class, 'update'])->name('tipo-eventos.update');
-    Route::delete('/tipo-eventos/{tipo_evento}/eliminar', [AdminTipoEventoController::class, 'destroy'])->name('tipo-eventos.delete');
+    Route::get('/tipo-eventos/index', [AdminTipoEventoController::class,'index'])->middleware('can:editar_admin_editor')->name('tipo-eventos.index');
+    Route::post('/tipo-eventos/crear', [AdminTipoEventoController::class, 'store'])->middleware('can:admin')->name('tipo-eventos.store');
+    Route::get('/tipo-eventos/{tipo_evento}/editar', [AdminTipoEventoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('tipo-eventos.edit');
+    Route::put('/tipo-eventos/{tipo_evento}', [AdminTipoEventoController::class, 'update'])->middleware('can:admin')->name('tipo-eventos.update');
+    Route::delete('/tipo-eventos/{tipo_evento}/eliminar', [AdminTipoEventoController::class, 'destroy'])->middleware('can:admin')->name('tipo-eventos.delete');
 
-    Route::get('/eventos/index', [AdminEventoController::class,'index'])->name('eventos.index');
-    Route::post('/eventos/crear', [AdminEventoController::class, 'store'])->name('eventos.store');
-    Route::get('/eventos/{evento}/editar', [AdminEventoController::class, 'edit'])->name('eventos.edit');
-    Route::put('/eventos/{evento}', [AdminEventoController::class, 'update'])->name('eventos.update');
-    Route::delete('/eventos/{evento}/eliminar', [AdminEventoController::class, 'destroy'])->name('eventos.delete');
+    Route::get('/eventos/index', [AdminEventoController::class,'index'])->middleware('can:editar_admin_editor')->name('eventos.index');
+    Route::post('/eventos/crear', [AdminEventoController::class, 'store'])->middleware('can:admin')->name('eventos.store');
+    Route::get('/eventos/{evento}/editar', [AdminEventoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('eventos.edit');
+    Route::put('/eventos/{evento}', [AdminEventoController::class, 'update'])->middleware('can:admin')->name('eventos.update');
+    Route::delete('/eventos/{evento}/eliminar', [AdminEventoController::class, 'destroy'])->middleware('can:admin')->name('eventos.delete');
 
-    Route::get('/usuario-informacion/index', [AdminUsuarioInformacionController::class,'index'])->name('informacion.index');
-    Route::get('/usuario-informacion/{user_id}/estadisticas', [AdminUsuarioInformacionController::class,'estadisticas_lecturas'])->name('estadisticas');
-    Route::get('/usuario-informacion/{user_id}/estadisticas/enfermedades', [AdminUsuarioInformacionController::class,'estadisticas_enfermedades'])->name('estadisticas-enfermedades');
+    Route::get('/usuario-informacion/index', [AdminUsuarioInformacionController::class,'index'])->middleware('can:info_clientes')->name('informacion.index');
+    Route::get('/usuario-informacion/{user_id}/estadisticas', [AdminUsuarioInformacionController::class,'estadisticas_lecturas'])->middleware('can:info_clientes')->name('estadisticas');
+    Route::get('/usuario-informacion/{user_id}/estadisticas/enfermedades', [AdminUsuarioInformacionController::class,'estadisticas_enfermedades'])->middleware('can:info_clientes')->name('estadisticas-enfermedades');
 });
+
+// Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group(function(){
+
+//     Route::resource('usuarios', AdminUsuarioController::class);
+//     Route::resource('blog', AdminBlogController::class);
+//     Route::resource('blog-category', AdminBlogCategoryController::class);
+//     Route::resource('product-category', AdminProductCategoryController::class);
+//     Route::resource('productos', AdminProductosController::class);
+//     Route::resource('envio-pais', AdminEnvioPaisController::class);
+//     Route::resource('categoria-alimentos', AdminCategoriaAlimentosController::class);
+//     Route::resource('alimentos', AdminAlimentosController::class);
+//     Route::resource('planes', AdminPlanController::class);
+//     Route::resource('preguntas', AdminPreguntaController::class);
+//     Route::resource('recetas', AdminRecetaController::class);
+//     Route::resource('ingredientes', AdminIngredientesController::class);
+//     Route::resource('respuestas', AdminRespuestasController::class);
+//     Route::resource('tipo-enfermedades', AdminTipoEnfermedadController::class);
+//     Route::resource('enfermedades', AdminEnfermedadController::class);
+//     Route::resource('objetivos', AdminObjetivoController::class);
+//     Route::resource('categorias-diarios', AdminCategoriaDiarioController::class);
+//     Route::resource('tipos-lecturas', AdminTipoLecturaController::class);
+//     Route::resource('subtipo-lecturas', AdminSubtipoLecturaController::class);
+//     Route::resource('tipo-eventos', AdminTipoEventoController::class);
+//     Route::resource('eventos', AdminEventoController::class);
+//     Route::resource('usuario-informacion', AdminUsuarioInformacionController::class);
+    
+// });

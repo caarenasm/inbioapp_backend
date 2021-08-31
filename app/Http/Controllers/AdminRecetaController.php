@@ -42,7 +42,7 @@ class AdminRecetaController extends Controller
         $recetas->descripcion = $request -> descripcion;
         $recetas->preparacion = $request -> preparacion;
         $recetas->fecha_publicacion = $request->fecha_publicacion != '' ? $request->fecha_publicacion : date('Y-m-d');
-        
+
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();

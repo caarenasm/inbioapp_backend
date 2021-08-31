@@ -31,6 +31,5 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin'])->assignRole($roleAdmin);
         Permission::create(['name' => 'editar_admin_editor'])->assignRole($roleAdmin,$roleEditor);
         Permission::create(['name' => 'info_clientes'])->assignRole($roleHuertas,$roleNutricion,$roleAdmin);
-
     }
 }

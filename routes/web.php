@@ -27,6 +27,9 @@ use App\Http\Controllers\AdminTipoLecturaController;
 use App\Http\Controllers\AdminUsuarioInformacionController;
 use App\Http\Controllers\AdminUsuarioEstadisticaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NosotrosController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +43,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
+Route::get('/nosotros', NosotrosController::class)->name('nosotros');
+Route::get('/contactenos', ContactoController::class)->name('contacto');
+Route::get('/bioproductos', ProductosController::class)->name('bioproductos');
 
 /*Route::get('/foo', function () {
     Artisan::call('storage:link');

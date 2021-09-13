@@ -3,11 +3,11 @@
     @section('title', 'Editar producto')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Modificar producto</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Producto</h2>
         <form method="post" action="{{ route('producto.update', $producto)  }}" enctype="multipart/form-data">
             @csrf
             @method('put')
-            @include('livewire.admin.product.formulario', ['btnText' => 'Guardar cambios'])
+            @include('livewire.admin.product.formulario', ['btnText' => 'Guardar cambios','h2' => 'Modificar producto'])
         </form>
 
     </div>

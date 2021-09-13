@@ -1,11 +1,10 @@
 @section('title', 'Crear categoria')
 
 <div class="m-3 w-1/3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-    <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Crear nueva categoría</h2>
+    <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Nueva categoría</h2>
     <div class="flex flex-col">
         <form action="{{ route('categoria-alimentos.store') }}" method="POST">
             @csrf
-
             <div class="m-3">
                 <label for="nombre_categoria" class="block font-bold text-gray-700">Nombre de la categoría</label>
                 <input type="text" name="nombre_categoria" id="nombre_categoria"

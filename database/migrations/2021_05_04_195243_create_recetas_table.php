@@ -29,6 +29,7 @@ class CreateRecetasTable extends Migration
             $table->double('caloria')->nullable();
             $table->double('grasa')->nullable();
             $table->double('proteina')->nullable();
+            $table->Integer('resolucion')->nullable();
         
             $table->timestamps();
         });

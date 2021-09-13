@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <p class="block font-bold text-gray-700">Elijé la categoria del alimento</p>
-                        <select wire:model="selectedState" class="form-control" id="categoria_alimento_id"
+                        <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="categoria_alimento_id"
                             name="categoria_alimento_id" required>
                             <option value="" selected>Escoge la categoria</option>
                             @foreach ($category_food as $category)

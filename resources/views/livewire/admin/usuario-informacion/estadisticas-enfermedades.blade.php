@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Enfermedades y Señales subjetivas</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Enfermedades y Señales subjetivas</h2>
         <div class="flex justify-center items-center h-screen">
             <!--actual component start-->
             <div x-data="setup()">

@@ -24,6 +24,7 @@ class CreateBlogsTable extends Migration
             $table->date('start_date')->default(now());
             $table->date('end_date')->nullable()->default(null);
             $table->boolean('published')->default(0);
+            $table->integer('resolucion');
 
             $table->foreignId('user_id')
                 ->nullable()

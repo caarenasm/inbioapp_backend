@@ -1,237 +1,241 @@
 <x-app-layout>
     @section('title', 'Crear eventos')
 
-        <div class="p-2 bg-white pt-6 m-2">
-            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Crear nuevo evento</h2>
+
+    <div class="p-2 bg-white pt-6 m-2">
+        <h2 class="text-2xl  text-fondo-verde font-extrabold text-center">Eventos</h2>
+        <div class="m-3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Modificar evento</h2>
             <div class="flex flex-col">
-                <form method="post" action="{{ route('eventos.update', $evento) }}" accept-charset="UTF-8"
-                    enctype="multipart/form-data">
+                <form method="post" action="{{ route('eventos.update', $evento) }}" accept-charset="UTF-8" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="space-x-2">
                         <div class="mb-3 grid grid-cols-2 space-x-2">
                             <div class="mb-3">
                                 <label for="titulo" class="block font-bold text-gray-700">Titulo</label>
-                                <input type="text" name="titulo" id="titulo"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300"
-                                    value="{{ old('titulo', $evento->titulo) }}">
+                                <input type="text" name="titulo" id="titulo" class="w-full rounded-xl text-gray-500 border-gray-300" value="{{ old('titulo', $evento->titulo) }}">
                                 @error('titulo')
-                                    <small class="text-red-500">* {{ $message }}</small>
+                                <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="w-full mb-3">
                                 <label for="descripcion" class="block font-bold text-gray-700">Descripción</label>
-                                <textarea name="descripcion" id="descripcion"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $evento->descripcion) }}</textarea>
+                                <textarea name="descripcion" id="descripcion" class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $evento->descripcion) }}</textarea>
                                 @error('descripcion')
-                                    <small class="text-red-500">* {{ $message }}</small>
+                                <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
-                                <input type="text" name="slug" id="slug"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300"
-                                    value="{{ old('slug', $evento->slug) }}" readonly>
+                                <input type="text" name="slug" id="slug" class="w-full rounded-xl text-gray-500 border-gray-300" value="{{ old('slug', $evento->slug) }}" readonly>
                                 @error('slug')
-                                    <small class="text-red-500">* {{ $message }}</small>
+                                <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="fecha_evento" class="block font-bold text-gray-700">Fecha del evento</label>
-                                <input type="date" name="fecha_evento" id="fecha_evento"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300"
-                                    value="{{ old('fecha_evento', $evento->fecha_evento) }}">
+                                <input type="date" name="fecha_evento" id="fecha_evento" class="w-full rounded-xl text-gray-500 border-gray-300" value="{{ old('fecha_evento', $evento->fecha_evento) }}">
                                 @error('fecha_evento')
-                                    <small class="text-red-500">* {{ $message }}</small>
+                                <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="hora" class="block font-bold text-gray-700">Hora del evento</label>
-                                <input type="time" name="hora" id="hora"
-                                    class="w-full rounded-xl text-gray-500 border-gray-300"
-                                    value="{{ old('hora', $evento->hora) }}">
+                                <input type="time" name="hora" id="hora" class="w-full rounded-xl text-gray-500 border-gray-300" value="{{ old('hora', $evento->hora) }}">
                                 @error('hora')
-                                    <small class="text-red-500">* {{ $message }}</small>
+                                <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="w-1/2 mb-3">
                                 <p class="block font-bold text-gray-700">Elijé el tipo de evento</p>
-                                <select wire:model="selectedState" class="form-control" id="tipo_evento_id"
-                                    name="tipo_evento_id">
+                                <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="tipo_evento_id" name="tipo_evento_id">
                                     <option value="" selected>Escoge el tipo</option>
                                     @foreach ($tipo_eventos as $tipo)
-                                        <option value="{{ $tipo->id }}" @if (old('tipo_evento_id') == $tipo->id || $tipo->id == $evento->tipo_evento_id) selected @endif>{{ $tipo->tipo_evento }}</option>
+                                    <option value="{{ $tipo->id }}" @if (old('tipo_evento_id')==$tipo->id || $tipo->id == $evento->tipo_evento_id) selected @endif>{{ $tipo->tipo_evento }}</option>
                                     @endforeach
                                 </select>
                                 @error('tipo_evento_id')
-                                    <small class="text-red-500">* {{ $message }}</small>
+                                <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
+                            </div>
+
+                            <div class="w-1/2 m-3">
+                                <p class="block font-bold text-gray-700">Elijé la resolución para la imagen</p>
+                                <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="resolucion" name="resolucion" required>
+                                    <option value="" selected>Escoge la resolución</option>
+                                    @foreach ($resoluciones as $resolucion)
+                                    <option value="{{ $resolucion->id }}" @if (old('resolucion')==$resolucion->id || $resolucion->id == $evento->resolucion) selected @endif>
+                                        {{ $resolucion->resolucion }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                <small class="text-red-500"></small>
                             </div>
 
                             <div class="grid grid-cols-2 gap-4 mb-3">
                                 <div class="col">
                                     <div class="image-wrapper">
-                                        <img id="picture"
-                                            src="{{ asset('./imagenes/eventos/' . old('imagen_url', $evento->imagen_url)) }}"
-                                            alt="{{ old('imagen_url', $evento->imagen_url) }}">
+                                        <img id="picture" src="{{ asset('./imagenes/eventos/' . old('imagen_url', $evento->imagen_url)) }}" alt="{{ old('imagen_url', $evento->imagen_url) }}">
                                     </div>
                                 </div>
 
-                                <div class="col">
-                                    <div class="form-group">
-                                        <div class="label" name="imagen_url">Selecciona la imagen</div>
-                                        <input type="file" name="imagen_url" id="imagen_url" class="form-control-file"
-                                            value="{{ old('imagen_url', $evento->imagen_url) }}">
-                                    </div>
+                                <div>
+                                    <p class="font-bold text-sgray-700">Imagen principal de la entrada</p>
+                                    <label for="image_url" class="block text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Elegir
+                                        imagen</label>
+                                    <input type="file" name="image_url" id="image_url" class="hidden">
+                                    <p>Explicación de tamaño de imagen</p>
+
+                                    @error('image_url')
+                                    <small class="text-red-500">* {{$message}}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="flex space-x-2">
                             <div class=" mb-3 grid grid-cols-2 gap-8">
                                 <x-forms.button type="submit" text="Guardar cambios" />
-                                <a href="{{ url()->previous() }}"
-                                    class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
-                                    type="submit">
-                                    Cancel
+                                <a href="{{ url()->previous() }}" class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700" type="submit">
+                                    Cancelar
                                 </a>
                             </div>
                         </div>
                 </form>
-
             </div>
+        </div>
+    </div>
+    @section('css')
+    <style>
+        .image-wrapper {
+            position: relative;
+            padding-bottom: 56.25%
+        }
 
-        @section('css')
-            <style>
-                .image-wrapper {
-                    position: relative;
-                    padding-bottom: 56.25%
-                }
+        .image-wrapper img {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    @endsection
+    @push('scripts')
+    <script>
+        document.getElementById("imagen_url").addEventListener('change', cambiarImagen);
 
-                .image-wrapper img {
-                    position: absolute;
-                    object-fit: cover;
-                    width: 100%;
-                    height: 100%;
-                }
+        function cambiarImagen(event) {
+            var file = event.target.files[0];
 
-            </style>
-        @endsection
-        @push('scripts')
-            <script>
-                document.getElementById("imagen_url").addEventListener('change', cambiarImagen);
+            var reader = new FileReader();
+            reader.onload = (event) => {
+                document.getElementById("picture").setAttribute('src', event.target.result);
+            };
 
-                function cambiarImagen(event) {
-                    var file = event.target.files[0];
+            reader.readAsDataURL(file);
+        }
+    </script>
 
-                    var reader = new FileReader();
-                    reader.onload = (event) => {
-                        document.getElementById("picture").setAttribute('src', event.target.result);
-                    };
+    <script src="/js/ckeditor5.js"></script>
 
-                    reader.readAsDataURL(file);
-                }
-            </script>
+    <script>
+        document.addEventListener('livewire:load', function() {
+            const titulo = document.getElementById('titulo');
+            const slug = document.getElementById('slug');
+            titulo.onblur = function() {
+                slug.value = slugify(titulo.value);
+            }
+            titulo.onkeydown = function() {
+                slug.value = slugify(titulo.value);
+            }
+            titulo.onkeyup = function() {
+                slug.value = slugify(titulo.value);
+            }
 
-            <script src="/js/ckeditor5.js"></script>
+            // CK Editor
+            ClassicEditor
+                .create(document.querySelector('#descripcion'), {
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'link',
+                            'bulletedList',
+                            'numberedList',
+                            '|',
+                            'imageUpload',
+                            'blockQuote',
+                            'insertTable',
+                            'mediaEmbed',
+                            'undo',
+                            'redo'
+                        ]
+                    },
+                    language: 'es',
+                    image: {
+                        toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                            '|',
+                            'resizeImage',
+                            '|',
+                            'imageTextAlternative'
+                        ],
+                        styles: [
+                            'alignLeft', 'alignCenter', 'alignRight'
+                        ],
+                    },
+                    table: {
+                        contentToolbar: [
+                            'tableColumn',
+                            'tableRow',
+                            'mergeTableCells'
+                        ]
+                    },
+                    simpleUpload: {
+                        uploadUrl: '{{ asset('. / imagenes / eventos / placeholder.png ') }}',
+                        headers: {
 
-            <script>
-                document.addEventListener('livewire:load', function() {
-                    const titulo = document.getElementById('titulo');
-                    const slug = document.getElementById('slug');
-                    titulo.onblur = function() {
-                        slug.value = slugify(titulo.value);
-                    }
-                    titulo.onkeydown = function() {
-                        slug.value = slugify(titulo.value);
-                    }
-                    titulo.onkeyup = function() {
-                        slug.value = slugify(titulo.value);
-                    }
-
-                    // CK Editor
-                    ClassicEditor
-                        .create(document.querySelector('#descripcion'), {
-                            toolbar: {
-                                items: [
-                                    'heading',
-                                    '|',
-                                    'bold',
-                                    'italic',
-                                    'link',
-                                    'bulletedList',
-                                    'numberedList',
-                                    '|',
-                                    'imageUpload',
-                                    'blockQuote',
-                                    'insertTable',
-                                    'mediaEmbed',
-                                    'undo',
-                                    'redo'
-                                ]
-                            },
-                            language: 'es',
-                            image: {
-                                toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
-                                    '|',
-                                    'resizeImage',
-                                    '|',
-                                    'imageTextAlternative'
-                                ],
-                                styles: [
-                                    'alignLeft', 'alignCenter', 'alignRight'
-                                ],
-                            },
-                            table: {
-                                contentToolbar: [
-                                    'tableColumn',
-                                    'tableRow',
-                                    'mergeTableCells'
-                                ]
-                            },
-                            simpleUpload: {
-                                uploadUrl: '{{ asset('./imagenes/eventos/placeholder.png') }}',
-                                headers: {
-
-                                }
-                            },
-                        })
-                        .then(editor => {
-                            window.editor = editor;
-                        })
-                        .catch(error => {
-                            console.error('Oops, something went wrong!');
-                            console.error(
-                                'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
-                            );
-                            console.warn('Build id: smh51lc3zo1f-qavakagvqr26');
-                            console.error(error);
-                        });
-                    // CK Editor fin
+                        }
+                    },
+                })
+                .then(editor => {
+                    window.editor = editor;
+                })
+                .catch(error => {
+                    console.error('Oops, something went wrong!');
+                    console.error(
+                        'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
+                    );
+                    console.warn('Build id: smh51lc3zo1f-qavakagvqr26');
+                    console.error(error);
                 });
+            // CK Editor fin
+        });
 
-                function slugify(str) {
-                    str = str.replace(/^\s+|\s+$/g, ''); // trim
-                    str = str.toLowerCase();
+        function slugify(str) {
+            str = str.replace(/^\s+|\s+$/g, ''); // trim
+            str = str.toLowerCase();
 
-                    // remove accents, swap ñ for n, etc
-                    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-                    var to = "aaaaeeeeiiiioooouuuunc------";
+            // remove accents, swap ñ for n, etc
+            var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+            var to = "aaaaeeeeiiiioooouuuunc------";
 
-                    for (var i = 0, l = from.length; i < l; i++)
-                        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            for (var i = 0, l = from.length; i < l; i++)
+                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
 
 
-                    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-                        .replace(/\s+/g, '-') // collapse whitespace and replace by -
-                        .replace(/-+/g, '-'); // collapse dashes
+            str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                .replace(/-+/g, '-'); // collapse dashes
 
-                    return str;
-                }
-            </script>
-        @endpush
+            return str;
+        }
+    </script>
+    @endpush
 
 </x-app-layout>

@@ -22,7 +22,6 @@
                                 <small class="text-red-500">* {{ $message }}</small>
                                 @enderror
                                 <textarea name="descripcion" id="descripcion" class="w-full rounded-xl text-gray-500 border-gray-300">{{ old('descripcion', $receta->descripcion) }}</textarea>
-
                             </div>
                             <div class="mb-3">
                                 <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>

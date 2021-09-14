@@ -1,8 +1,10 @@
 <x-app-layout>
     @section('title', 'Editar categoria de alimentos')
 
-        <div class="p-2 bg-white">
-            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Crear nuevo plan</h2>
+    <div class="p-2 bg-white pt-6 m-2">
+        <h2 class="text-2xl  text-fondo-verde font-extrabold text-center">Planes</h2>
+        <div class="m-3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Modificar planes</h2>
             <div class="flex flex-col">
                 <form method="post" action="{{ route('planes.update', $plan) }}" accept-charset="UTF-8"
                     enctype="multipart/form-data">
@@ -20,7 +22,8 @@
                         </div>
                         <div class="mb-3 m-3">
                             <label for="slug" class="block font-bold text-gray-700">Url de la entrada</label>
-                            <input type="text" name="slug" id="slug" class="w-full rounded-xl text-gray-500 border-gray-300"
+                            <input type="text" name="slug" id="slug"
+                                class="w-full rounded-xl text-gray-500 border-gray-300"
                                 value="{{ old('slug', $plan->slug) }}" readonly>
                             @error('slug')
                                 <small class="text-red-500">* {{ $message }}</small>
@@ -34,6 +37,31 @@
                                 <small class="text-red-500">* {{ $message }}</small>
                             @enderror
                         </div>
+
+                        <div class="mb-3 m-3">
+                            <label for="precio" class="block font-bold text-gray-700">Precio</label>
+                            <input type="number" name="precio" id="precio"
+                                class="w-full rounded-xl text-gray-500 border-gray-300"
+                                value="{{ old('precio', $plan->precio) }}">
+                            @error('precio')
+                                <small class="text-red-500">* {{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="w-1/2 m-3">
+                            <p class="block font-bold text-gray-700">Elijé la resolución para la imagen</p>
+                            <select wire:model="selectedState" class="form-control rounded-xl border-gray-300"
+                                id="resolucion" name="resolucion" required>
+                                <option value="" selected>Escoge la resolución</option>
+                                @foreach ($resoluciones as $resolucion)
+                                    <option value="{{ $resolucion->id }}" @if (old('resolucion') == $resolucion->id || $resolucion->id == $plan->resolucion) selected @endif>
+                                        {{ $resolucion->resolucion }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <small class="text-red-500"></small>
+                        </div>
+
                         <div class="grid grid-cols-2 gap-4 mb-3">
                             <div class="col">
                                 <div class="image-wrapper">
@@ -59,30 +87,22 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mb-3 m-3">
-                            <label for="precio" class="block font-bold text-gray-700">Precio</label>
-                            <input type="number" name="precio" id="precio"
-                                class="w-full rounded-xl text-gray-500 border-gray-300"
-                                value="{{ old('precio', $plan->precio) }}">
-                            @error('precio')
-                                <small class="text-red-500">* {{ $message }}</small>
-                            @enderror
-                        </div>
                     </div>
                     <div class="flex space-x-2">
                         <div class=" mb-3 grid grid-cols-2 gap-8">
                             <x-forms.button type="submit" text="Guardar cambios" />
                             <a href="{{ url()->previous() }}"
-                                class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
+                                class="text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
                                 type="submit">
-                                Cancel
+                                Cancelar
                             </a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+
 
     @section('css')
         <style>
@@ -114,7 +134,6 @@
 
                 reader.readAsDataURL(file);
             }
-
         </script>
 
         <script src="/js/ckeditor5.js"></script>
@@ -212,7 +231,6 @@
 
                 return str;
             }
-
         </script>
     @endpush
 

@@ -1,7 +1,9 @@
 <x-app-layout>
     @section('title', 'Editar recetas')
 
-        <div class="p-2 bg-white pt-6 m-2">
+    <div class="p-2 bg-white pt-6 m-2">
+        <h2 class="text-2xl  text-fondo-verde font-extrabold text-center">Recetas</h2>
+        <div class="m-3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Editar receta</h2>
             <div class="flex flex-col">
                 <form method="post" action="{{ route('recetas.update', $receta) }}" accept-charset="UTF-8"
@@ -119,6 +121,20 @@
                                 @enderror
                             </div>
 
+                            <div class="w-1/2 m-3">
+                                <p class="block font-bold text-gray-700">Elijé la resolución para la imagen</p>
+                                <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="resolucion"
+                                    name="resolucion" required>
+                                    <option value="" selected>Escoge la resolución</option>
+                                    @foreach ($resoluciones as $resolucion)
+                                        <option value="{{ $resolucion->id }}" @if (old('resolucion') == $resolucion->id || $resolucion->id == $receta->resolucion) selected @endif>
+                                            {{ $resolucion->resolucion }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <small class="text-red-500"></small>
+                            </div>
+
                             <div class="grid grid-cols-2 gap-4 mb-3">
                                 <div class="col">
                                     <div class="image-wrapper">
@@ -136,21 +152,22 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="flex space-x-2">
-                                <div class=" mb-3 grid grid-cols-2 gap-8">
-                                    <x-forms.button type="submit" text="Guardar cambios" />
-                                    <a href="{{ url()->previous() }}"
-                                        class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
-                                        type="submit">
-                                        Cancel
-                                    </a>
-                                </div>
+                        </div>
+                        <div class="flex space-x-2 grid justify-items-end">
+                            <div class=" mb-3 grid grid-cols-2 gap-8">
+                                <x-forms.button type="submit" text="Guardar cambios" />
+                                <a href="{{ url()->previous() }}"
+                                    class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
+                                    type="submit">
+                                    Cancelar
+                                </a>
                             </div>
+                        </div>
                 </form>
+
             </div>
         </div>
-
+    </div>
     @section('css')
         <style>
             .image-wrapper {
@@ -181,7 +198,6 @@
 
                 reader.readAsDataURL(file);
             }
-
         </script>
 
         <script src="/js/ckeditor5.js"></script>
@@ -340,7 +356,6 @@
 
                 return str;
             }
-
         </script>
     @endpush
 

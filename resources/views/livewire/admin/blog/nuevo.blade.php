@@ -3,12 +3,11 @@
     @section('title', 'Nueva entrada')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Nueva entrada</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Blog</h2>
         <form method="post" action="{{ route('blog.store')  }}" enctype="multipart/form-data">
             @csrf
-            @include('livewire.admin.blog.formulario', ['btnText' => 'Crear entrada'])
+            @include('livewire.admin.blog.formulario', ['btnText' => 'Crear entrada','h2'=>'Nuevo entrada'])
         </form>
-
     </div>
 
     @push('scripts')

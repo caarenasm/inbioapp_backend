@@ -1,4 +1,4 @@
-<table id="enfermedad_alimento" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+<table id="planes" class="display compact" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
     <thead class="bg-gray-50">
         <tr>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -85,7 +85,7 @@
     <script>
         $(document).ready(function() {
 
-            var table = $('#enfermedad_alimento').DataTable({
+            var table = $('#planes').DataTable({
                     "paging": true,
                     "lengthChange": true,
                     "searching": true,

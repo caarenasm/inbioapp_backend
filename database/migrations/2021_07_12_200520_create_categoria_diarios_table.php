@@ -15,7 +15,7 @@ class CreateCategoriaDiariosTable extends Migration
     {
         Schema::create('categoria_diarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',45);
+            $table->string('nombre_categoria',45);
             $table->timestamps();
         });
     }

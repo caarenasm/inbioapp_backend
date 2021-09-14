@@ -16,7 +16,7 @@
                     <div class="flex items-center">
                         <div class="ml-1">
                             <div class="text-sm font-medium text-gray-900">
-                                {{ $categoria_diario->nombre }}
+                                {{ $categoria_diario->nombre_categoria }}
                             </div>
                         </div>
                     </div>

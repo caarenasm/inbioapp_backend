@@ -52,7 +52,7 @@ class AdminRespuestasController extends Controller
         ->select('*')
         ->get();
         // $respuestas = Respuesta::all();
-        // return $respuestas;
+
         return view('livewire.admin.respuestas.editar-respuestas', ['respuestas' => $respuestas, 'respuesta' => $respuesta]);
     }
 

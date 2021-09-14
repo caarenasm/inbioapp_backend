@@ -58,9 +58,9 @@ class AdminProductCategoryController extends Controller
         $category = new CategoriasProducto();
         $category->name = $request->name;
         $category->slug = $request->slug;
-        $category->dimension = $request->dimension;
+        $category->resolucion = $request->resolucion;
 
-        $resolucion = $request->dimension;
+        $resolucion = $request->resolucion;
 
         if ($request->hasFile('imagen')) {
             $file = $request->file("imagen");
@@ -153,9 +153,9 @@ class AdminProductCategoryController extends Controller
 
         $category->name = $request->name;
         $category->slug = $request->slug;
-        $category->dimension = $request->dimension;
+        $category->resolucion = $request->resolucion;
 
-        $resolucion = $request->dimension;
+        $resolucion = $request->resolucion;
 
         if ($request->hasFile('imagen')) {
             $file = $request->file("imagen");

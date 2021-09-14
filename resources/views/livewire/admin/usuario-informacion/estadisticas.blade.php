@@ -3,7 +3,7 @@
     @section('title', 'informacion')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Informacion de los usuarios</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Informacion de los usuarios</h2>
         <div class="">
             <div class="p-2 bg-white">
                 <div class="flex flex-col mb-6">

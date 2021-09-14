@@ -3,7 +3,7 @@
     @section('title', 'Editar Alimento')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center m-3">Categoría de los alimentos</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center m-3">Alimentos</h2>
         <div class="m-3 w-1/3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Editar alimento</h2>
             <div class="flex flex-col">

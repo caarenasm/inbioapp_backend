@@ -87,32 +87,12 @@ in_array(
             @enderror
         </div>
 
-        {{-- <div class="m-3">
-                    <label for="imagenes" class="block font-bold text-gray-700">Seleccionar imagen de banner</label>
-                    <div class="grid grid-cols-2 space-x-5">
-                        <div>
-                            <input type="file" name="imagenes" id="imagenes" accept="image/*">
-                        </div>
-                        <div>
-                            @if ($category->id)
-                                <img src="/storage/{{$category->url}}" id="miniatura">
-                            @else
-                                <img src="/imagenes/blog/placeholder.png" id="miniatura">
-                            @endif
-                        </div>
-                    </div>
-                
-                    @error('imagenes')
-                    <small class="text-red-500">* {{$message}}</small>
-                    @enderror
-                </div> --}}
-
         <div class="w-1/2 m-3">
             <p class="block font-bold text-gray-700">Elijé la resolución para la imagen</p>
-            <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="dimension" name="dimension" required>
+            <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="resolucion" name="resolucion" required>
                 <option value="" selected>Escoge la resolución</option>
-                @foreach ($resoluciones as $dimension)
-                    <option value="{{ $dimension->id }}" @if (old('dimension') == $dimension->id || $dimension->id == $category->dimension) selected @endif> {{ $dimension->resolucion }}
+                @foreach ($resoluciones as $resolucion)
+                    <option value="{{ $resolucion->id }}" @if (old('resolucion') == $resolucion->id || $resolucion->id == $producto->resolucion) selected @endif> {{ $resolucion->resolucion }}
                     </option>
                 @endforeach
             </select>
@@ -134,7 +114,7 @@ in_array(
                 <div class="image-wrapper">
                     @if ($producto->id)
                         <img id="picture"
-                            src="{{ asset('./imagenes/productos/' . old('imagenes', $producto->imagenes)) }}"
+                            src="{{ asset('./imagenes/productos/'.old('imagenes', $producto->imagenes)) }}"
                             alt="{{ old('imagenes', $producto->imagenes) }}">
                     @else
                         <img id="picture" src="{{ asset('./imagenes/productos/placeholder.png') }}" alt="">
@@ -144,12 +124,16 @@ in_array(
                 </div>
             </div>
 
-            <div class="col">
-                <div class="form-group">
-                    <div class="label" name="imagenes">Selecciona la imagen</div>
-                    <input type="file" name="imagenes" id="imagenes" class="form-control-file"
-                        value="{{ old('imagenes', $producto->imagenes) }}">
-                </div>
+            <div>
+                <p class="font-bold text-sgray-700">Imagen principal del producto</p>
+                <label for="imagenes" class="block text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Elegir
+                    imagen</label>
+                <input type="file" name="imagenes" id="imagenes" class="hidden">
+                <p>Explicación de tamaño de imagen</p>
+
+                @error('imagenes')
+                <small class="text-red-500">* {{$message}}</small>
+                @enderror
             </div>
         </div>
 

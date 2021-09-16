@@ -1,6 +1,6 @@
 @extends('layouts.public-plantilla')
 
-@section('title', 'Inbionnova - Crea con nosotros un mundo mejor nutrido')
+@section('title', 'Inbionova - Crea con nosotros un mundo mejor nutrido')
 @section('description', 'Tomas mejores decisiones al comer, y mejoras la calidad nutricional de tu alimentación.')
 @section('canonicalUrl', 'http://inbionova.com.co/')
 @section('pagina', 'home')
@@ -79,10 +79,7 @@
 
     <section class="home-bioinsumos">
 
-        <h2>Nuestros Bioinsumos para producir agroecológicamente</h2>
-
-        <p>Los alimentos que se producen en el campo son de baja calidad nutricional, debido a la desmineralización de
-            suelos y trazas de plaguicidas en ellos.</p>
+        <h2>Nuestros Bioinsumos para producir ecológicamente</h2>
 
         <p>Línea Fertilizantes y Acondicionadores de suelos: Remineralizamos los suelos y el cultivo, para mejorar la
             calidad nutricional de los alimentos, capturando CO2 y nutriendo la microbiología del suelo gracias a las
@@ -113,7 +110,7 @@
     <section class="coach-agro">
         <div class="text">
             <h2>Coaching en agroecología</h2>
-            <p>Ofrecemos acompanamiento a pequeños y medianos productores en la transición de agricultura convencional a
+            <p>Ofrecemos acompañamiento a pequeños y medianos productores en la transición de agricultura convencional a
                 una agroecológica.</p>
             <button>Quiero saber más</button>
         </div>
@@ -197,16 +194,12 @@
         <div class="text">
             <h2>Coaching de seguridad y soberanía alimentaria</h2>
             <p>Te empoderas de tu nutrición, eres un consumidor más consciente y también produces alimentos de calidad,
-                diversos, frescos y saludables para tu familia..</p>
+                diversos, frescos y saludables para tu familia.</p>
             <button>Quiero saber más</button>
         </div>
         <div class="image">
             <img src="/imagenes/home/coach-seguridad-alimentaria.png">
-            <p>"Un organismo saludable, bien alimentado, difícilmente será atacado por
-                <plagas> y
-                    <enfermedades>. Dichas
-                        <plagas> y
-                            <enfermedades>, mueren de hambre en una planta sana"
+            <p>"Un organismo saludable, bien nutrido, difícilmente será atacado por plagas y enfermedades. Dichas plagas y enfermedades, mueren de hambre en una planta sana"
                                 Francois Chaboussou (Biólogo Francés)
             </p>
         </div>
@@ -297,7 +290,7 @@
                     <path d="M585.87,285.06a15.07,15.07,0,0,0-15.06,15.06c0,62.88-27.1,130.59-72.64,181.06C447.21,537.8,377.46,569,301.81,569c-47.35,0-94.69-13.37-137-38.79A297.43,297.43,0,0,1,93.4,470.1l70.71,2.29a15.07,15.07,0,0,0,1-30.12L67.26,439a15.28,15.28,0,0,0-16.39,3.25,15,15,0,0,0-3.25,16.39l3.25,97.81A15.06,15.06,0,0,0,81,555.75v-.36L79.18,499a323,323,0,0,0,70.36,56.86c47,28.19,99.74,43.13,152.51,43.13,84.33,0,162-34.69,218.77-97.82,50.35-55.9,80.35-131.07,80.35-201.3A15.39,15.39,0,0,0,585.87,285.06Z"/>
                     <path d="M372.52,337.83a6.44,6.44,0,0,0-3.61-2.05c-5.18-1-31.57-5.3-41.44,7.47-4.34,5.66-6,11.44-4.82,17.35,1.68,8.19,8.67,15.54,21.92,22.88,9.52,5.3,17.23,7.95,23.86,7.95a20.73,20.73,0,0,0,7.22-1.2c5.55-2.05,9.76-6.51,12.29-13.13C393.6,362,376.14,341.68,372.52,337.83Zm3,34.57c-1.68,4.46-3.73,5.18-4.45,5.42-2.65,1-8.32.72-20.12-5.78h0c-11.81-6.63-14.94-11.32-15.42-14.1-.12-.72-.6-2.89,2.29-6.62,2-2.77,8.43-3.74,15.3-3.74a82.91,82.91,0,0,1,11.08.85C370.59,355.9,377.46,367.34,375.53,372.4Z"/>
                 </svg>
-                <p>Programa de apadrinamieto a familias vulberables para garantizar su seguridad alimentaria.</p>
+                <p>Programa de apadrinamiento a familias vulberables para garantizar su seguridad alimentaria.</p>
             </div>
 
         </div>
@@ -308,11 +301,11 @@
     <section class="who-are">
         <div class="text">
             <h2>Quienes somos</h2>
-            <p>Somos la única empresa que reúne bioproductos y servicios enfocados a mejorar la nutrición en todos los
-                niveles: humano, animal y vegetal. Es toda la sabiduría de la observancia atenta, detallada y creativa
-                de un hombre puesta a tu servicio a través de una organización familiar que sueña y trabaja cada día por
-                el bienestar de las personas, creando consciencia en mejorar hábitos alimenticios y una agricultura
-                limpia y sana.</p>
+            <p>Somos la única empresa que reúne bioproductos y servicios enfocados a mejorar la nutrición en todos
+                los niveles: humano, animal y vegetal; del campo a la mesa. Es toda la sabiduría de la observancia atenta,
+                detallada y creativa puesta a tu servicio a través de una organización familiar que sueña y trabaja cada
+                día por el bienestar de las personas, creando consciencia en mejorar hábitos alimenticios y
+                una agricultura sostenible y sana.</p>
             <button>Quiero saber más</button>
         </div>
         <div class="image">
@@ -332,7 +325,7 @@
                 <div class="image-popup">
                     <img src="/imagenes/testimonials/testimonial-1.png">
                 </div>
-                <p>Esta es la historia de Nestor Ospina que nos cuenta los problemas que presentaba al no poder respirar normalmente debido a un enfermedad pulmonar obstructiva crónica (EPOC) y el proceso que tuvo con los productos de agrosol para mejorar su calidad de vida.</p>
+                <p>Yo presentaba problemas para respirar normalmente debido a un enfermedad pulmonar obstructiva crónica (EPOC) y gracias a los productos Inbionova logré mejorar mi calidad de vida</p>
                 <p class="name">Néstor Ospina</p>
                 <a href="https://youtu.be/CHCQHfRAp6I" class="button" target="_blank">Ver video</a>
             </div>
@@ -341,7 +334,7 @@
                 <div class="image-popup">
                     <img src="/imagenes/testimonials/testimonial-2.png">
                 </div>
-                <p>Esta es la historia de Gloria Cecilia Hernandez que nos cuenta problemas que presentaba al no poderse mover debido a una fibromialgia y el proceso que tuvo con los productos de agrosol para mejorar la calidad de vida.</p>
+                <p>Yo presentaba problemas de mobilidad debido a una fibromialgia y gracias a los productos Inbionova logré volver a caminar sin bastón</p>
                 <p class="name">Gloria Cecilia Hernández</p>
                 <a href="https://youtu.be/7cEw7DvFwBo" class="button" target="_blank">Ver video</a>
             </div>
@@ -350,7 +343,7 @@
                 <div class="image-popup">
                     <img src="/imagenes/testimonials/testimonial-3.png">
                 </div>
-                <p>Esta es la historia de Nelson García y nos cuenta el proceso que tuvo con los productos de agrosol contra el asma.</p>
+                <p>Queria mejorar las deficiencias de vitaminas y minerales y tambien conoci una alternativa de inhaladores para mis crisis asmáticas que he sufrido desde la niñez y adolescencia. Gracias a los productos Inbionova dejé de inhalarme y una mejor manera de alimentarme hoy tengo calidad de vida, mejor energía</p>
                 <p class="name">Nelson García</p>
                 <a href="https://youtu.be/ZSVA-YpCsWQ" class="button" target="_blank">Ver video</a>
             </div>
@@ -359,7 +352,7 @@
                 <div class="image-popup">
                     <img src="/imagenes/testimonials/testimonial-4.png">
                 </div>
-                <p>Esta es la historia de Daniela (endometriosis grado 4 - no podía tener hijos) y su hijo Pascal.</p>
+                <p>Hace 2 años me diagnosticaron con endometriocis 4, me dijeron que no podia tener hijos. Comencé a consumir más consiente, y a usar los productos Inbionova y gracias a ello, hoy tengo mi milagro Pascal, y recomiendo los productos a toda mi familia</p>
                 <p class="name">Daniela Talero</p>
                 <a href="https://youtu.be/Gmfx6Q0c0R0" class="button" target="_blank">Ver video</a>
             </div>
@@ -372,8 +365,7 @@
             <h2>Reconocimientos</h2>
             <p>Somos reconocidos a nivel local, regional y nacional; con más de 20 años de trayectoria en nutrición y
                 salud del agro, a su vez, 15 años de trayectoria en bienestar y nutrición humana.</p>
-            <p>Somos la única empresa que reúne productos y servicios enfocados a mejorar la nutrición en todos los
-                niveles: humano, animal y vegetal.</p>
+
         </div>
         <div class="award-content">
 

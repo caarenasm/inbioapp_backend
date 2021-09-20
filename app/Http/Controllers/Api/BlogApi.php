@@ -34,16 +34,18 @@ class BlogApi extends Controller
         
     }
 
-    public function lista_categorias(){
+    public function categoria(){
 
-        $categorias = [];
+        $response = [];
         
-        $categorias = CategoriasBlog::select('id', 'name', 'slug', 'created_at', 'updated_at')
+        $data = CategoriasBlog::select('id', 'name')
         ->orderBy('id','asc')->get()->toArray();
 
-            return response([
-                'data' => $categorias
-            ]);
-            
+        foreach ($data as $key => $value) {
+            $response[$key]['value'] = $value['id'];
+            $response[$key]['text'] = $value['name'];
+        }
+
+        return response()->json($response);
     }
 }

@@ -7,8 +7,8 @@
         <div class="p-2 bg-white">
             @can('admin')
                 <div class="flex flex-col m-3 justify-items-center">
-                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 align-middle w-1/3 sm:px-6 lg:px-8">
+                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 align-middle sm:px-6 lg:px-8">
                             @include('livewire/admin/semaforo-estados/crear-semaforo-estado')
                         </div>
                     </div>
@@ -16,7 +16,7 @@
             @endcan
             <div class="p-2 bg-white">
                 <div class="flex flex-col">
-                    <div class="-my-2 overflow-x-auto">
+                    <div class="overflow-x-auto">
                         <div class="py-2 align-middle">
                             <div class="p-3 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                 @include('livewire/admin/semaforo-estados/listar-semaforo-estado')

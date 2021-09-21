@@ -300,6 +300,7 @@
                             </li>
                         </div>
                     </div>
+                    @endcan
                     <div x-data="{ openUsuarios : false }">
                         <li>
                             <a href="#"
@@ -310,7 +311,6 @@
                                 <span class="text-base font-medium text-white">Sección Usuarios</span>
                             </a>
                         </li>
-                    @endcan
                     <div x-show="openUsuarios">
                         <li>
                             @can('editar_admin_editor')

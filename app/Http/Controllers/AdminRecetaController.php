@@ -123,8 +123,10 @@ class AdminRecetaController extends Controller
         $receta->descripcion = $request -> descripcion;
         $receta->preparacion = $request -> preparacion;
         $receta->fecha_publicacion = $request->fecha_publicacion != '' ? $request->fecha_publicacion : date('Y-m-d');
-        $producto->resolucion = $request->resolucion;
+        $receta->resolucion = $request->resolucion;
         
+        $resolucion = $request->resolucion;
+
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
@@ -134,28 +136,28 @@ class AdminRecetaController extends Controller
 
             switch ($resolucion) {
                 case 1:
-                    $img = Image::make($request->file("imagenes"))->resize(320, 240)
-                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    $img = Image::make($request->file("imagen_url"))->resize(320, 240)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
                     break;
                 case 2:
-                    $img = Image::make($request->file("imagenes"))->resize(640, 480)
-                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    $img = Image::make($request->file("imagen_url"))->resize(640, 480)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
                     break;
                 case 3:
-                    $img = Image::make($request->file("imagenes"))->resize(854, 480)
-                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    $img = Image::make($request->file("imagen_url"))->resize(854, 480)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
                     break;
                 case 4:
-                    $img = Image::make($request->file("imagenes"))->resize(800, 600)
-                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    $img = Image::make($request->file("imagen_url"))->resize(800, 600)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
                     break;
                 case 5:
-                    $img = Image::make($request->file("imagenes"))->resize(1024, 576)
-                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    $img = Image::make($request->file("imagen_url"))->resize(1024, 576)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
                     break;
                 case 6:
-                    $img = Image::make($request->file("imagenes"))->resize(1024, 768)
-                        ->save("imagenes/categorias_productos/" . $nombre_archivo);
+                    $img = Image::make($request->file("imagen_url"))->resize(1024, 768)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
                     break;
                 default:
                     # code...

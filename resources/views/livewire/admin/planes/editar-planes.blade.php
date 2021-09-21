@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="grid grid-cols-2">
-                            <div class="col">
+                            <div class="col mr-3">
                                 <div class="image-wrapper">
                                     @if ($plan->imagen_url)
                                     <img id="picture" src="{{ asset('./imagenes/planes/' . old('imagen_url', $plan->imagen_url)) }}" alt="{{ old('imagen_url', $plan->imagen_url) }}">

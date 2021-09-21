@@ -31,7 +31,7 @@
                             <a href="{{ url()->previous() }}"
                                 class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
                                 type="submit">
-                                Cancel
+                                Cancelar
                             </a>
                         </div>
                     </div>

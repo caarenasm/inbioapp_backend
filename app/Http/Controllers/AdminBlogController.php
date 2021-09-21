@@ -73,35 +73,35 @@ class AdminBlogController extends Controller
        
         $resolucion = $request->resolucion;
 
-        if ($request->hasFile('imagen_url')){
-            $file           = $request->file("imagen_url");
+        if ($request->hasFile('image_url')){
+            $file           = $request->file("image_url");
             $nombre_archivo  = $file->getClientOriginalName();
             $extension= File::extension(basename($file->getClientOriginalName()));
             $nombre_archivo = Str::random(30).'.'.$extension;
             
             switch ($resolucion) {
                 case 1:
-                    $img = Image::make($request->file("imagen_url"))->resize(320, 240)
+                    $img = Image::make($request->file("image_url"))->resize(320, 240)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 2:
-                    $img = Image::make($request->file("imagen_url"))->resize(640, 480)
+                    $img = Image::make($request->file("image_url"))->resize(640, 480)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 3:
-                    $img = Image::make($request->file("imagen_url"))->resize(854, 480)
+                    $img = Image::make($request->file("image_url"))->resize(854, 480)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 4:
-                    $img = Image::make($request->file("imagen_url"))->resize(800, 600)
+                    $img = Image::make($request->file("image_url"))->resize(800, 600)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 5:
-                    $img = Image::make($request->file("imagen_url"))->resize(1024, 576)
+                    $img = Image::make($request->file("image_url"))->resize(1024, 576)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 6:
-                    $img = Image::make($request->file("imagen_url"))->resize(1024, 768)
+                    $img = Image::make($request->file("image_url"))->resize(1024, 768)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 default:
@@ -109,7 +109,7 @@ class AdminBlogController extends Controller
                     break;
             }
             
-            $blog->imagen_url = $nombre_archivo;
+            $blog->image_url = $nombre_archivo;
         }
 
         $blog->save();
@@ -168,35 +168,35 @@ class AdminBlogController extends Controller
        
         $resolucion = $request->resolucion;
 
-        if ($request->hasFile('imagen_url')){
-            $file           = $request->file("imagen_url");
+        if ($request->hasFile('image_url')){
+            $file           = $request->file("image_url");
             $nombre_archivo  = $file->getClientOriginalName();
             $extension= File::extension(basename($file->getClientOriginalName()));
             $nombre_archivo = Str::random(30).'.'.$extension;
             
             switch ($resolucion) {
                 case 1:
-                    $img = Image::make($request->file("imagen_url"))->resize(320, 240)
+                    $img = Image::make($request->file("image_url"))->resize(320, 240)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 2:
-                    $img = Image::make($request->file("imagen_url"))->resize(640, 480)
+                    $img = Image::make($request->file("image_url"))->resize(640, 480)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 3:
-                    $img = Image::make($request->file("imagen_url"))->resize(854, 480)
+                    $img = Image::make($request->file("image_url"))->resize(854, 480)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 4:
-                    $img = Image::make($request->file("imagen_url"))->resize(800, 600)
+                    $img = Image::make($request->file("image_url"))->resize(800, 600)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 5:
-                    $img = Image::make($request->file("imagen_url"))->resize(1024, 576)
+                    $img = Image::make($request->file("image_url"))->resize(1024, 576)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 case 6:
-                    $img = Image::make($request->file("imagen_url"))->resize(1024, 768)
+                    $img = Image::make($request->file("image_url"))->resize(1024, 768)
                         ->save("imagenes/blog/" . $nombre_archivo);
                     break;
                 default:
@@ -204,7 +204,7 @@ class AdminBlogController extends Controller
                     break;
             }
             
-            $blog->imagen_url = $nombre_archivo;
+            $blog->image_url = $nombre_archivo;
         }
 
 

@@ -47,12 +47,12 @@
 
                                 <div>
                                     <p class="font-bold text-sgray-700">Imagen principal de la entrada</p>
-                                    <label for="image_url" class="block text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Elegir
+                                    <label for="imagen_url" class="block text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Elegir
                                         imagen</label>
-                                    <input type="file" name="image_url" id="image_url" class="hidden">
+                                    <input type="file" name="imagen_url" id="imagen_url" class="hidden">
                                     <p>Explicación de tamaño de imagen</p>
 
-                                    @error('image_url')
+                                    @error('imagen_url')
                                     <small class="text-red-500">* {{$message}}</small>
                                     @enderror
                                 </div>

@@ -31,25 +31,28 @@
                 <nav>
                     <ul>
                         <li>
+                            <a href="/">Inicio</a>
+                        </li>
+                        <li class="hide">
                             <a href="#">Tienda</a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a href="#">Servicios</a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a href="#">Nuestra Granja</a>
                         </li>
                         <li>
                             <a href="{{ route('nosotros') }}">Quiénes Somos</a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a href="#">Artículos de interés</a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a href="#">Estudio de Caso</a>
                         </li>
                         <li>
-                            <a href="#">Distribuidores</a>
+                            <a href="{{ route('contacto') }}">Distribuidores</a>
                         </li>
                     </ul>
                 </nav>
@@ -87,9 +90,9 @@
                 <div class="news">
                     <p>¡No te pierdas de todas nuestra novedades!</p>
                     <p>
-                        <a><i class="fab fa-facebook"></i></a>
-                        <a><i class="fab fa-instagram"></i></a>
-                        <a><i class="fab fa-spotify"></i></a>
+                        <a href="https://www.youtube.com/channel/UC-6ZKWcJZq6OJfSZ0QwKoKw/videos" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/familia-inbionova/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/familiaagrosol" target="_blank"><i class="fab fa-twitter"></i></a>
                         #NuticiónEsencial</p>
                 </div>
                 <div class="newsletter">
@@ -106,6 +109,7 @@
             </section>
             <section class="bottom"></section>
         </footer>
+        <script type="text/javascript" src="/vendor/jquery/jquery.js"></script>
         @yield('scripts')
     </body>
 </html>

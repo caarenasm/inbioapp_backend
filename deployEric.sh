@@ -1,5 +1,5 @@
 # recordar de cambiar el archivo .env sobretodo el debug y la base de datos
-npm run dev
+npm run production
 composer install --optimize-autoloader
 php artisan config:cache
 php artisan route:cache

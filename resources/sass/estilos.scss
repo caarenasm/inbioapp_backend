@@ -9,6 +9,8 @@
   --inbionova-light-blue: #5bd9df;
   --inbionova-orange: #ef8b10;
   --inbionova-gray: #eaeaea;
+  --inbionova-light-gray: #eaebee;
+  --form-gray: #eaeaeb;
   --background-white: #ffffff;
   --primary-color: #ef8b10;
   --link-primary-color: #fff;
@@ -43,6 +45,7 @@ a:hover {
 a:active {
   color: var(--link-primary-active-color);
 }
+
 .hide {
   display: none;
 }
@@ -51,6 +54,7 @@ a:active {
 .black-text {
   color: var(--inbionova-black);
 }
+
 .black-hover:hover {
   color: var(--inbionova-black);
 }
@@ -62,15 +66,18 @@ a:active {
   padding: 0.5rem 1.2rem;
   cursor: pointer;
 }
+
 input[type="text"] {
   border-radius: 1.2rem;
   padding: .5rem;
   border: none;
   font-size: 1.2rem;
 }
+
 input[type="text"]:focus {
   outline: none;
 }
+
 button, .button {
   border-radius: 1.2rem;
   font-size: 1rem;
@@ -99,6 +106,7 @@ header {
     padding: var(--container-padding);
     background-color: #e7e7e7;
     justify-items: end;
+
     .contact-buttons {
       grid-column-start: 2;
       display: grid;
@@ -106,10 +114,12 @@ header {
       width: 100%;
       grid-template-columns: 45% 45%;
       column-gap: 10%;
+
       a {
-        i{
+        i {
           margin-right: .8rem;
         }
+
         display: inline-block;
         width: 100%;
         text-align: center;
@@ -130,9 +140,10 @@ header {
     .logo {
       grid-column-start: 1;
       height: 100%;
+
       a {
-        img{
-         max-width: 100%;
+        img {
+          max-width: 100%;
         }
       }
     }
@@ -184,20 +195,25 @@ footer {
   background-color: var(--inbionova-black);
   border-radius: 3rem 3rem 0 0;
   padding: 2rem 0;
+
   .top {
     padding: var(--container-padding);
     display: grid;
     grid-template-columns: 15% 55% 25%;
     color: white;
+
     a {
       color: white;
       cursor: pointer;
     }
-    a:hover{
+
+    a:hover {
       color: var(--link-primary-hover-color);
     }
+
     .links {
       align-self: center;
+
       ul {
         list-style: none;
         padding-left: 0;
@@ -206,29 +222,37 @@ footer {
           padding: .4rem 0;
         }
       }
-    };
+    }
+  ;
+
     .news {
       align-self: center;
       text-align: center;
     }
-    .newsletter{
+
+    .newsletter {
       align-self: center;
-      .formNewsletterFooter{
+
+      .formNewsletterFooter {
         text-align: center;
         border-radius: 3rem;
         background-color: #5570ff;
         padding: 2rem 4rem;
         width: 80%;
+
         .title {
           font-size: 1.4rem;
         }
-        p{
+
+        p {
           margin-bottom: 1.2rem;
         }
+
         input[type="text"] {
           margin-bottom: 1.2rem;
         }
-        button{
+
+        button {
           color: white;
           background-color: var(--inbionova-black);
           width: 70%;
@@ -240,7 +264,7 @@ footer {
 }
 
 /* CARDS */
-.image-text-card{
+.image-text-card {
   position: relative;
   width: 100%;
   border-radius: 3rem;
@@ -248,17 +272,20 @@ footer {
   text-align: center;
   box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .2);
   padding-bottom: 1.8rem;
+
   .image-container {
-    img{
+    img {
       max-width: 100%;
       border-radius: 3rem;
       margin-bottom: .3rem;
     }
   }
+
   .image-popup {
     position: relative;
     height: 3rem;
-    img{
+
+    img {
       position: absolute;
       top: -120%;
       left: 35%;
@@ -266,18 +293,21 @@ footer {
       border-radius: 50%;
     }
   }
+
   .title {
     font-size: 1.2rem;
     font-weight: 800;
     text-align: left;
     padding: 0 1.5rem;
   }
+
   .price {
     font-size: 1.2rem;
     font-weight: 400;
     text-align: left;
     padding: 0 1.5rem;
   }
+
   button, .button {
     background-color: var(--inbionova-violet);
     padding: 1rem;
@@ -289,15 +319,18 @@ footer {
     left: 20%;
   }
 }
+
 /* HOME */
 .home-newsletter {
   position: relative;
   overflow: hidden;
+
   .fondo {
     text-align: center;
     background-color: var(--inbionova-black);
     border-radius: 0 0 3rem 3rem;
     padding: 2.5rem 0;
+
     p {
       font-family: "Poppins", sans-serif;
       font-size: 2rem;
@@ -326,6 +359,7 @@ footer {
     }
   }
 }
+
 .home-timeline::before, .home-newsletter::before {
   content: '';
   position: absolute;
@@ -336,6 +370,7 @@ footer {
   top: 0;
   left: 0;
 }
+
 .home-timeline::after {
   content: '';
   position: absolute;
@@ -350,13 +385,15 @@ footer {
   background-repeat: no-repeat, no-repeat, no-repeat;
   opacity: 50%;
 }
-.home-timeline{
+
+.home-timeline {
   border-radius: 0 0 3rem 3rem;
   padding: 2.5rem 0 2.5rem 5rem;
   overflow: hidden;
   position: relative;
   z-index: 1;
-  hr{
+
+  hr {
     width: 150%;
     position: absolute;
     z-index: 2;
@@ -364,24 +401,28 @@ footer {
     top: 42%;
     left: 450px;
   }
+
   .top {
     position: relative;
     z-index: 3;
     display: grid;
     grid-template-columns: 511px 511px 511px 511px 511px 511px 511px;
     align-items: center;
+
     .circle {
       text-align: center;
       height: 100%;
+
       .content {
         width: 85%;
         height: 90%;
         border: 2px solid white;
-        background-image: linear-gradient(to right, var(--inbionova-violet) 0 , var(--inbionova-blue) 300%);
+        background-image: linear-gradient(to right, var(--inbionova-violet) 0, var(--inbionova-blue) 300%);
         border-radius: 50%;
         display: grid;
         align-items: center;
-        p{
+
+        p {
           font-family: "Poppins", sans-serif;
           padding: 0 10%;
           color: white;
@@ -390,15 +431,18 @@ footer {
         }
       }
     }
+
     .special {
       padding-top: 7.5%;
       padding-left: 15%;
     }
   }
-  .bottom{
+
+  .bottom {
     display: grid;
     grid-template-columns: 511px 511px 511px 511px 511px 511px 511px;
     align-items: center;
+
     .text {
       font-family: "Roboto", sans-serif;
       padding: 0 5rem;
@@ -409,13 +453,15 @@ footer {
     }
   }
 }
-.home-bioinsumos, .home-productos, .home-benefits{
+
+.home-bioinsumos, .home-productos, .home-benefits {
   padding: var(--container-padding);
   padding-top: 8rem;
   padding-bottom: 8rem;
   background-position: 0 -3rem;
   background-repeat: no-repeat;
   background-image: url('/imagenes/home/fondo-1.jpg');
+
   h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 800;
@@ -425,7 +471,8 @@ footer {
     margin-bottom: 3rem;
     text-align: center;
   }
-  > p{
+
+  > p {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-size: 1.2rem;
@@ -434,6 +481,7 @@ footer {
     margin-bottom: 2rem;
     text-align: center;
   }
+
   .productos {
     margin-top: 3rem;
     width: 40%;
@@ -445,6 +493,7 @@ footer {
   }
 
 }
+
 .coach-agro, .nutri-coach, .coach-security, .who-are, .testimonials, .awards, .allies {
   padding: var(--container-padding);
   background-color: var(--inbionova-green);
@@ -454,18 +503,22 @@ footer {
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: center;
+
   .text {
     color: white;
     padding: 0 8rem;
+
     h2 {
       font-family: "Poppins", sans-serif;
       font-size: 2.5rem;
       margin-bottom: 3rem;
     }
-    p{
+
+    p {
       font-size: 1.3rem;
       margin-bottom: 3rem;
     }
+
     button {
       background-color: white;
       border: 1px solid var(--inbionova-black);
@@ -473,12 +526,15 @@ footer {
       border-radius: 2rem;
     }
   }
+
   .image {
     top: -5rem;
     position: relative;
-    img{
+
+    img {
       max-width: 70%;
     }
+
     p {
       position: absolute;
       bottom: 5rem;
@@ -490,27 +546,31 @@ footer {
     }
   }
 }
+
 .nutri-coach {
   background-color: var(--inbionova-blue);
   border-radius: 0 0 15rem 0;
-  .image{
+
+  .image {
     display: grid;
     justify-items: end;
-    p{
+
+    p {
       right: auto;
       left: 0;
     }
   }
 }
 
-.home-productos{
+.home-productos {
   h2 {
     width: 60%;
     margin-left: 20%;
     margin-bottom: 3rem;
     text-align: center;
   }
-  > p{
+
+  > p {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-size: 1.2rem;
@@ -519,6 +579,7 @@ footer {
     margin-bottom: 2rem;
     text-align: center;
   }
+
   .productos {
     padding: 0 5%;
     margin-top: 3rem;
@@ -531,6 +592,7 @@ footer {
   }
 
 }
+
 .coach-security {
   .text {
     button {
@@ -547,6 +609,7 @@ footer {
   padding-bottom: 4rem;
   background-position: 0 -3rem;
   background-image: url('/imagenes/home/fondo-2.jpg');
+
   .benefits {
     width: 60%;
     margin-left: 20%;
@@ -554,9 +617,11 @@ footer {
     grid-template-columns: 22% 22% 22% 22%;
     column-gap: 4%;
     justify-items: center;
+
     .benefit {
       text-align: center;
       margin-bottom: 2rem;
+
       svg {
         fill: white;
         stroke: white;
@@ -565,6 +630,7 @@ footer {
         padding: 2.3rem;
         border-radius: 50%;
       }
+
       p {
         font-family: "Poppins", sans-serif;
         font-weight: 300;
@@ -576,6 +642,7 @@ footer {
 
 .who-are {
   background-color: var(--inbionova-orange);
+
   .text {
     button {
       background-color: var(--inbionova-violet);
@@ -593,11 +660,13 @@ footer {
   padding-bottom: 6rem;
   background-image: url('/imagenes/home/fondo-3.jpg');
   background-repeat: no-repeat;
+
   .text {
     text-align: center;
     color: var(--inbionova-black);
     margin-bottom: 6rem;
   }
+
   .testimonials-content {
     padding: 0 5%;
     margin-top: 3rem;
@@ -607,14 +676,17 @@ footer {
     grid-template-columns: 22% 22% 22% 22%;
     column-gap: 4%;
     justify-items: center;
+
     p {
       padding: 3rem 2rem 0 2rem;
     }
+
     p.name {
       padding-top: 2rem;
       padding-bottom: 1rem;
       text-align: right;
     }
+
     .button {
 
     }
@@ -626,10 +698,12 @@ footer {
   display: block;
   padding: 5rem 0;
   background-image: none;
+
   .text {
     text-align: center;
     color: var(--inbionova-black);
   }
+
   .award-content {
     padding: 0 5%;
     margin-top: 3rem;
@@ -639,6 +713,7 @@ footer {
     grid-template-columns: 22% 22% 22% 22%;
     column-gap: 4%;
     justify-items: center;
+
     p {
       padding: 2rem;
     }
@@ -650,9 +725,11 @@ footer {
   display: block;
   padding: 5rem 0;
   background-image: none;
+
   .text {
     text-align: center;
     color: var(--inbionova-black);
+
     > p {
       font-family: "Poppins", sans-serif;
       font-weight: 300;
@@ -660,12 +737,14 @@ footer {
       width: 80%;
       margin-left: 10%;
     }
+
     button {
       background-color: var(--inbionova-violet);
       border: none;
       color: white;
     }
   }
+
   .allies-content {
     padding: 0 5%;
     margin-top: 3rem;
@@ -675,9 +754,10 @@ footer {
     grid-template-columns: 22% 22% 22% 22%;
     column-gap: 4%;
     justify-items: center;
-     p{
-       padding: 2rem;
-     }
+
+    p {
+      padding: 2rem;
+    }
   }
 }
 
@@ -685,13 +765,16 @@ footer {
 .who-are-we {
   border-radius: 0 0 8rem 0;
   padding: var(--container-padding);
-  background-image: linear-gradient(white,  white 49%, var(--inbionova-gray) 50%, var(--inbionova-gray) 100%);
+  background-image: linear-gradient(white, white 49%, var(--inbionova-gray) 50%, var(--inbionova-gray) 100%);
+
   .fabio {
     text-align: center;
+
     img {
       max-width: 50%;
     }
   }
+
   .presentation {
     h1 {
       width: 60%;
@@ -702,6 +785,7 @@ footer {
       color: var(--inbionova-black);
       font-size: 2rem;
       margin-bottom: 2rem;
+
       strong {
         font-weight: 800;
       }
@@ -710,17 +794,19 @@ footer {
         color: var(--inbionova-violet);
       }
     }
+
     p {
       width: 60%;
       margin-left: 20%;
       text-align: center;
     }
   }
+
   .timeline {
     position: relative;
     margin-bottom: 3rem;
     display: grid;
-    grid-template-columns: 13% 13% 13% 13% 13% 13% 13% 13% 13% ;
+    grid-template-columns: 13% 13% 13% 13% 13% 13% 13% 13% 13%;
     column-gap: 3%;
     background-image: linear-gradient(to right, #fff101, #ff5212);
     border-radius: 4rem;
@@ -729,6 +815,7 @@ footer {
     margin-left: 5%;
     margin-top: 2rem;
     overflow: hidden;
+
     hr {
       border: 2px solid white;
       position: absolute;
@@ -736,45 +823,54 @@ footer {
       left: 11rem;
       width: 150%;
     }
+
     .entry {
       text-align: center;
       position: relative;
+
       .image {
         width: 50%;
         margin-left: 25%;
         padding: 1.2rem;
         background-color: white;
         border-radius: 50%;
-        img {
+
+        embed {
           max-width: 100%;
         }
       }
-      p{
+
+      p {
         padding-top: .5rem;
         font-size: 1rem;
         font-weight: 300;
       }
     }
   }
+
   .history {
     padding: 2rem 4rem;
     width: 90%;
     margin-left: 5%;
-    h2{
+
+    h2 {
       font-family: "Poppins", sans-serif;
       color: var(--inbionova-black);
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 3rem;
     }
+
     p {
       text-align: center;
       margin-bottom: 2rem;
     }
+
     .history-timeline {
       position: relative;
       display: grid;
       grid-template-columns: repeat(15, 6.66%);
+
       .point {
         font-family: "Poppins", sans-serif;
         color: var(--inbionova-black);
@@ -784,9 +880,11 @@ footer {
         padding-top: 1rem;
         cursor: pointer;
       }
+
       .point.active {
         color: var(--inbionova-violet);
       }
+
       .point::before {
         content: '';
         width: 1rem;
@@ -797,10 +895,12 @@ footer {
         top: 0;
         left: calc(50% - 0.5rem);
       }
+
       .point.active::before {
         background-color: var(--inbionova-violet);
       }
     }
+
     .history-timeline::before {
       content: '';
       position: absolute;
@@ -809,6 +909,7 @@ footer {
       left: 3%;
       width: 93%;
     }
+
     .history-text {
       margin-top: 2rem;
       display: none;
@@ -817,28 +918,33 @@ footer {
       margin-left: 15%;
       border-radius: 0 0 8rem 0;
       padding: 2rem 5rem 2rem 2rem;
+
       p {
         text-align: left;
         color: var(--inbionova-black);
         margin-bottom: .7rem;
         padding-bottom: .7rem;
       }
+
       .year {
         color: var(--inbionova-violet);
         font-size: 1.5rem;
         font-family: "Poppins", sans-serif;
         font-weight: 800;
       }
+
       .text {
         font-size: .9rem;
         border-bottom: 1px dotted var(--inbionova-black);
       }
+
       p:last-child {
         border-bottom: none;
         margin-bottom: 0;
         padding-bottom: 0;
       }
     }
+
     .history-text.active {
       display: block;
     }
@@ -847,17 +953,20 @@ footer {
 
 .our-values {
   padding: var(--container-padding);
-  h2{
+
+  h2 {
     font-family: "Poppins", sans-serif;
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--inbionova-black);
     text-align: center;
   }
+
   p {
     text-align: center;
     margin-bottom: 2rem;
   }
+
   .values {
     width: 50%;
     margin-left: 25%;
@@ -866,9 +975,11 @@ footer {
     column-gap: 4%;
     justify-items: center;
     padding-top: 3rem;
+
     .value {
       text-align: center;
       margin-bottom: 2rem;
+
       svg {
         fill: white;
         stroke: white;
@@ -878,9 +989,11 @@ footer {
         border-radius: 50%;
         margin-bottom: 1rem;
       }
+
       h4 {
         margin-bottom: 1rem;
       }
+
       p {
         font-family: "Poppins", sans-serif;
         font-weight: 300;
@@ -893,10 +1006,12 @@ footer {
 .impacts {
   display: grid;
   grid-template-columns: 50% 50%;
+
   .left {
     background-color: black;
     color: white;
     border-radius: 8rem 0 0 0;
+
     > div {
       position: relative;
       top: 15%;
@@ -908,23 +1023,28 @@ footer {
       padding: 3rem;
       display: grid;
       align-items: center;
+
       p {
         margin-bottom: 1rem;
         padding: 0 2rem;
       }
     }
   }
-  .right{
+
+  .right {
     position: relative;
     background-color: black;
     display: grid;
     grid-template-columns: 50% 50%;
-    div{
+
+    div {
       overflow: hidden;
-      img{
+
+      img {
         width: 100%;
       }
-      p{
+
+      p {
         font-family: "Poppins", sans-serif;
         color: white;
         font-size: 3rem;
@@ -932,6 +1052,7 @@ footer {
         cursor: pointer;
       }
     }
+
     .ambiental {
       background-color: var(--inbionova-green);
       position: absolute;
@@ -943,6 +1064,7 @@ footer {
       align-items: center;
       text-align: center;
     }
+
     .economic {
       background-color: var(--inbionova-violet);
       position: absolute;
@@ -954,7 +1076,8 @@ footer {
       align-items: center;
       text-align: center;
     }
-    .text{
+
+    .text {
       display: none;
     }
   }
@@ -963,36 +1086,224 @@ footer {
 .team {
   padding: var(--container-padding);
   background-color: #f2f2f3;
-  h2{
+
+  h2 {
     font-family: "Poppins", sans-serif;
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--inbionova-black);
     text-align: center;
   }
+
   p {
     text-align: center;
     margin-bottom: 2rem;
   }
+
   .members {
     display: grid;
     grid-template-columns: 22% 22% 22% 22%;
     column-gap: 4%;
+
     .member {
       width: 100%;
       align-self: center;
+
       .name {
         padding-top: 1rem;
         padding-bottom: .5rem;
         font-weight: 800;
         margin-bottom: 0;
       }
+
       img {
         width: 100%;
       }
     }
-    .centered {
-      grid-column-start: 2;
+  }
+}
+
+.contacto-header {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-radius: 0 0 8rem 8rem;
+  overflow: hidden;
+
+  .left {
+    img {
+      width: 100%;
+    }
+  }
+
+  .right {
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.contact-form {
+  padding-top: 5rem;
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .left {
+    position: relative;
+    top: 3rem;
+    left: 10rem;
+    z-index: 1;
+    background-color: white;
+    border-radius: 4rem;
+    box-shadow: 0 0 7px rgba(0, 0, 0, .3);
+    padding: 3rem;
+
+    h2 {
+      font-family: "Poppins", sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--inbionova-black);
+      text-align: center;
+    }
+
+    .form-element {
+      label {
+        font-family: "Poppins", sans-serif;
+        display: block;
+        color: var(--inbionova-black);
+      }
+
+      input {
+        background-color: var(--form-gray);
+        display: block;
+        width: 100%;
+        margin: .7rem 0;
+      }
+
+      select {
+        background-color: var(--form-gray);
+        display: block;
+        width: 100%;
+        margin: .7rem 0;
+        border-radius: 1.2rem;
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.2rem;
+      }
+
+      textarea {
+        background-color: var(--form-gray);
+        display: block;
+        width: 100%;
+        margin: .7rem 0;
+        border-radius: 1.2rem;
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.2rem;
+        min-height: 6rem;
+      }
+    }
+  }
+
+  .right {
+    position: relative;
+    z-index: 0;
+    left: -10rem;
+    padding: 7rem 3rem;
+    padding-left: 25rem;
+    background-color: var(--inbionova-light-gray);
+    border-radius: 10rem 0;
+
+    h4 {
+      font-family: "Poppins", sans-serif;
+      padding: 1rem 0;
+    }
+
+    strong {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+    }
+
+    .department {
+      margin-bottom: .7rem;
+    }
+  }
+}
+
+.distribution {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  column-gap: 2.5%;
+  padding: var(--container-padding);
+  padding-top: 6rem;
+  background-color: #f2f2f3;
+  margin-top: 4rem;
+  border-radius: 20rem 0 0 0;
+
+  .left {
+
+  }
+
+  .right {
+    h2 {
+      font-family: "Poppins", sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--inbionova-black);
+      text-align: center;
+    }
+
+    .accordeon {
+      .part {
+        margin-bottom: 1rem;
+        .header {
+          background-color: white;
+          box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+          border-radius: 1.2rem;
+          display: grid;
+          grid-template-columns: 90% 10%;
+          align-items: center;
+          position: relative;
+          z-index: 1;
+          span {
+            padding: .8rem;
+          }
+          svg {
+            width: 50%;
+            padding: .8rem;
+            margin: .4rem 0;
+            background-color: var(--inbionova-violet);
+            border-radius: 50%;
+            fill: white;
+            stroke: white;
+          }
+        }
+
+        .info {
+          background-color: white;
+          color: var(--inbionova-black);
+          display: none;
+          position: relative;
+          z-index: 0;
+          padding: 1rem;
+          border-radius: 0 0 2rem 2rem;
+          .title {
+            font-weight: 800;
+            margin-top: .5rem;
+          }
+        }
+      }
+      .part.active {
+        svg {
+          background-color: var(--inbionova-orange);
+        }
+        .info {
+          display: block;
+        }
+      }
     }
   }
 }
@@ -1010,7 +1321,7 @@ footer {
 }
 
 @media all and (max-width: 1440px) {
-  .coach-agro .image p, .nutri-coach .image p, .coach-security .image p, .who-are .image p, .testimonials .image p, .awards .image p, .allies .image p{
+  .coach-agro .image p, .nutri-coach .image p, .coach-security .image p, .who-are .image p, .testimonials .image p, .awards .image p, .allies .image p {
     bottom: -2rem;
   }
   .home-bioinsumos, .home-productos, .home-benefits {
@@ -1047,11 +1358,11 @@ footer {
 }
 
 @media all and (max-width: 1100px) {
-  header .top{
+  header .top {
     display: block;
     position: relative;
   }
-  header .bottom{
+  header .bottom {
     display: block;
     position: relative;
 
@@ -1134,7 +1445,7 @@ footer {
       }
     }
   }
-  .coach-agro,  .coach-security, .who-are, .testimonials, .awards, .allies {
+  .coach-agro, .coach-security, .who-are, .testimonials, .awards, .allies {
     grid-template-columns: 40% 60%;
     border-radius: 0;
   }
@@ -1161,6 +1472,7 @@ footer {
   }
 
 }
+
 @media all and (max-width: 980px) {
   .home-bioinsumos h2, .home-productos h2, .home-benefits h2 {
     width: 100%;
@@ -1177,6 +1489,7 @@ footer {
     grid-template-columns: 30% 30% 40%;
   }
 }
+
 @media all and (max-width: 800px) {
   .home-newsletter .fondo p {
     width: 90%;
@@ -1207,6 +1520,7 @@ footer {
     grid-row-gap: 7rem;
   }
 }
+
 @media all and (max-width: 600px) {
   .home-bioinsumos .productos, .home-productos .productos, .home-benefits .productos {
     grid-template-columns: 100%;
@@ -1227,8 +1541,9 @@ footer {
     column-gap: 5%;
   }
 }
+
 @media all and (max-width: 480px) {
-  .home-newsletter .fondo input[type=text]{
+  .home-newsletter .fondo input[type=text] {
     width: 80%;
     margin-left: 10%;
   }
@@ -1236,7 +1551,7 @@ footer {
     grid-template-columns: 100%;
     row-gap: 7rem;
   }
-  .awards .award-content{
+  .awards .award-content {
     grid-template-columns: 100%;
     row-gap: 3rem;
   }
@@ -1257,11 +1572,13 @@ footer {
     text-align: center;
   }
 }
+
 @media all and (max-width: 480px) {
   .home-bioinsumos h2, .home-productos h2, .home-benefits h2 {
     font-size: 1.8rem;
   }
 }
+
 @media all and (max-width: 480px) {
   .coach-agro .image p, .nutri-coach .image p, .coach-security .image p, .who-are .image p, .testimonials .image p, .awards .image p, .allies .image p {
     width: 100%;

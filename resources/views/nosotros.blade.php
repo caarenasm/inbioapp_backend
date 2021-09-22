@@ -1,6 +1,6 @@
 @extends('layouts.public-plantilla')
 
-@section('title', 'Inbionnova - Crea con nosotros un mundo mejor nutrido')
+@section('title', 'Inbionova - Crea con nosotros un mundo mejor nutrido')
 @section('description', 'Tomas mejores decisiones al comer, y mejoras la calidad nutricional de tu alimentación.')
 @section('canonicalUrl', 'http://inbionova.com.co/nosotros')
 @section('pagina', 'nosotros')
@@ -24,7 +24,7 @@
             <hr>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-01.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-01.svg">
                 </div>
                 <p>
                     Al cumplir mis 51 años atendía mi empresa de energía solar, siendo pionero en el mercado.
@@ -33,7 +33,7 @@
 
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-02.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-02.svg">
                 </div>
                 <p>
                     Debido a mi mala alimentación y mal estilo de vida me diagnosticaron artritis, artrosis, una afección de colon, apendicitis, diabetes, gastritis y varias alergias.
@@ -42,7 +42,7 @@
 
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-03.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-03.svg">
                 </div>
                 <p>
                     No podía moverme, porque las articulaciones me dolían y no podía hacer mis actividades diarias.
@@ -50,7 +50,7 @@
             </div>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-04.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-04.svg">
                 </div>
                 <p>
                     Me extranjeron la vesícula y tomaba muchos medicamentos para el dolor.
@@ -58,7 +58,7 @@
             </div>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-05.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-05.svg">
                 </div>
                 <p>
                     Comencé a conocer del campo viviendo en la finca cafeterea "El Jazmín" en Filandia, Quindío. Iniciando la investigación y desarrollo de productos para el agro, entendiendo que la nutrición empieza desde el agro.
@@ -66,7 +66,7 @@
             </div>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-06.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-06.svg">
                 </div>
                 <p>
                     Mi alimentación se basó en productos orgánicos, limpios de pesticidas, mejorando mi estado de salud.
@@ -74,7 +74,7 @@
             </div>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-07.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-07.svg">
                 </div>
                 <p>
                     Comprendí que el cuerpo requiere también de minerales para complementar su nutrición, es así como desarrolle los bioproductos.
@@ -82,7 +82,7 @@
             </div>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-08.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-08.svg">
                 </div>
                 <p>
                     Mi dieta se baso en una alimentación mas saludable y natural en complemento con los bioproductos, el dolor en las articulaciones se fue.
@@ -90,7 +90,7 @@
             </div>
             <div class="entry">
                 <div class="image">
-                    <img src="/imagenes/nosotros/iconos/timeline/timeline-09.svg">
+                    <embed src="/imagenes/nosotros/iconos/timeline/timeline-09.svg">
                 </div>
                 <p>
                     El aporte de minerales a mi organismo me dió energía y fortalecieron mi sistema musculoesquelético.
@@ -355,54 +355,64 @@
         <p>Amamos lo que hacemos porque más que un trabajo es un estilo de vida.</p>
         <div class="members">
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/fabio.png">
+                <img src="/imagenes/nosotros/equipo/fabio-aristizabal-ochoa.png">
                 <p class="name">Fabio Aristizábal Ochoa</p>
                 <p class="role">Director I+D+I / Cofundador Inbionova / Coach Nutricional</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/luz-marina.png">
+                <img src="/imagenes/nosotros/equipo/luz-marina-gomez-soto.png">
                 <p class="name">Luz Marina Gómez Soto</p>
                 <p class="role">Gerente / Cofundador Inbionva</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/nayeli.png">
+                <img src="/imagenes/nosotros/equipo/nayeli-velez-hernandez.png">
                 <p class="name">Nayeli Vélez Hernández</p>
                 <p class="role">Gerente Administrativa</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/ximena.png">
+                <img src="/imagenes/nosotros/equipo/maria-ximena-aristizabal-gomez.png">
                 <p class="name">María Ximena Schuster</p>
                 <p class="role">Consultora en Desarrollo de Negocio </p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/karen.png">
+                <img src="/imagenes/nosotros/equipo/karent-lizeht-puentes-bustos.png">
                 <p class="name">Karent Lizeht Puentes Bustos</p>
                 <p class="role">Coordinadora SG-SST Jr.</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/lizeth.png">
+                <img src="/imagenes/nosotros/equipo/lizeth-ortega-morales.png">
                 <p class="name">Lizeth Ortega Morales</p>
                 <p class="role">Administradora de Servicios TI</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/maria-paula.png">
+                <img src="/imagenes/nosotros/equipo/maria-paula-durango-salazar.png">
                 <p class="name">María Paula Durango Salazar</p>
                 <p class="role">Asistente de Producción</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/luz-dey.png">
+                <img src="/imagenes/nosotros/equipo/luzdey-hernandez-cardona.png">
                 <p class="name">Luzdey Hernández Cardona</p>
                 <p class="role">Domiciliaria</p>
             </div>
-            <div class="member centered">
-                <img src="/imagenes/nosotros/equipo/claudia.png">
+            <div class="member">
+                <img src="/imagenes/nosotros/equipo/claudia-isabel-salazar-gonzalez.png">
                 <p class="name">Claudia Isabel Salazar González</p>
                 <p class="role">Coordinadora SIG</p>
             </div>
             <div class="member">
-                <img src="/imagenes/nosotros/equipo/johanna.png">
-                <p class="name">Johanna Andrea Ramírez Urueña</p>
-                <p class="role">Auxiliar Contable</p>
+                <img src="/imagenes/nosotros/equipo/olga-liliana-garcia.png">
+                <p class="name">Olga Liliana García</p>
+                <p class="role">Directora comercial</p>
+            </div>
+            <div class="member">
+                <img src="/imagenes/nosotros/equipo/carlos-andres-arenas.png">
+                <p class="name">Carlos Andrés Arenas</p>
+                <p class="role">Desarrollador de Software</p>
+            </div>
+            <div class="member">
+                <img src="/imagenes/nosotros/equipo/yoser-perez.png">
+                <p class="name">Yoser Perez</p>
+                <p class="role">Desarrollador de Software</p>
             </div>
         </div>
     </section>
@@ -451,7 +461,6 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="/vendor/jquery/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.point').click(function(){

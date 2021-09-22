@@ -3,7 +3,7 @@
     @section('title', 'Tipo de eventos')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center m-3">Categoría de los alimentos</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center m-3">Tipo de eventos</h2>
         <div class="p-2 bg-white">
             @can('admin')
 

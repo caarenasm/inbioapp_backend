@@ -34,7 +34,7 @@
 
                         <div class="m-3">
                             <p class="block font-bold text-gray-700">Elijé el icono de la pregunta</p>
-                            <select wire:model="selectedState" class="form-control" id="icono" name="icono">
+                            <select wire:model="selectedState" class="form-control rounded-xl border-gray-300" id="icono" name="icono">
                                 <option value="" selected>Escoge el icono</option>
                                 @foreach ($iconos as $icono)
                                 <option value="{{ $icono->nombre_icono }}" @if(old('icono')===$pregunta->icono || $pregunta->icono === $icono->nombre_icono) selected @endif>{{ $icono->nombre_icono }}</option>

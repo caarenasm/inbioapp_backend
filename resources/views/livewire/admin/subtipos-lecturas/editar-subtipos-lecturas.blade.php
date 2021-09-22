@@ -7,7 +7,7 @@
         <div class="m-3 w-1/3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Modificar subtipo de lectura</h2>
             <div class="flex flex-col">
-                <form action="{{ route('subtipos-lecturas.update', $subtipo_lectura) }}" method="POST">
+                <form action="{{ route('subtipos-lecturas.update', $subtipo_lectura) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="m-3">
@@ -20,7 +20,7 @@
                         @enderror
                     </div>
 
-                    <div class="grid grid-cols-2">
+                    <div class="">
                         <div class="m-3">
                             <p class="block font-bold text-gray-700">Elijé el tipo de lectura</p>
                             <select wire:model="selectedState" class="form-control rounded-xl border-gray-300"
@@ -49,7 +49,7 @@
                     </div>
 
 
-                    <div class="mb-3 grid grid-cols-2 gap-4">
+                    <div class="m-3 grid grid-cols-2 gap-4">
                         <x-forms.button type="submit" text="Guardar cambios" />
                         <a href="{{ url()->previous() }}"
                             class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
@@ -61,72 +61,4 @@
             </div>
         </div>
     </div>
-
-    @push('scripts')
-        <script src="/js/ckeditor5.js"></script>
-
-        <script>
-            // CK Editor
-            ClassicEditor
-                .create(document.querySelector('#descripcion'), {
-                    toolbar: {
-                        items: [
-                            'heading',
-                            '|',
-                            'bold',
-                            'italic',
-                            'link',
-                            'bulletedList',
-                            'numberedList',
-                            '|',
-                            'imageUpload',
-                            'blockQuote',
-                            'insertTable',
-                            'mediaEmbed',
-                            'undo',
-                            'redo'
-                        ]
-                    },
-                    language: 'es',
-                    image: {
-                        toolbar: ['imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
-                            '|',
-                            'resizeImage',
-                            '|',
-                            'imageTextAlternative'
-                        ],
-                        styles: [
-                            'alignLeft', 'alignCenter', 'alignRight'
-                        ],
-                    },
-                    table: {
-                        contentToolbar: [
-                            'tableColumn',
-                            'tableRow',
-                            'mergeTableCells'
-                        ]
-                    },
-                    simpleUpload: {
-                        uploadUrl: '{{ asset('. / imagenes / eventos / placeholder.png ') }}',
-                        headers: {
-
-                        }
-                    },
-                })
-                .then(editor => {
-                    window.editor = editor;
-                })
-                .catch(error => {
-                    console.error('Oops, something went wrong!');
-                    console.error(
-                        'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
-                    );
-                    console.warn('Build id: smh51lc3zo1f-qavakagvqr26');
-                    console.error(error);
-                });
-            // CK Editor fin
-            });
-        </script>
-    @endpush
-
 </x-app-layout>

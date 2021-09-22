@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="grid grid-cols-2 mb-3">
-                                <div class="col">
+                                <div class="col mr-3">
                                     <div class="image-wrapper">
                                         @if ($objetivo->imagen_url)
                                         <img id="picture" src="{{ asset('./imagenes/objetivos/' . old('imagen_url', $objetivo->imagen_url)) }}" alt="{{ old('imagen_url', $objetivo->imagen_url) }}">

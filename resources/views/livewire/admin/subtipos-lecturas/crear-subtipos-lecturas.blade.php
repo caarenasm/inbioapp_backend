@@ -3,7 +3,7 @@
 <div class="m-3 w-1/3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
     <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Crear subtipo de lectura</h2>
     <div class="flex flex-col">
-        <form action="{{ route('subtipos-lecturas.store') }}" method="POST">
+        <form action="{{ route('subtipos-lecturas.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="m-3">
                 <label for="descripcion" class="block font-bold text-gray-700">Descripción del subtipo</label>
@@ -14,7 +14,7 @@
                 @enderror
             </div>
 
-            <div class="grid grid-cols-2">
+            <div class="">
                 <div class="m-3">
                     <p class="block font-bold text-gray-700">Elijé el tipo de lectura</p>
                     <select wire:model="selectedState" class="form-control rounded-xl border-gray-300"
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="mb-3 grid grid-cols-2 gap-4">
+            <div class="m-3 grid grid-cols-2 gap-4">
                 <x-forms.button type="submit" text="Crear subtipo de lectura" />
                 <a href="{{ url()->previous() }}"
                     class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"

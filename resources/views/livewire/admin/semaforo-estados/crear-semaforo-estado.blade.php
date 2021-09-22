@@ -1,4 +1,4 @@
-<div class="m-3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+<div class="m-3 w-1/3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
     <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Nuevo estado</h2>
     <div class="flex flex-col">
         <form action="{{ route('semaforos-estados.store') }}" method="POST">

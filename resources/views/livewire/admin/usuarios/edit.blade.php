@@ -5,7 +5,7 @@
     <div class="p-2 bg-white p-6 m-2">
         <h2 class="text-2xl  text-fondo-verde font-extrabold text-center">Usuarios</h2>
         <div class="m-3 w-1/3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Nuevo usuario</h2>
+            <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Modificar usuario</h2>
             <div class="flex flex-col">
 
                 <form method="post" action="{{ route('usuarios.update', $user)  }}">

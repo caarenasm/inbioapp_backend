@@ -61,7 +61,7 @@ class AdminSubtipoLecturaController extends Controller
 
     public function destroy($id)
     {
-        TipoLectura::destroy($id);
+        SubtipoLectura::destroy($id);
         return redirect()->route('subtipos-lecturas.index');
     }
 }

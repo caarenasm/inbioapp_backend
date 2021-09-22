@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EnfermedadSeeder::class);
         $this->call(EstadosSeeder::class);
         $this->call(IconSeeder::class);
+        $this->call(PreguntaSeeder::class);
+        $this->call(RespuestaSeeder::class);
         $this->call(CategoriaDiarioSeeder::class);
         $this->call(TipoLecturaSeeder::class);
         $this->call(SubtipoLecturaSeeder::class);

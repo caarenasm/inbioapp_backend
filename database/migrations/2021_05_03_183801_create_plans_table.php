@@ -19,8 +19,7 @@ class CreatePlansTable extends Migration
             $table->string('slug',45);
             $table->text('descripcion')->nullable();
             $table->string('imagen_url',100)->nullable();
-            $table->double('precio')->nullable();
-            $table->Integer('resolucion')->nullable();        
+            $table->double('precio')->nullable();        
             $table->timestamps();
         });
     }

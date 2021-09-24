@@ -16,29 +16,24 @@ class SubtipoLecturaSeeder extends Seeder
     {
         $data = [
             [
-                'descripcion' => 'Muy bien, me levanto descansado',
+                'descripcion' => 'Sueño',
                 'icono' => 'icon-accidente',
                 'tipo_lectura_id' => '1',
             ],
             [
-                'descripcion' => 'Nadar',
+                'descripcion' => 'alergias',
+                'icono' => 'icon-accidente',
+                'tipo_lectura_id' => '1',
+            ],
+            [
+                'descripcion' => 'diabetes',
                 'icono' => 'icon-accidente',
                 'tipo_lectura_id' => '2',
             ],
             [
-                'descripcion' => 'Correr',
+                'descripcion' => 'presion',
                 'icono' => 'icon-accidente',
                 'tipo_lectura_id' => '2',
-            ],
-            [
-                'descripcion' => 'Bioremix ',
-                'icono' => 'icon-accidente',
-                'tipo_lectura_id' => '3',
-            ],
-            [
-                'descripcion' => 'Bioremix mana',
-                'icono' => 'icon-accidente',
-                'tipo_lectura_id' => '3',
             ],
         ];
 

@@ -25,6 +25,7 @@ use App\Http\Controllers\AdminTipoEnfermedadController;
 use App\Http\Controllers\AdminTipoEventoController;
 use App\Http\Controllers\AdminTipoLecturaController;
 use App\Http\Controllers\AdminUsuarioInformacionController;
+use App\Http\Controllers\AdminUsuarioEstadisticaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\ProductosController;
@@ -126,8 +127,10 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::put('/planes/{plan}', [AdminPlanController::class, 'update'])->middleware('can:admin')->name('planes.update');
     Route::delete('/planes/{plan}/eliminar', [AdminPlanController::class, 'destroy'])->middleware('can:admin')->name('planes.delete');
 
+    Route::get('/mis-planes', [AdminPlanUserController::class,'index'])->middleware('can:editar_admin_editor')->name('mis-planes');
+    Route::get('/asignar-mis-planes', [AdminPlanUserController::class,'index'])->middleware('can:editar_admin_editor')->name('asignar-mis-planes');
+
     Route::get('/preguntas', [AdminPreguntaController::class,'index'])->middleware('can:editar_admin_editor')->name('preguntas');
-    Route::get('/preguntas/crear', [AdminPreguntaController::class, 'create'])->middleware('can:admin')->name('preguntas.create');
     Route::post('/preguntas', [AdminPreguntaController::class, 'store'])->middleware('can:admin')->name('preguntas.store');
     Route::get('/preguntas/{pregunta}/editar', [AdminPreguntaController::class, 'edit'])->middleware('can:editar_admin_editor')->name('preguntas.edit');
     Route::put('/preguntas/{pregunta}', [AdminPreguntaController::class, 'update'])->middleware('can:admin')->name('preguntas.update');
@@ -177,7 +180,6 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::delete('/enfermedades-alimentos/{enfermedad_alimento}/eliminar', [AdminEnfermedadAlimentoController::class, 'destroy'])->middleware('can:admin')->name('enfermedades-alimentos.delete');
 
     Route::get('/objetivos/index', [AdminObjetivoController::class,'index'])->middleware('can:editar_admin_editor')->name('objetivos');
-    Route::get('/objetivos/crear', [AdminObjetivoController::class, 'create'])->middleware('can:admin')->name('objetivos.create');
     Route::post('/objetivos', [AdminObjetivoController::class, 'store'])->middleware('can:admin')->name('objetivos.store');
     Route::get('/objetivos/{objetivo}/editar', [AdminObjetivoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('objetivos.edit');
     Route::put('/objetivos/{objetivo}', [AdminObjetivoController::class, 'update'])->middleware('can:admin')->name('objetivos.update');
@@ -208,7 +210,6 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('administracion')->group
     Route::delete('/tipo-eventos/{tipo_evento}/eliminar', [AdminTipoEventoController::class, 'destroy'])->middleware('can:admin')->name('tipo-eventos.delete');
 
     Route::get('/eventos/index', [AdminEventoController::class,'index'])->middleware('can:editar_admin_editor')->name('eventos.index');
-    Route::get('/eventos/crear', [AdminEventoController::class, 'create'])->middleware('can:admin')->name('eventos.create');
     Route::post('/eventos/crear', [AdminEventoController::class, 'store'])->middleware('can:admin')->name('eventos.store');
     Route::get('/eventos/{evento}/editar', [AdminEventoController::class, 'edit'])->middleware('can:editar_admin_editor')->name('eventos.edit');
     Route::put('/eventos/{evento}', [AdminEventoController::class, 'update'])->middleware('can:admin')->name('eventos.update');

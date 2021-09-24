@@ -21,7 +21,7 @@ class AdminCategoriaDiarioController extends Controller
 
         $categoria_diario = new CategoriaDiario();
 
-        $categoria_diario->nombre_categoria = $request->nombre_categoria;
+        $categoria_diario->nombre = $request->nombre;
         $categoria_diario->save();
         return redirect()->route('categorias-diarios.index');
     }
@@ -34,7 +34,7 @@ class AdminCategoriaDiarioController extends Controller
 
     public function update(AdminCategoriaDiarioRequest $request,CategoriaDiario $categoria_diario)
     {
-        $categoria_diario->nombre_categoria = $request->nombre_categoria;
+        $categoria_diario->nombre = $request->nombre;
 
         $categoria_diario->save();
 

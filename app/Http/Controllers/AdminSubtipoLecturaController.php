@@ -20,7 +20,7 @@ class AdminSubtipoLecturaController extends Controller
         ->select("*")
         ->get();
 
-        return view('livewire.admin.subtipos-lecturas.subtipos-lecturas', ['iconos'=>$iconos,'subtipos_lecturas' => $subtipos_lecturas,'tipos_lecturas'=>$tipos_lecturas]);
+        return view('livewire.admin.subtipo-lecturas.subtipo-lecturas', ['iconos'=>$iconos,'subtipos_lecturas' => $subtipos_lecturas,'tipos_lecturas'=>$tipos_lecturas]);
         // return $subtipos_lecturas;
     }
 
@@ -46,7 +46,7 @@ class AdminSubtipoLecturaController extends Controller
         ->select("*")
         ->get();
 
-        return view('livewire.admin.subtipos-lecturas.editar-subtipos-lecturas', ['subtipos_lecturas' => $subtipos_lecturas, 'subtipo_lectura' => $subtipo_lectura,'tipos_lecturas'=>$tipos_lecturas,'iconos'=>$iconos]);
+        return view('livewire.admin.subtipo-lecturas.editar-subtipo-lecturas', ['subtipos_lecturas' => $subtipos_lecturas, 'subtipo_lectura' => $subtipo_lectura,'tipos_lecturas'=>$tipos_lecturas,'iconos'=>$iconos]);
     }
 
     public function update(AdminSubtipoLecturaRequest $request,SubtipoLectura $subtipo_lectura)
@@ -61,7 +61,7 @@ class AdminSubtipoLecturaController extends Controller
 
     public function destroy($id)
     {
-        SubtipoLectura::destroy($id);
+        TipoLectura::destroy($id);
         return redirect()->route('subtipos-lecturas.index');
     }
 }

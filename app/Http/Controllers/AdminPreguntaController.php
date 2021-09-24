@@ -18,14 +18,6 @@ class AdminPreguntaController extends Controller
         return view('livewire.admin.preguntas.preguntas', ['preguntas'=>$preguntas,'iconos' => $iconos]);
     }
 
-    public function create()
-    {
-
-        $preguntas = Pregunta::all();
-        $iconos = Icon::all();
-        return view('livewire.admin.preguntas.crear-preguntas', ['preguntas' => $preguntas,'iconos' => $iconos]);
-    }
-
     public function store(AdminPreguntaRequest $request){
         
         $preguntas = new Pregunta();

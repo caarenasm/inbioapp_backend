@@ -1,4 +1,4 @@
-<div class="flex justify-center">
+<div class="flex justify-center items-center h-screen">
 	<!--actual component start-->
 	<div x-data="setup()">
 		<ul class="flex justify-center items-center my-4">
@@ -51,11 +51,11 @@
 			<button
 				class="m-3 py-2 px-4 border rounded-md border-green-600 text-green-600 cursor-pointer uppercase text-sm font-bold hover:bg-green-700 hover:text-white hover:shadow"
 				@click="activeTab--" x-show="activeTab>0"
-				>Atras</button>
+				>Back</button>
 			<button
 				class="m-3 py-2 px-4 border rounded-md border-green-600 text-green-600 cursor-pointer uppercase text-sm font-bold hover:bg-green-700 hover:text-white hover:shadow"
 				@click="activeTab++" x-show="activeTab<tabs.length-1"
-				>Siguiente</button>
+				>Next</button>
 		</div>
 	</div>
 	<!--actual component end-->

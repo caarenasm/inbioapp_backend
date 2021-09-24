@@ -1,9 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Plan;
 
 use Illuminate\Database\Seeder;
+use App\Models\Plan;
 
 class PlanSeeder extends Seeder
 {

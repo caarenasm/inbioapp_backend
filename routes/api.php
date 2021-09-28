@@ -63,6 +63,7 @@ Route::group([
             Route::post('semaforo/alimento', [EnfermedadAlimentoController::class, 'semaforo']);
             Route::get('semaforo/recetas', [EnfermedadAlimentoController::class, 'recetas_recomendadas']);
             Route::get('receta', [RecetaController::class, 'lista']);
+            Route::get('receta/receta-unica', [RecetaController::class, 'receta_unica']);
             Route::get('blog', [BlogApi::class, 'lista']);
             Route::get('blog/categoria', [BlogApi::class, 'categoria']);
             Route::get('plan', [PlanController::class, 'lista']);

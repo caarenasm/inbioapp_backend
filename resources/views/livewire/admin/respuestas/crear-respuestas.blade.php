@@ -1,50 +1,48 @@
-<form action="{{ route('respuestas.store') }}" method="post">
-    @csrf
-    <div class="mb-3 bg-white rounded p-5">
-        <input type="hidden" value="{{ $preguntas->id }}" name="pregunta_id">
-        <div class="w-full mb-3">
-            <label for="respuesta" class="block font-bold text-gray-700">Respuesta</label>
-            <textarea name="respuesta" id="respuesta"
-                class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
-            @error('respuesta')
-                <small class="text-red-500">* {{ $message }}</small>
-            @enderror
-        </div>
-        <div class="w-full mb-3">
-            <label for="ayuda" class="block font-bold text-gray-700">Ayuda</label>
-            <textarea name="ayuda" id="ayuda" class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
-            @error('ayuda')
-                <small class="text-red-500">* {{ $message }}</small>
-            @enderror
-        </div>
-        <div class="flex-grow mb-3">
-            <label class="inline-flex items-center mt-3">
-                <input type="checkbox" name= "otro" value="1" class="form-checkbox h-5 w-5 text-gray-600">
-                <span class="ml-2 text-gray-700">Tipo de respuesta: Otro</span>
-            </label>
-            @error('otro')
-                <small class="text-red-500">* {{ $message }}</small>
-            @enderror
-        </div>
-        <div class="flex space-x-2">
-            <div class=" mb-3 grid grid-cols-2 gap-8">
-                <x-forms.button type="submit" text="Guardar cambios" />
-                {{--<a href="{{ url()->previous() }}"
-                    class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
-                    type="submit">
-                    Cancelar
-                </a>--}}
-                <a href="{{ url('/administracion/preguntas') }}"
-                    class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700"
-                    type="submit">
-                    Cancelar
-                </a>
+<div class="m-3 p-6 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+    <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Nueva respuesta</h2>
+    <div class="flex flex-col">
+        <form action="{{ route('respuestas.store') }}" method="post">
+            @csrf
+            <div class="grid grid-cols-2">
+                <input type="hidden" value="{{ $preguntas->id }}" name="pregunta_id">
+                <div class="m-3">
+                    <label for="respuesta" class="block font-bold text-gray-700">Respuesta</label>
+                    <textarea name="respuesta" id="respuesta" class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
+                    @error('respuesta')
+                    <small class="text-red-500">* {{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="m-3">
+                    <label for="ayuda" class="block font-bold text-gray-700">Ayuda</label>
+                    <textarea name="ayuda" id="ayuda" class="w-full rounded-xl text-gray-500 border-gray-300"></textarea>
+                    @error('ayuda')
+                    <small class="text-red-500">* {{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="flex-grow m-3">
+                    <label class="inline-flex items-center mt-3">
+                        <input type="checkbox" name="otro" value="1" class="form-checkbox h-5 w-5 text-gray-600">
+                        <span class="ml-2 text-gray-700">Tipo de respuesta: Otro</span>
+                    </label>
+                    @error('otro')
+                    <small class="text-red-500">* {{ $message }}</small>
+                    @enderror
+                </div>
             </div>
-        </div>
-    </div>
-</form>
+            <div class="flex space-x-2">
+                <div class=" m-3 grid grid-cols-2 gap-8">
+                    <x-forms.button type="submit" text="Crear respuesta" />
 
-@push('scripts')
+                    <a href="{{ url('/administracion/preguntas') }}" class="w-full text-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-color-primario hover:bg-color-primario-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-primario-700" type="submit">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    @push('scripts')
 
     <script src="/js/ckeditor5.js"></script>
 
@@ -91,7 +89,7 @@
                         ]
                     },
                     simpleUpload: {
-                        uploadUrl: '{{ asset('./imagenes/recetas/placeholder.png') }}',
+                        uploadUrl: '{{ asset('. / imagenes / recetas / placeholder.png ') }}',
                         headers: {
 
                         }
@@ -150,7 +148,7 @@
                         ]
                     },
                     simpleUpload: {
-                        uploadUrl: '{{ asset('./imagenes/recetas/placeholder.png') }}',
+                        uploadUrl: '{{ asset('. / imagenes / recetas / placeholder.png ') }}',
                         headers: {
 
                         }
@@ -169,4 +167,4 @@
                 });
         });
     </script>
-@endpush
+    @endpush

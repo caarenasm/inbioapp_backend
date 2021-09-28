@@ -3,24 +3,24 @@
     @section('title', 'Estado del semaforo')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Estado del semaforo</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Estado del semaforo</h2>
         <div class="p-2 bg-white">
             @can('admin')
-                <div class="flex flex-col mb-6">
-                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
-                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                @include('livewire/admin/semaforo-estados/crear-semaforo-estado')
-                            </div>
+                <div class="flex flex-col m-3 justify-items-center">
+                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 align-middle sm:px-6 lg:px-8">
+                            @include('livewire/admin/semaforo-estados/crear-semaforo-estado')
                         </div>
                     </div>
                 </div>
             @endcan
-            <div class="flex flex-col">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            @include('livewire/admin/semaforo-estados/listar-semaforo-estado')
+            <div class="p-2 bg-white">
+                <div class="flex flex-col">
+                    <div class="overflow-x-auto">
+                        <div class="py-2 align-middle">
+                            <div class="p-3 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                @include('livewire/admin/semaforo-estados/listar-semaforo-estado')
+                            </div>
                         </div>
                     </div>
                 </div>

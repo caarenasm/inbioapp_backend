@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Str;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminProductosController extends Controller
 {
@@ -58,6 +59,7 @@ class AdminProductosController extends Controller
         $producto->published = $request->published;
         $producto->resolucion = $request->resolucion;
         
+        $resolucion = $request->resolucion;
 
         // $orden = 0;
         // if ($request->file('imagenes')) {
@@ -77,11 +79,41 @@ class AdminProductosController extends Controller
 
         if ($request->hasFile('imagenes')){
             $file           = $request->file("imagenes");
-            $nombrearchivo  = $file->getClientOriginalName();
+            $nombre_archivo  = $file->getClientOriginalName();
             $extension= File::extension(basename($file->getClientOriginalName()));
             $nombre_archivo = Str::random(30).'.'.$extension;
-            $file->move(public_path("imagenes/productos/"),$nombre_archivo);
-            $producto->imagenes      = $nombre_archivo;
+            
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("imagenes"))->resize(320, 240)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("imagenes"))->resize(640, 480)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("imagenes"))->resize(854, 480)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("imagenes"))->resize(800, 600)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("imagenes"))->resize(1024, 576)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("imagenes"))->resize(1024, 768)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            
+            $producto->imagenes = $nombre_archivo;
         }
 
         $producto->save();
@@ -125,12 +157,43 @@ class AdminProductosController extends Controller
         $producto->published = $request->published;
         $producto->resolucion = $request->resolucion;
 
+        $resolucion = $request->resolucion;
+
         if ($request->hasFile('imagenes')){
             $file           = $request->file("imagenes");
-            $nombrearchivo  = $file->getClientOriginalName();
+            $nombre_archivo  = $file->getClientOriginalName();
             $extension= File::extension(basename($file->getClientOriginalName()));
             $nombre_archivo = Str::random(30).'.'.$extension;
-            $file->move(public_path("imagenes/productos/"),$nombre_archivo);
+            
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("imagenes"))->resize(320, 240)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("imagenes"))->resize(640, 480)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("imagenes"))->resize(854, 480)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("imagenes"))->resize(800, 600)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("imagenes"))->resize(1024, 576)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("imagenes"))->resize(1024, 768)
+                        ->save("imagenes/productos/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
             $producto->imagenes      = $nombre_archivo;
         }
 

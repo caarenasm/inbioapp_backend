@@ -13,6 +13,45 @@
             </a>
         </div>
 
+                        <div x-show="openEnfermedades">
+                            <li>
+                                <a href="{{ route('tipos-enfermedades.index') }}"
+                                    class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                                    x-on:click="openEnfermedades = openEnfermedades !== true">
+                                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white"><i
+                                            class=""></i></span>
+                            <span class=" text-base
+                                            font-medium text-white">Tipo de enfermedades</span>
+                                </a>
+                                <a href="{{ route('enfermedades.index') }}"
+                                    class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                                    x-on:click="openEnfermedades = openEnfermedades !== true">
+                                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white"><i
+                                            class=""></i></span>
+                            <span class=" text-base
+                                            font-medium text-white">Enfermedades</span>
+                                </a>
+                                <a href="{{ route('semaforos-estados.index') }}"
+                                    class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                                    x-on:click="openEnfermedades = openEnfermedades !== true">
+                                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white"><i
+                                            class=""></i></span>
+                            <span class=" text-base
+                                            font-medium text-white">Semaforo estados</span>
+                                </a>
+                            </li> 
+                        </div>
+                    </div>
+                    <div x-data="{ openAlimentos : false }">
+                        <li>
+                            <a href="#"
+                                class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                                x-on:click="openAlimentos = openAlimentos !== true">
+                                <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white"><i
+                                        class="bx bx-fridge"></i></span>
+                                <span class="text-base font-medium text-white">Sección Alimentos</span>
+                            </a>
+                        </li>
         <div class="flex-col p-1" x-data="{ openAlimentos : false }">
             <a class="border-b border-gray-300 p-1 block text-white" x-on:click="openAlimentos = openAlimentos !== true">
                 <div class="inline-block w-5 relative top-1">

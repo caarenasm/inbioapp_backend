@@ -22,7 +22,6 @@ class CreateEventosTable extends Migration
             $table->text('descripcion')->nullable();
             $table->date('fecha_evento')->nullable();
             $table->time('hora')->nullable();
-            $table->Integer('resolucion');
            
             $table->foreignId('tipo_evento_id')
             ->constrained('tipo_eventos');

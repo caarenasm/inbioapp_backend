@@ -16,8 +16,7 @@ class AdminAlimentosController extends Controller
         $alimentos = CategoriaAlimento::join('alimentos', 'categoria_alimento_id', '=', 'categoria_alimentos.id')
         ->select("*")
         ->get();
-        $category_food = CategoriaAlimento::all();
-        return view('livewire.admin.alimentos.alimentos', ['alimentos' => $alimentos,'category_food' => $category_food]);
+        return view('livewire.admin.alimentos.alimentos', ['alimentos' => $alimentos]);
         // return $alimentos;
     }
 

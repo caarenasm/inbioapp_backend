@@ -16,63 +16,19 @@ class TipoLecturaSeeder extends Seeder
     {
         $data = [
             [
-                'nombre' => 'Regular sueño',
+                'nombre' => 'Sueño',
                 'categoria_diario_id' => '1',
             ],
             [
-                'nombre' => 'Peso actual',
-                'categoria_diario_id' => '1',
-            ],
-            [
-                'nombre' => 'Actividad fisica',
-                'categoria_diario_id' => '1',
-            ],
-            [
-                'nombre' => '¿Qué comiste?',
+                'nombre' => 'alergias',
                 'categoria_diario_id' => '2',
             ],
             [
-                'nombre' => 'Vasos de agua',
-                'categoria_diario_id' => '2',
-            ],
-            [
-                'nombre' => 'Incomodidad con los alimentos',
-                'categoria_diario_id' => '2',
-            ],
-            [
-                'nombre' => 'Suplementos',
+                'nombre' => 'diabetes',
                 'categoria_diario_id' => '3',
             ],
             [
-                'nombre' => 'Deposiciones',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Enfermedades estacionales',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Regular enfermedad',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Vision',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Gastricas',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Dolencias en el cuerpo',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Señales en el organismo',
-                'categoria_diario_id' => '3',
-            ],
-            [
-                'nombre' => 'Alergias',
+                'nombre' => 'presion',
                 'categoria_diario_id' => '3',
             ],
         ];

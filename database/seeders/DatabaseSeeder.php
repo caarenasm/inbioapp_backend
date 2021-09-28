@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IconSeeder::class);
         $this->call(PreguntaSeeder::class);
         $this->call(RespuestaSeeder::class);
+        $this->call(PlanSeeder::class);
         $this->call(CategoriaDiarioSeeder::class);
         $this->call(TipoLecturaSeeder::class);
         $this->call(SubtipoLecturaSeeder::class);

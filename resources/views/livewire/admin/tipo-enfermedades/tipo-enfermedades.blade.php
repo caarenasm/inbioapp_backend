@@ -1,28 +1,28 @@
 <x-app-layout>
     @section('title', 'Tipo de enfermedades')
     <div class="p-2 bg-white flex flex-col">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Tipo de enfermedades</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Tipo de enfermedades</h2>
         <div class="p-2 bg-white">
             @can('admin')
                 <div class="flex flex-col m-3 justify-items-center">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
+                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                 @include('livewire/admin/tipo-enfermedades/crear-tipo-enfermedades')
+                            </div>
                         </div>
                     </div>
                 </div>
             @endcan
-            <div class="p-2 bg-white">
-                <div class="flex flex-col">
-                    <div class="-my-2 overflow-x-auto">
-                        <div class="py-2 align-middle">
-                            <div class="p-3 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <div class="flex flex-col m-3">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             @include('livewire/admin/tipo-enfermedades/listar-tipo-enfermedades')
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         @push('modals')
             <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="modalConfirm" x-show="confirmDialog">

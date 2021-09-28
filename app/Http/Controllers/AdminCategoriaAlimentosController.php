@@ -19,7 +19,6 @@ class AdminCategoriaAlimentosController extends Controller
 
     public function create()
     {
-        
         $categorias_alimentos = CategoriaAlimento::orderBy('id', 'desc')->paginate();
         return view('livewire.admin.categoria-alimentos.crear-categoria-alimentos', ['categorias_alimentos' => $categorias_alimentos]);
     }

@@ -18,6 +18,7 @@ class CreateCategoriaEnfermedadesTable extends Migration
             $table->id();
 
             $table->string('tipo_enfermedad');
+            
             $table->text('descripcion');
 
             $table->foreignId('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');

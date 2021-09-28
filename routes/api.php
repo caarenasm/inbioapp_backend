@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\api\PreguntaController;
 use App\Http\Controllers\Api\RecetaController;
+use App\Http\Controllers\Api\EventoController;
 use App\Http\Controllers\Api\BlogApi;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\EnfermedadAlimentoController;
@@ -69,6 +70,8 @@ Route::group([
             Route::get('plan', [PlanController::class, 'lista']);
             Route::get('eventos', [EventoController::class, 'tipoEventos']);
             Route::get('eventos/lista', [EventoController::class, 'lista_eventos']);
+            Route::get('eventos/unico', [EventoController::class, 'evento_unico']);
+            Route::get('eventos/fecha', [EventoController::class, 'fecha']);
             Route::get('tipo/lecturas', [TipoLecturaController::class, 'tiposLecturas']);
             Route::get('tipo/lectura/subtipos', [TipoLecturaController::class, 'subtiposLecturas']);
             Route::post('tipo/lectura/users', [LecturaUserController::class, 'guardar']);

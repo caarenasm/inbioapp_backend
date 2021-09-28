@@ -13,37 +13,57 @@ class EventoController extends Controller
     {
         $tipo_eventos = [];
 
-        $tipo_eventos = TipoEvento::select('tipo_eventos.id','tipo_evento')->get()->toArray();
+        $tipo_eventos = TipoEvento::select('tipo_eventos.id', 'tipo_evento')->get()->toArray();
 
         return response([
-            'data' => $tipo_eventos
+            'data' => $tipo_eventos,
         ]);
     }
 
-    public function fechaEventos(Request $request)
-    {  
+    // public function fechaEventos(Request $request)
+    // {
 
+    // }
 
-    }
+    // public function lista_eventos(Request $request)
+    // {
 
-    public function lista_eventos(Request $request)
+    //     $eventos = Evento::select("*");
+
+    //     if ($request->tipo_evento != "") {
+    //         $eventos->where('tipo_evento_id', '=', $request->tipo_evento);
+    //     }
+
+    //     if ($request->fechaInicio != "") {
+    //         $eventos->whereBetween('fecha_evento', [$request->fechaInicio, $request->fechaFin]);
+    //     }
+
+    //     $eventos->get();
+
+    //     return response([
+    //         'data' => $eventos,
+    //     ]);
+
+    // }
+
+    public function evento_unico(Request $request)
     {
+        $response = [];
 
-        $eventos = Evento::select("*");
+        $eventos = Evento::select( 'id', 'titulo', 'slug', 'imagen_url', 'descripcion', 'fecha_evento', 'hora')->where('id', '=', $request->id)
+            ->orderBy('id', 'asc')->get()->toArray();
 
-        if($request->tipo_evento!=""){
-            $eventos->where('tipo_evento_id' ,'=' ,$request->tipo_evento);
-        }
+        return response()->json($eventos);
+    }
 
-        if($request->fechaInicio!=""){
-            $eventos->whereBetween('fecha_evento',[$request->fechaInicio,$request->fechaFin]);
-        }
 
-        $eventos->get();
+    public function fecha(Request $request)
+    {
+        $response = [];
 
-        return response([
-            'data' => $eventos
-        ]);
+        $eventos = Evento::whereBetween('fecha_evento', [$request->fecha_inicial, $request->fecha_final])
+        ->get()->toArray();
 
+        return response()->json($eventos);
     }
 }

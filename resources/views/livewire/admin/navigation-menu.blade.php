@@ -49,7 +49,7 @@
                             <span class=" text-base
                                             font-medium text-white">Semaforo estados</span>
                                 </a>
-                            </li>
+                            </li> 
                         </div>
                     </div>
                     <div x-data="{ openAlimentos : false }">

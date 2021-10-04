@@ -25,7 +25,7 @@ class CreateUserQuizTable extends Migration
             $table->foreignId('respuesta_id')
             ->constrained('respuestas');
 
-            $table->string('de_respuesta',255);
+            $table->string('de_respuesta',255)->default(NULL);
 
             $table->timestamps();
         });

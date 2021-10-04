@@ -16,13 +16,13 @@ class CategoriaDiarioSeeder extends Seeder
     {
         $data = [
             [
-                'nombre' => 'Habitos',
+                'nombre_categoria' => 'Habitos',
             ],
             [
-                'nombre' => 'Alimentos',
+                'nombre_categoria' => 'Alimentos',
             ],
             [
-                'nombre' => 'Enfermedades'
+                'nombre_categoria' => 'Enfermedades'
             ],
         ];
 

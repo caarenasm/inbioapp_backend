@@ -22,7 +22,7 @@ class CreateLecturaUsersTable extends Migration
             $table->foreignId('tipo_lectura_id')
             ->constrained('tipo_lecturas');
 
-            $table->json('datos_leidos');
+            $table->text('datos_leidos');
 
             $table->timestamps();
         });

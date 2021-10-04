@@ -30,7 +30,7 @@ class ProductoSeeder extends Seeder
                 'price' => 30000,
                 'weight' => 100,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'bioremix.jpg',
                 'resolucion' => 0,
 
             ],
@@ -47,7 +47,7 @@ class ProductoSeeder extends Seeder
                 'price' => 66000,
                 'weight' => 250,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'bioremix.jpg',
                 'resolucion' => 0,
 
             ],
@@ -60,7 +60,7 @@ class ProductoSeeder extends Seeder
                 'price' => 20000,
                 'weight' => 200,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'purafib.jpg',
                 'resolucion' => 0,
 
             ],
@@ -73,7 +73,7 @@ class ProductoSeeder extends Seeder
                 'price' => 36000,
                 'weight' => 100,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'bioremix-mana.jpg',
                 'resolucion' => 0,
 
             ],
@@ -86,7 +86,7 @@ class ProductoSeeder extends Seeder
                 'price' => 71000,
                 'weight' => 250,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'bioremix-mana.jpg',
                 'resolucion' => 0,
             ],
             [
@@ -98,7 +98,7 @@ class ProductoSeeder extends Seeder
                 'price' => 100000,
                 'weight' => 180,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'bioremix-mana-especial.jpg',
                 'resolucion' => 0,
             ],
             [
@@ -110,7 +110,7 @@ class ProductoSeeder extends Seeder
                 'price' => 80000,
                 'weight' => 95,
                 'published' => 0,
-                'imagenes' => 'placeholder.png',
+                'imagenes' => 'mega-es.jpg',
                 'resolucion' => 0,
             ],
         ];

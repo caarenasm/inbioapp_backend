@@ -69,14 +69,22 @@ class PlanController extends Controller
 
     public function lista(){
 
-        $plans = [];
+        $response = [];
         
-        $plans = Plan::select('id', 'titulo', 'slug', 'descripcion', 'imagen_url', 'precio')
+        $plans = Plan::select('id', 'titulo', 'slug', 'descripcion', 'imagen_url', 'precio', 'texto_tiempo', 'texto_anual')
         ->orderBy('id','asc')->get()->toArray();
 
-            return response([
-                'data' => $plans
-            ]);
+        foreach ($plans as $key => $value) {
+            $response[$key]['id'] = $value['id'];
+            $response[$key]['titulo'] = $value['titulo'];
+            $response[$key]['descripcion'] = $value['descripcion'];
+            $response[$key]['imagen_url'] = asset('imagenes/planes/' . $value['imagen_url']);
+            $response[$key]['precio'] = $value['precio'];
+            $response[$key]['texto_tiempo'] = $value['texto_tiempo'];
+            $response[$key]['texto_anual'] = $value['texto_anual'];
+        }
+
+        return response()->json($response);
             
     }
 }

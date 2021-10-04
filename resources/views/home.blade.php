@@ -151,41 +151,17 @@
             3. Línea de Bioregeneración: Repotenciamos tu microbiología para mejorar la regeneración natural.</p>
 
         <div class="productos">
-            <div class="image-text-card">
-                <div class="image-container">
-                    <img src="/imagenes/objetivos/placeholder.png">
+            @foreach($productos as $producto)
+                <div class="image-text-card">
+                    <div class="image-container">
+                        <img src="/imagenes/productos/{{ $producto->imagenes }}">
+                    </div>
+                    <p class="title">{{ $producto->title }} {{ number_format($producto->weight, 0, '', '') }}</p>
+                    <p class="price">{{ number_format($producto->price, 0, '', '.') }} COP</p>
+                    <!--<button>Quiero este producto</button>-->
                 </div>
-                <p class="title">AZ MON</p>
-                <p class="price">30.000 COP</p>
-                <button>Quiero este producto</button>
-            </div>
+            @endforeach
 
-            <div class="image-text-card">
-                <div class="image-container">
-                    <img src="/imagenes/objetivos/placeholder.png">
-                </div>
-                <p class="title">AZ MON</p>
-                <p class="price">30.000 COP</p>
-                <button>Quiero este producto</button>
-            </div>
-
-            <div class="image-text-card">
-                <div class="image-container">
-                    <img src="/imagenes/objetivos/placeholder.png">
-                </div>
-                <p class="title">AZ MON</p>
-                <p class="price">30.000 COP</p>
-                <button>Quiero este producto</button>
-            </div>
-
-            <div class="image-text-card">
-                <div class="image-container">
-                    <img src="/imagenes/objetivos/placeholder.png">
-                </div>
-                <p class="title">AZ MON</p>
-                <p class="price">30.000 COP</p>
-                <button>Quiero este producto</button>
-            </div>
         </div>
 
     </section>

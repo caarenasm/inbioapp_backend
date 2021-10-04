@@ -19,17 +19,17 @@ class ObjetivoSeeder extends Seeder
             [
                 'nombre_objetivo' => 'Regular mi peso',
                 'descripcion' => 'Si quieres lograr con éxito el objetivo de bajar o subir de peso para mejorar tu estado de salud o apariencia física.',
-                'imagen_url' => 'Plan_Gratuito.png',
+                'imagen_url' => 'plan-gratuito.png',
             ],
             [
                 'nombre_objetivo' => 'Mejorar mi salud',
                 'descripcion' => 'Si tu propósito es mejorar los signos de tus dolencias y poder sentirte bien cada día.',
-                'imagen_url' => 'Plan_Gratuito.png',
+                'imagen_url' => 'plan-gratuito.png',
             ],
             [
                 'nombre_objetivo' => 'Mantener mi estilo de vida saludable',
                 'descripcion' => 'Si ya has hecho cambios en tu dieta y estilo de vida y deseas mantenerte motivado para seguirla.',
-                'imagen_url' => 'Plan_Gratuito.png',
+                'imagen_url' => 'plan-gratuito.png',
             ]
         ];
 

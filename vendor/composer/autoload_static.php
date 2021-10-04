@@ -708,6 +708,7 @@ class ComposerStaticInitf6afd210d8f9ae8e0791ad43bedd0281
         'App\\Http\\Controllers\\AdminUsuarioInformacionController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminUsuarioInformacionController.php',
         'App\\Http\\Controllers\\Api\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AuthController.php',
         'App\\Http\\Controllers\\Api\\RecetaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RecetaController.php',
+        'App\\Http\\Controllers\\Api\\RelacionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RelacionController.php',
         'App\\Http\\Controllers\\ContactoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',

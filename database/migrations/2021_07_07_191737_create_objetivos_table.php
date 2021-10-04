@@ -18,6 +18,7 @@ class CreateObjetivosTable extends Migration
             $table->string('nombre_objetivo',45);
             $table->text('descripcion');
             $table->string('imagen_url');
+            $table->Integer('resolucion');
             $table->timestamps();
         });
     }

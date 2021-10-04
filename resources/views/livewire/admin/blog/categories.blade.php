@@ -3,12 +3,13 @@
     @section('title', 'Categorias')
 
     <div class="p-2 bg-white">
-        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold">Categorías de entradas</h2>
+        <h2 class="text-2xl py-2 text-fondo-verde font-extrabold text-center">Categorías de entradas</h2>
 
         <div class="grid grid-cols-2 space-x-5">
 
             <div>
                 @if($category->id)
+                <div class="m-3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <h3 class="text-xl py-2 text-fondo-verde font-extrabold">Modificar categoría</h3>
                     <form method="post" action="{{route('blog-category.update', $category)}}">
                         @csrf
@@ -17,7 +18,9 @@
 
                         <x-forms.button type="submit" text="Guardar modificación"/>
                     </form>
+                </div>
                 @else
+                <div class="m-3 p-2 bg-gray-50 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <h3 class="text-xl py-2 text-fondo-verde font-extrabold">Nueva categoría</h3>
                     <form method="post" action="{{route('blog-category.store')}}">
                         @csrf
@@ -25,6 +28,7 @@
 
                         <x-forms.button type="submit" text="Agregar categoría"/>
                     </form>
+                </div>
                 @endif
 
             </div>

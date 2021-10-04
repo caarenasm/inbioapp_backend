@@ -6,17 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRecetaRequest;
 use App\Models\Alimento;
 use App\Models\Receta;
+use App\Models\Resolucion;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminRecetaController extends Controller
 {
     public function index(){
         
         $recetas= Receta::orderBy('id','desc')->paginate();
-        return view('livewire.admin.recetas.recetas', ['recetas'=>$recetas]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.recetas.recetas', ['recetas'=>$recetas,'resoluciones'=>$resoluciones]);
     }
 
     public function imagen()
@@ -28,7 +31,8 @@ class AdminRecetaController extends Controller
   
     
         $alimentos = Alimento::all();
-        return view('livewire.admin.recetas.crear-recetas', ['alimentos' => $alimentos]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.recetas.crear-recetas', ['alimentos' => $alimentos,'resoluciones'=>$resoluciones]);
     }
 
     public function store(AdminRecetaRequest $request){
@@ -42,13 +46,47 @@ class AdminRecetaController extends Controller
         $recetas->descripcion = $request -> descripcion;
         $recetas->preparacion = $request -> preparacion;
         $recetas->fecha_publicacion = $request->fecha_publicacion != '' ? $request->fecha_publicacion : date('Y-m-d');
+        $recetas->resolucion = $request -> resolucion;
+
+        $resolucion = $request->resolucion;
+
 
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
             $extension= File::extension(basename($file->getClientOriginalName()));
             $nombre_archivo = Str::random(30).'.'.$extension;
-            $file->move(public_path("imagenes/recetas/"),$nombre_archivo);
+           
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("imagen_url"))->resize(320, 240)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("imagen_url"))->resize(640, 480)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("imagen_url"))->resize(854, 480)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("imagen_url"))->resize(800, 600)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("imagen_url"))->resize(1024, 576)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("imagen_url"))->resize(1024, 768)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
             $recetas->imagen_url      = $nombre_archivo;
         }
 
@@ -71,7 +109,8 @@ class AdminRecetaController extends Controller
     {
         // return $plan;
         $recetas = Receta::all();
-        return view('livewire.admin.recetas.editar-recetas', ['recetas'=>$recetas, 'receta' => $receta]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.recetas.editar-recetas', ['recetas'=>$recetas, 'receta' => $receta,'resoluciones'=>$resoluciones]);
     }
 
     public function update(AdminRecetaRequest $request, Receta $receta)
@@ -84,13 +123,47 @@ class AdminRecetaController extends Controller
         $receta->descripcion = $request -> descripcion;
         $receta->preparacion = $request -> preparacion;
         $receta->fecha_publicacion = $request->fecha_publicacion != '' ? $request->fecha_publicacion : date('Y-m-d');
+        $receta->resolucion = $request->resolucion;
         
+        $resolucion = $request->resolucion;
+
         if ($request->hasFile('imagen_url')){
             $file           = $request->file("imagen_url");
             $nombrearchivo  = $file->getClientOriginalName();
             $extension= File::extension(basename($file->getClientOriginalName()));
             $nombre_archivo = Str::random(30).'.'.$extension;
-            $file->move(public_path("imagenes/recetas/"),$nombre_archivo);
+            
+
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("imagen_url"))->resize(320, 240)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("imagen_url"))->resize(640, 480)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("imagen_url"))->resize(854, 480)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("imagen_url"))->resize(800, 600)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("imagen_url"))->resize(1024, 576)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("imagen_url"))->resize(1024, 768)
+                        ->save("imagenes/recetas/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
             $receta->imagen_url      = $nombre_archivo;
         }
 

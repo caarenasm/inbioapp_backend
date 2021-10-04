@@ -6,8 +6,12 @@ use App\Models\Blog;
 use App\Models\CategoriasBlog;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Resolucion;
 use App\Http\Requests\AdminBlogRequest;
-use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Str;
+use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminBlogController extends Controller
 {
@@ -19,7 +23,8 @@ class AdminBlogController extends Controller
     public function index()
     {
         $posts = Blog::orderBy('created_at', 'desc')->paginate(10);
-        return view('livewire.admin.blog.index', ['posts' => $posts]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.blog.index', ['posts' => $posts,'resoluciones'=>$resoluciones]);
     }
 
     /**
@@ -42,7 +47,8 @@ class AdminBlogController extends Controller
         $post = new Blog();
         $users = User::role(['Administrador', 'Editor'])->get();
         $categories = CategoriasBlog::all();
-        return view('livewire.admin.blog.nuevo', ['users' => $users, 'categories' => $categories, 'post' => $post]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.blog.nuevo', ['users' => $users, 'categories' => $categories, 'post' => $post,'resoluciones'=>$resoluciones]);
     }
 
     /**
@@ -63,13 +69,47 @@ class AdminBlogController extends Controller
         $blog->end_date = $request->end_date;
         $blog->published = $request->published;
         $blog->user_id = $request->author;
+        $blog->resolucion = $request->resolucion;
        
+        $resolucion = $request->resolucion;
 
         if ($request->hasFile('image_url')){
             $file           = $request->file("image_url");
-            $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/blog/"),$nombrearchivo);
-            $blog->image_url      = $nombrearchivo;
+            $nombre_archivo  = $file->getClientOriginalName();
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("image_url"))->resize(320, 240)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("image_url"))->resize(640, 480)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("image_url"))->resize(854, 480)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("image_url"))->resize(800, 600)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("image_url"))->resize(1024, 576)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("image_url"))->resize(1024, 768)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            
+            $blog->image_url = $nombre_archivo;
         }
 
         $blog->save();
@@ -101,7 +141,8 @@ class AdminBlogController extends Controller
     {
         $users = User::role(['Administrador', 'Editor'])->get();
         $categories = CategoriasBlog::all();
-        return view('livewire.admin.blog.edit', ['post' => $blog, 'users' => $users, 'categories' => $categories]);
+        $resoluciones = Resolucion::all();
+        return view('livewire.admin.blog.edit', ['post' => $blog, 'users' => $users, 'categories' => $categories,'resoluciones' => $resoluciones]);
     }
 
     /**
@@ -123,12 +164,49 @@ class AdminBlogController extends Controller
         $blog->published = $request->published;
         $blog->user_id = $request->author;
 
+        $blog->resolucion = $request->resolucion;
+       
+        $resolucion = $request->resolucion;
+
         if ($request->hasFile('image_url')){
             $file           = $request->file("image_url");
-            $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("imagenes/blog/"),$nombrearchivo);
-            $blog->image_url      = $nombrearchivo;
+            $nombre_archivo  = $file->getClientOriginalName();
+            $extension= File::extension(basename($file->getClientOriginalName()));
+            $nombre_archivo = Str::random(30).'.'.$extension;
+            
+            switch ($resolucion) {
+                case 1:
+                    $img = Image::make($request->file("image_url"))->resize(320, 240)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 2:
+                    $img = Image::make($request->file("image_url"))->resize(640, 480)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 3:
+                    $img = Image::make($request->file("image_url"))->resize(854, 480)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 4:
+                    $img = Image::make($request->file("image_url"))->resize(800, 600)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 5:
+                    $img = Image::make($request->file("image_url"))->resize(1024, 576)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                case 6:
+                    $img = Image::make($request->file("image_url"))->resize(1024, 768)
+                        ->save("imagenes/blog/" . $nombre_archivo);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            
+            $blog->image_url = $nombre_archivo;
         }
+
 
         $blog->save();
 
@@ -145,8 +223,6 @@ class AdminBlogController extends Controller
      */
     public function destroy($id)
     {
-        $post = Blog::find($id);
-        Storage::delete($post->url);
         Blog::destroy($id);
         return redirect()->route('blog');
     }

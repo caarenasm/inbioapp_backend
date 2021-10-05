@@ -56,7 +56,7 @@ Route::group([
         ], function() {
             Route::get('logout', [AuthController::class, 'logout']);
             Route::get('datos', [AuthController::class, 'user']);
-            Route::post('plan/planUser', [PlanController::class, 'user_plan']);
+            Route::post('plan/guardar', [PlanController::class, 'guardar']);
             Route::get('semaforo/categoria', [EnfermedadAlimentoController::class, 'categoria']);
             Route::get('semaforo/enfermedades/usuario', [EnfermedadAlimentoController::class, 'enfermedad_usuario']);
             Route::post('semaforo/categoria/alimento', [EnfermedadAlimentoController::class, 'categoria_alimentos']);

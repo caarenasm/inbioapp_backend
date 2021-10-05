@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\api\PreguntaController;
+use App\Http\Controllers\Api\PreguntaController;
 use App\Http\Controllers\Api\RecetaController;
 use App\Http\Controllers\Api\EventoController;
 use App\Http\Controllers\Api\BlogApi;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\EnfermedadAlimentoController;
-use App\Http\Controllers\api\LecturaUserController;
-use App\Http\Controllers\api\TipoLecturaController;
-use App\Http\Controllers\api\ObjetivoController;
-use App\Http\Controllers\api\CompraController;
-use App\Http\Controllers\api\RelacionController;
+use App\Http\Controllers\Api\LecturaUserController;
+use App\Http\Controllers\Api\TipoLecturaController;
+use App\Http\Controllers\Api\ObjetivoController;
+use App\Http\Controllers\Api\CompraController;
+use App\Http\Controllers\Api\RelacionController;
 use Facade\FlareClient\Api;
 
 /*

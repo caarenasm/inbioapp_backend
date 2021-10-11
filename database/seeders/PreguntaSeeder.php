@@ -29,7 +29,7 @@ class PreguntaSeeder extends Seeder
             ],
             [
                 'pregunta' => '¿Por cuáles tipos de comida sientes antojo?',
-                'icono' => 'icon-tipo_antojo',
+                'icono' => 'icon-tipos_antojo',
                 'descripcion' => 'Entender lo que tu cuerpo pide de comida o desea refleja algunas deficiencias nutricionales y también refleja la calidad y variedad de tu microbiota.',
                 'tipo_respuestas' => 2
             ],
